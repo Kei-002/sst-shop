@@ -14,17 +14,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')
             ->onDelete('cascade');
-            $table->text('customer_name');
+            $table->text('fname');
+            $table->text('lname');
             $table->text('addressline');
             $table->text('phone');
             $table->text('img_path') -> default('/storage/images/default.jpg');
             // $table->text('status') -> default('ACTIVE');
             $table->timestamps();
-            $table->softDeletes();
+            // $table->softDeletes();
         });
     }
 
