@@ -13,7 +13,8 @@ class Customer extends Model
 
     protected $guarded = ['id'];
     public static $rules = [
-        'customer_name' => 'required',
+        'customer_fname' => 'required',
+        'customer_lname' => 'required',
         'addressline' => 'required',
         'phone' => 'digits_between:3,8',
         'img_path' => 'required'

@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+// Route::get('/customer/all', ['uses' => 'CustomerController@getCustomerAll', 'as' => 'customer.getcustomerall']);
+Route::resource('customer', 'CustomerController');
