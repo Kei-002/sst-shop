@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use File;
 use View;
 use DB;
+use App\Models\User;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 
@@ -40,7 +41,21 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $customer = Customer::create($request->all());
+        $data = $request->all();
+        $account = new User;
+        $account->email = $data["email"];
+        $account->password = bcrypt($data["password"]);
+        $account->role = "customer";
+        $account->save();
+
+        $customer = new Customer;
+        $customer->user_id = $account->id;
+        $customer->fname = $data["fname"];
+        $customer->lname = $data["lname"];
+        $customer->addressline = $data["addressline"];
+        $customer->phone = $data["phone"];
+        $customer->save();
+        // $customer = Customer::create($request->all());
         return response()->json($customer);
     }
 

@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 // Route::resource('customer', 'CustomerController');
+Route::view('/customer-index', 'customer.index');  

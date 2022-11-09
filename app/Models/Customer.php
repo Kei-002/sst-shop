@@ -13,11 +13,11 @@ class Customer extends Model
 
     protected $guarded = ['id'];
     public static $rules = [
-        'customer_fname' => 'required',
-        'customer_lname' => 'required',
+        'fname' => 'required',
+        'lname' => 'required',
         'addressline' => 'required',
-        'phone' => 'digits_between:3,8',
-        'img_path' => 'required'
+        'phone' => 'digits_between:3,11'
+        // 'img_path' => 'required'
     ];
 
     public function user()
