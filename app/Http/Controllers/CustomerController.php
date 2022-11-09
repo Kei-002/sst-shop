@@ -44,7 +44,7 @@ class CustomerController extends Controller
         $data = $request->all();
         $account = new User;
         $account->email = $data["email"];
-        $account->password = bcrypt($data["password"]);
+        $account->password = bcrypt($data["pass"]);
         $account->role = "customer";
         $account->save();
 
