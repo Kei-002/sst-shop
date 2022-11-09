@@ -105,7 +105,8 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         $customer = Customer::findOrFail($id);
-        $customer->delete();
+        $account = User::findOrFail($customer->user_id);
+        $account->delete();
         return response()->json(["success" => "customer deleted successfully.", "status" => 200]);
     }
 }
