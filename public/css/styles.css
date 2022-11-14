@@ -1,3 +1,318 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* custom scroll bar  start navbar*/
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::selection {
+    background: rgb(0, 123, 255, 0.3);
+}
+
+.content {
+    max-width: 1250px;
+    margin: auto;
+    padding: 0 30px;
+}
+
+.navbar {
+    background-color: rgb(255, 255, 255, .4);
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+    padding: 25px 0;
+    transition: all 0.3s ease;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.sticky {
+    margin-top: 0;
+    background-color: rgb(255, 255, 255);
+    padding: 10px 0;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .logo a {
+    color: rgb(32, 32, 32);
+    font-size: 30px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.navbar .menu-list {
+    display: inline-flex;
+}
+
+.menu-list li {
+    list-style: none;
+}
+
+.menu-list li a {
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    font-weight: 400;
+    margin-left: 25px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* .menu-list li a:hover {
+    color: #ffffff;
+} */
+/* banner */
+.banner {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.banner-content {
+    padding-left: 10px;
+    margin-left: 350px;
+    float: none;
+}
+
+@media (max-width: 991px) {
+    .banner-content {
+        padding-left: 0;
+    }
+}
+
+.banner-content h1 {
+    padding-top: 350px;
+    font-size: 100px;
+    line-height: 126px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 767px) {
+    .banner-content h1 {
+        font-size: 35px;
+        line-height: 46px;
+    }
+}
+
+.banner-content p {
+    margin: 0;
+    font-weight: 500;
+}
+
+/* end bvanner */
+
+
+/* START FEATURES  */
+
+.f-icon {
+
+    float: left;
+    margin-right: 20px;
+
+}
+
+.features-area {
+    position: relative;
+    margin-bottom: 220px;
+}
+
+@media (max-width: 768px) {
+    .features-area {
+        padding-top: 0;
+    }
+}
+
+.features-area .col-lg-3:last-child .single-features {
+    border-right: 0;
+}
+
+@media (max-width: 575px) {
+    .features-area .col-lg-3:last-child .single-features {
+        margin-top: 30px;
+    }
+}
+
+.features-area .col-lg-3:nth-child(3) .single-features,
+.features-area .col-lg-3:nth-child(4) .single-features {
+    margin-bottom: 0;
+}
+
+.features-inner {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 84px 0;
+    height: 250px;
+    padding-left: 150px;
+    width: 60%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -25px 0 0 -575px;
+}
+
+.single-features {
+    text-align: center;
+    border-right: 1px solid #eeeeee;
+    margin-right: 20px;
+}
+
+@media (max-width: 991px) {
+    .single-features {
+        border-right: none;
+        margin-bottom: 30px;
+    }
+}
+
+.single-features .f-icon {
+    margin-bottom: 20px;
+}
+
+.single-features .f-icon img {
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+}
+
+.single-features h6 {
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
+.single-features p {
+    margin-bottom: 0;
+}
+
+.single-features:hover .f-icon img {
+    opacity: .5;
+}
+
+/* start features area css
+  ============================================================================================ */
+
+.about {
+    padding: 30px 0;
+}
+
+.about .title {
+    font-size: 38px;
+    font-weight: 700;
+}
+
+.about p {
+    padding-top: 20px;
+    text-align: justify;
+}
+
+.icon {
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+}
+
+.menu-list .cancel-btn {
+    position: absolute;
+    right: 30px;
+    top: 20px;
+}
+
+@media (max-width: 1230px) {
+    .content {
+        padding: 0 60px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .content {
+        padding: 0 40px;
+    }
+}
+
+@media (max-width: 900px) {
+    .content {
+        padding: 0 30px;
+    }
+}
+
+@media (max-width: 868px) {
+    body.disabled {
+        overflow: hidden;
+    }
+
+    .icon {
+        display: block;
+    }
+
+    .icon.hide {
+        display: none;
+    }
+
+    .navbar .menu-list {
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        max-width: 400px;
+        left: -100%;
+        top: 0px;
+        display: block;
+        padding: 40px 0;
+        text-align: center;
+        background: rgb(202, 202, 202);
+        transition: all 0.3s ease;
+    }
+
+    .navbar.show .menu-list {
+        left: 0%;
+    }
+
+    .navbar .menu-list li {
+        margin-top: 45px;
+    }
+
+    .navbar .menu-list li a {
+        padding-left: 20px;
+        margin-right: 150px;
+        font-size: 23px;
+        margin-left: -100%;
+        transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .navbar.show .menu-list li a {
+        margin-left: 0px;
+    }
+}
+
+@media (max-width: 380px) {
+    .navbar .logo a {
+        font-size: 27px;
+    }
+}
+
+/* end navbar */
+
+/* start cruds table */
+
 .order_details_table {
     background: #e5ecee;
     padding: 30px;
@@ -50,3 +365,55 @@
 .order_details_table .table tbody tr:last-child td p {
     color: #222222;
 }
+
+/* end cruds table */
+
+/* start dropdown */
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul li {
+    display: block;
+    float: left;
+}
+
+li ul {
+    display: none;
+}
+
+.sub {
+    display: block;
+    text-decoration: none;
+    color: black;
+    width: 200px;
+    padding-left: 10px;
+}
+
+.sub:hover {
+    background-color: rgb(255, 255, 255);
+    color: #804ec2;
+}
+
+li:hover ul {
+    display: block;
+    position: absolute;
+}
+
+li:hover li {
+    float: none;
+}
+
+li:hover a {
+    background-color: rgb(255, 255, 255);
+    color: rgb(36, 33, 33);
+}
+
+li:hover li a:hover {
+    width: 200px;
+}
+
+/* end dropdown */

@@ -33,9 +33,15 @@
 
 @extends('layouts.base')
 @section('body')
+    <style>
+        .banner {
+            background: url('{{ asset('img/common-banner.jpg') }}') no-repeat;
+        }
+    </style>
 
     <body>
 
+        <div class="banner" style="margin-bottom: -620px;"></div>
         <section class="order_details">
             <div class="container">
                 <div class="order_details_table">

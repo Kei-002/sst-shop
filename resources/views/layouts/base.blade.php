@@ -12,9 +12,12 @@
 </head>
 
 <body>
+    @include('layouts.header')
+    @include('layouts.navbar')
 
     @yield('body')
-    @include('layouts.header')
+
+
 
 </body>
 
