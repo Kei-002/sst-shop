@@ -6,13 +6,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SST</title>
+
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!--fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <style>
-        .banner {
+        .content-banner {
             background: url('{{ asset('img/banner.jpg') }}') no-repeat;
         }
     </style>
@@ -20,38 +25,79 @@
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="container content">
-            <div class="logo">
-                <a href="#">SST</a>
+
+    <header class="header">
+
+        <div class="header-inner">
+            <div class="container-fluid px-lg-5">
+                <nav class="navbar navbar-expand-lg my-navbar">
+                    <a class="navbar-brand" href="#"><span class="logo">
+                            <img src="img/sstlogo1.png" class="img-fluid"
+                                style="width:30px; margin:-3px 0px 0px 0px;">SST</span>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"><i class="fas fa-bars"
+                                style="margin:5px 0px 0px 0px;"></i></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav m-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Products<span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Downloads</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Enterprice</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Pricing
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Resources</a>
+                            </li>
+                        </ul>
+                        <form class="form-inline my-2 my-lg-0">
+                            <button class="header-btn my-2 my-sm-0" type="submit">Subscribe free</button>
+                        </form>
+                    </div>
+                </nav>
+
             </div>
-            <ul class="menu-list">
-                <div class="icon cancel-btn">
-                    <i class="fas fa-times"></i>
+        </div>
+
+
+    </header>
+
+    <section class="content-banner">
+
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-12">
+                    <div class="banner-con text-center">
+                        <p class="first-title">SangSang Tek</p>
+                        <p class="banner-des">Computer Components And Services Web App!</p>
+                    </div>
                 </div>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Features</a></li>
-                <li><a href="">Contact</a>
-                    <ul>
-                        <li><a href="" class="sub">Online</a></li>
-                        <li><a href="" class="sub">Right Here</a></li>
-                        <li><a href="" class="sub">Somewhere Else</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <div class="icon menu-btn">
-                <i class="fas fa-bars"></i>
             </div>
         </div>
-    </nav>
-    <div class="container banner">
-        <div class="banner-content">
-            <h1>SangSang <br>Tek!</h1>
-            <p>Computer Components And Services!</p>
-        </div>
-    </div>
+
+    </section>
 
     <!-- start features Area -->
     <section class="features-area section_gap">
@@ -151,8 +197,77 @@
                 ratione repellendus nisi quam culpa tempora facere in atque nesciunt, magni est aliquid unde soluta
                 optio! Dolore pariatur, quaerat quo in cupiditate deleniti exercitationem. Facilis suscipit corporis
                 unde aut minima nihil, eum molestias itaque, tenetur, beatae ipsa at!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet veniam error deleniti cum beatae non
+                assumenda illum est dolores, possimus suscipit quibusdam eveniet id fuga dolore unde modi, sapiente
+                voluptas. Mollitia veritatis explicabo cumque enim quia voluptates provident totam perferendis
+                excepturi
+                animi assumenda optio minus laudantium eveniet possimus amet blanditiis dolore in fuga atque, earum
+                officia tempora quam similique est.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque ad sunt distinctio quidem incidunt
+                cupiditate sequi deleniti, corrupti officia nam veritatis facilis veniam dolorum enim nisi ipsum
+                dolor
+                rem! Doloribus, eaque odit voluptatem iste laboriosam provident facere quo. Cum repellat pariatur,
+                error
+                ratione repellendus nisi quam culpa tempora facere in atque nesciunt, magni est aliquid unde soluta
+                optio! Dolore pariatur, quaerat quo in cupiditate deleniti exercitationem. Facilis suscipit corporis
+                unde aut minima nihil, eum molestias itaque, tenetur, beatae ipsa at!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet veniam error deleniti cum beatae non
+                assumenda illum est dolores, possimus suscipit quibusdam eveniet id fuga dolore unde modi, sapiente
+                voluptas. Mollitia veritatis explicabo cumque enim quia voluptates provident totam perferendis
+                excepturi
+                animi assumenda optio minus laudantium eveniet possimus amet blanditiis dolore in fuga atque, earum
+                officia tempora quam similique est.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque ad sunt distinctio quidem incidunt
+                cupiditate sequi deleniti, corrupti officia nam veritatis facilis veniam dolorum enim nisi ipsum
+                dolor
+                rem! Doloribus, eaque odit voluptatem iste laboriosam provident facere quo. Cum repellat pariatur,
+                error
+                ratione repellendus nisi quam culpa tempora facere in atque nesciunt, magni est aliquid unde soluta
+                optio! Dolore pariatur, quaerat quo in cupiditate deleniti exercitationem. Facilis suscipit corporis
+                unde aut minima nihil, eum molestias itaque, tenetur, beatae ipsa at!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet veniam error deleniti cum beatae non
+                assumenda illum est dolores, possimus suscipit quibusdam eveniet id fuga dolore unde modi, sapiente
+                voluptas. Mollitia veritatis explicabo cumque enim quia voluptates provident totam perferendis
+                excepturi
+                animi assumenda optio minus laudantium eveniet possimus amet blanditiis dolore in fuga atque, earum
+                officia tempora quam similique est.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque ad sunt distinctio quidem incidunt
+                cupiditate sequi deleniti, corrupti officia nam veritatis facilis veniam dolorum enim nisi ipsum
+                dolor
+                rem! Doloribus, eaque odit voluptatem iste laboriosam provident facere quo. Cum repellat pariatur,
+                error
+                ratione repellendus nisi quam culpa tempora facere in atque nesciunt, magni est aliquid unde soluta
+                optio! Dolore pariatur, quaerat quo in cupiditate deleniti exercitationem. Facilis suscipit corporis
+                unde aut minima nihil, eum molestias itaque, tenetur, beatae ipsa at!</p>
         </div>
     </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var navbar = $('.header-inner');
+            $(window).scroll(function() {
+                if ($(window).scrollTop() <= 40) {
+                    navbar.removeClass('navbar-scroll');
+                } else {
+                    navbar.addClass('navbar-scroll');
+                }
+            });
+        });
+    </script>
+
 
     <script src="{{ asset('js/styles.js') }}"></script>
 </body>
