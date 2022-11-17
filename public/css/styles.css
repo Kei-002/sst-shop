@@ -186,7 +186,7 @@ section {
 }
 
 section:nth-of-type(even) {
-    background-image: linear-gradient(to right, #30cfd0 0%, #643c96 100%);
+    background-image: linear-gradient(335deg, #13547a 0%, #80d0c7 100%);
     color: white;
 }
 
@@ -255,4 +255,66 @@ section:nth-of-type(even) {
 }
 
 /* start features area css
+  ============================================================================================ */
+
+
+
+
+/* order details features area css
+  ============================================================================================ */
+.order_details_table {
+    background: #e5ecee;
+    padding: 30px;
+    margin-top: 75px;
+}
+
+@media (min-width: 767px) {
+    .order_details_table {
+        margin-top: 45px;
+    }
+}
+
+.order_details_table h2 {
+    color: #222222;
+    font-size: 18px;
+    padding-bottom: 15px;
+}
+
+.order_details_table .table {
+    margin-bottom: 0px;
+}
+
+.order_details_table .table thead tr th {
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+}
+
+.order_details_table .table tbody tr td p {
+    margin-bottom: 0px;
+}
+
+.order_details_table .table tbody tr td h5 {
+    color: #222222;
+    margin-bottom: 0px;
+}
+
+.order_details_table .table tbody tr td h4 {
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-bottom: 0px;
+    color: #222222;
+}
+
+.order_details_table .table tbody tr:last-child td {
+    border-top: 1px solid #ddd;
+}
+
+.order_details_table .table tbody tr:last-child td p {
+    color: #222222;
+}
+
+
+/* order details features area css
   ============================================================================================ */
