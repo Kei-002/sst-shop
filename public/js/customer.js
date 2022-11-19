@@ -5,7 +5,7 @@ $(document).ready(function () {
     //     $("#customers").show();
     // });
 
-    $("#customers").DataTable({
+    $("#ctable").DataTable({
         ajax: {
             url: "/api/customer",
             dataSrc: "",
@@ -20,12 +20,12 @@ $(document).ready(function () {
                 className: 'addNewRecord'
             },
             {
-                text: "Add Item",
+                text: "New Customer",
                 className: "addNewRecord",
                 action: function (e, dt, node, config) {
-                    $("#iform").trigger("reset");
-                    $("#itemModal").modal("show");
-                    $('#itemupdate').hide();
+                    $("#cform").trigger("reset");
+                    $("#customerModal").modal("show");
+                    // $('#itemupdate').hide();
                 },
             },
         ],
@@ -45,12 +45,12 @@ $(document).ready(function () {
             {
                 data: "phone",
             },
-            // {
-            //     data: null,
-            //     render: function (data, type, JsonResultRow, row) {
-            //         return '<img src="' + data.imagePath + '" height="100px" width="100px">';
-            //     }
-            // },
+            {
+                data: null,
+                render: function (data, type, JsonResultRow, row) {
+                    return '<img src="' + data.img_path + '" height="50px" width="50px">';
+                }
+            },
             {
                 data: null,
                 render: function (data, type, row) {
@@ -105,60 +105,48 @@ $(document).ready(function () {
 
     $("#myFormSubmit").on("click", function (e) {
         e.preventDefault();
-        var data = $("#cform").serialize();
+        var data = $('#cform')[0];
         console.log(data);
+        let formData = new FormData(data);
+        console.log(formData);
+        for (var pair of formData.entries()) {
+            console.log(pair[0] + ',' + pair[1]);
+        }
+
         $.ajax({
             type: "POST",
-            url: "/api/customer",
-            data: data,
+            url: "/api/customer/",
+            data: formData,
+            contentType: false,
+            processData: false,
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                // $("myModal").modal("hide");
-                $("#myModal").each(function () {
-                    $(this).modal("hide");
-                });
-                // $.each(data, function (key, value) {
-                var tr = $("<tr>");
-                tr.append($("<td>").html(data.customer_id));
-                tr.append($("<td>").html(data.lname));
-                tr.append($("<td>").html(data.fname));
-                tr.append($("<td>").html(data.addressline));
-                tr.append($("<td>").html(data.phone));
-                tr.append(
-                    "<td align='center'><a href=" +
-                    "/api/customer/" +
-                    data.customer_id +
-                    "/edit" +
-                    "><i class='fa-regular fa-pen-to-square' aria-hidden='true' style='font-size:24px' ></a></i></td>"
-                );
-                tr.append(
-                    "<td align='center'><a href=" +
-                    "/api/customer/" +
-                    data.customer_id +
-                    "/edit" +
-                    "><i class='fa-solid fa-trash' aria-hidden='true' style='font-size:24px' ></a></i></td>"
-                );
-                $("#ctable").prepend(tr);
-                // });
+                $('#customerModal').modal("hide");
+                var $ctable = $('#ctable').DataTable();
+                $ctable.row.add(data.customer).draw(false);
             },
             error: function (error) {
-                console.log(error);
-            },
-        });
+                console.log(error)
+            }
+        })
+
     });
 
-    $("#cbody").on("click", ".deletebtn", function (e) {
+
+    $("#ctable tbody").on("click", 'a.deletebtn', function (e) {
+
+        var table = $('#ctable').DataTable();
         var id = $(this).data("id");
-        var $tr = $(this).closest("tr");
-        // var id = $(e.relatedTarget).attr('id');
+        var $row = $(this).closest("tr");
+
         console.log(id);
         e.preventDefault();
         bootbox.confirm({
-            message: "do you want to delete this customer",
+            message: "Do You Want To Delete This Customer",
             buttons: {
                 confirm: {
                     label: "yes",
@@ -170,6 +158,7 @@ $(document).ready(function () {
                 },
             },
             callback: function (result) {
+                console.log(result);
                 if (result)
                     $.ajax({
                         type: "DELETE",
@@ -183,9 +172,10 @@ $(document).ready(function () {
                         success: function (data) {
                             console.log(data);
                             // bootbox.alert('success');
-                            $tr.find("td").fadeOut(2000, function () {
-                                $tr.remove();
+                            $row.fadeOut(4000, function () {
+                                table.row($row).remove().draw(false);
                             });
+                            bootbox.alert(data.success);
                         },
                         error: function (error) {
                             console.log("error");
@@ -195,23 +185,19 @@ $(document).ready(function () {
         });
     });
 
-    $("#editModal").on("show.bs.modal", function (e) {
-        var id = $(e.relatedTarget).attr("data-id");
-        console.log(id);
-        $("<input>")
-            .attr({
-                type: "hidden",
-                id: "customerid",
-                name: "customer_id",
-                value: id,
-            })
-            .appendTo("#updateform");
+
+    $("#ctable tbody").on("click", 'a.editBtn', function (e) {
+        e.preventDefault();
+        $('#editModal').modal('show');
+        var id = $(this).data("id");
+
         $.ajax({
             type: "GET",
             url: "/api/customer/" + id + "/edit",
             success: function (data) {
                 console.log(data);
                 $("#euserid").val(data.user_id);
+                $("#eid").val(data.id);
                 $("#elname").val(data.lname);
                 $("#efname").val(data.fname);
                 $("#eaddress").val(data.addressline);
@@ -224,32 +210,36 @@ $(document).ready(function () {
         });
     });
 
-    $("#editModal").on("hidden.bs.modal", function (e) {
-        $("#updateform").trigger("reset");
-        $("#customerid").remove();
-    });
 
-    $("#updatebtn").on("click", function (e) {
-        var id = $("#customerid").val();
-        var data = $("#updateform").serialize();
-        console.log(data);
+    $("#myFormUpdate").on("click", function (e) {
+        e.preventDefault();
+        // var id = $(e.relatedTarget).attr("data-id");
+        var id = $("#id").val();
+        console.log(id);
+
+        var crow = $("tr td:contains(" + id + ")").closest("tr");
+        var table = $('#ctable').DataTable();
+        var data = $("#cform").serialize();
+
         $.ajax({
             type: "PUT",
             url: "/api/customer/" + id,
             data: data,
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                    "content"
+                ),
             },
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                $("#editModal").each(function () {
-                    $(this).modal("hide");
-                });
+                $('#customerModal').modal("hide");
+                table.row(crow).data(data).invalidate().draw(false);
             },
             error: function (error) {
-                console.log("error");
+                console.log(error);
             },
         });
     });
+
 });

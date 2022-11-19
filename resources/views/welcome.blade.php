@@ -48,7 +48,7 @@
                                 <a class="nav-link" href="#">Products<span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Downloads</a>
+                                <a class="nav-link" href="#">Customer</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Enterprice</a>
@@ -73,7 +73,7 @@
                             </li>
                         </ul>
                         <form class="form-inline my-2 my-lg-0">
-                            <button class="header-btn my-2 my-sm-0" type="submit">Subscribe free</button>
+                            <button class="header-btn my-2 my-sm-0" type="submit">Login</button>
                         </form>
                     </div>
                 </nav>

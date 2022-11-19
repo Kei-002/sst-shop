@@ -33,21 +33,20 @@
 
 @extends('layouts.base')
 @section('body')
-    <style>
+    {{-- <style>
         .banner {
             background: url('{{ asset('img/common-banner.jpg') }}') no-repeat;
         }
-    </style>
+    </style> --}}
 
     <body>
 
-        <div class="banner" style="margin-bottom: -620px;"></div>
         <section class="order_details">
             <div class="container">
                 <div class="order_details_table">
                     <h2>Customer Details</h2>
                     <div class="table-responsive">
-                        <table class="table" id="customers">
+                        <table class="table" id="ctable">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -55,6 +54,7 @@
                                     <th scope="col">LastName</th>
                                     <th scope="col">Address</th>
                                     <th scope="col">Phone</th>
+                                    <th scope="col">Image</th>
                                     <th scope="col">Edit</th>
                                     <th scope="col">Delete</th>
                                 </tr>
@@ -67,15 +67,16 @@
             </div>
         </section>
 
-        <div class="modal fade" id="myModal" role="dialog" style="display:none">
+        <div class="modal fade" id="customerModal" role="dialog" style="display:none">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Create new customer</h4>
+                        <h4 class="modal-title">Create New Customer</h4>
 
                         <div class="modal-body">
-                            <form id="cform" action="#">
+                            <form id="cform" action="#" method="#" enctype="multipart/form-data">
+                                @csrf
                                 <div class="form-group">
                                     <label for="fname" class="control-label">Email</label>
                                     <input type="text" class="form-control " id="email" name="email">
@@ -101,6 +102,10 @@
                                     <label for="phone" class="control-label">Phone</label>
                                     <input type="text" class="form-control" id="phone" name="phone">
                                 </div>
+                                <div class="form-group">
+                                    <label for="address" class="control-label">Customer Image</label>
+                                    <input type="file" class="form-control" id="img_path" name="uploads">
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -119,16 +124,13 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Edit customer</h4>
+                        <h4 class="modal-title">Edit Customer</h4>
 
                         <div class="modal-body">
                             <form id="updateform" action="#">
-                                {{-- <input type="hidden" name="user_id" id="euserid"> --}}
-                                {{-- <div class="form-group">
-                                <label for="title" class="control-label">UserId</label>
-                                <input type="text" class="form-control" id="euserid" name="user_id">
-                            </div> --}}
-
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control id" id="eid" name="id">
+                                </div>
                                 <div class="form-group">
                                     <label for="fname" class="control-label">First Name</label>
                                     <input type="text" class="form-control " id="efname" name="fname">
@@ -153,12 +155,15 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
-                        <button id="updatebtn" type="submit" class="btn btn-primary">Save</button>
+                        <button id="myFormUpdate" type="submit" class="btn btn-primary">Update</button>
                     </div>
 
                 </div>
             </div>
         </div>
+
+
+        <script src="js/customer.js"></script>
 
     </body>
 @endsection

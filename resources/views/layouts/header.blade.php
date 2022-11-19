@@ -33,6 +33,6 @@
     integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="js/customer.js"></script>
+<link rel="stylesheet" href="css/styles.css">
 
 {{-- <script src="js/dashboard.js"></script> --}}
