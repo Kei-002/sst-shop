@@ -11,13 +11,14 @@ $(document).ready(function () {
             dataSrc: "",
         },
         dom: '<"top"<"left-col"B><"center-col"l><"right-col"f>>rtip',
-        buttons: [{
-                extend: 'pdf',
-                className: 'addNewRecord'
+        buttons: [
+            {
+                extend: "pdf",
+                className: "addNewRecord",
             },
             {
-                extend: 'excel',
-                className: 'addNewRecord'
+                extend: "excel",
+                className: "addNewRecord",
             },
             {
                 text: "New Customer",
@@ -29,7 +30,8 @@ $(document).ready(function () {
                 },
             },
         ],
-        columns: [{
+        columns: [
+            {
                 data: "id",
             },
             {
@@ -48,21 +50,31 @@ $(document).ready(function () {
             {
                 data: null,
                 render: function (data, type, JsonResultRow, row) {
-                    return '<img src="' + data.img_path + '" height="50px" width="50px">';
-                }
-            },
-            {
-                data: null,
-                render: function (data, type, row) {
-                    return "<a href='#' class='editBtn' id='editbtn' data-id=" +
-                        data.id +
-                        "><i class='fa-solid fa-pen' aria-hidden='true' style='font-size:24px' ></i></a>";
+                    return (
+                        '<img src="' +
+                        data.img_path +
+                        '" height="50px" width="50px">'
+                    );
                 },
             },
             {
                 data: null,
                 render: function (data, type, row) {
-                    return "<a href='#' class='deletebtn' data-id=" + data.id + "><i class='fa-solid fa-trash-can' style='font-size:24px; color:red; margin-left:15px;'></a></i>";
+                    return (
+                        "<a href='#' class='editBtn' id='editbtn' data-id=" +
+                        data.id +
+                        "><i class='fa-solid fa-pen' aria-hidden='true' style='font-size:24px' ></i></a>"
+                    );
+                },
+            },
+            {
+                data: null,
+                render: function (data, type, row) {
+                    return (
+                        "<a href='#' class='deletebtn' data-id=" +
+                        data.id +
+                        "><i class='fa-solid fa-trash-can' style='font-size:24px; color:red; margin-left:15px;'></a></i>"
+                    );
                 },
             },
         ],
@@ -105,12 +117,12 @@ $(document).ready(function () {
 
     $("#myFormSubmit").on("click", function (e) {
         e.preventDefault();
-        var data = $('#cform')[0];
+        var data = $("#cform")[0];
         console.log(data);
         let formData = new FormData(data);
         console.log(formData);
         for (var pair of formData.entries()) {
-            console.log(pair[0] + ',' + pair[1]);
+            console.log(pair[0] + "," + pair[1]);
         }
 
         $.ajax({
@@ -120,26 +132,23 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                $('#customerModal').modal("hide");
-                var $ctable = $('#ctable').DataTable();
+                $("#customerModal").modal("hide");
+                var $ctable = $("#ctable").DataTable();
                 $ctable.row.add(data.customer).draw(false);
             },
             error: function (error) {
-                console.log(error)
-            }
-        })
-
+                console.log(error);
+            },
+        });
     });
 
-
-    $("#ctable tbody").on("click", 'a.deletebtn', function (e) {
-
-        var table = $('#ctable').DataTable();
+    $("#ctable tbody").on("click", "a.deletebtn", function (e) {
+        var table = $("#ctable").DataTable();
         var id = $(this).data("id");
         var $row = $(this).closest("tr");
 
@@ -185,10 +194,9 @@ $(document).ready(function () {
         });
     });
 
-
-    $("#ctable tbody").on("click", 'a.editBtn', function (e) {
+    $("#ctable tbody").on("click", "a.editBtn", function (e) {
         e.preventDefault();
-        $('#editModal').modal('show');
+        $("#editModal").modal("show");
         var id = $(this).data("id");
 
         $.ajax({
@@ -210,30 +218,28 @@ $(document).ready(function () {
         });
     });
 
-
     $("#myFormUpdate").on("click", function (e) {
         e.preventDefault();
         // var id = $(e.relatedTarget).attr("data-id");
-        var id = $("#id").val();
+        var id = $("#eid").val();
         console.log(id);
 
         var crow = $("tr td:contains(" + id + ")").closest("tr");
-        var table = $('#ctable').DataTable();
-        var data = $("#cform").serialize();
+        var table = $("#ctable").DataTable();
+        var data = $("#updateform").serialize();
 
+        console.log(data);
         $.ajax({
             type: "PUT",
             url: "/api/customer/" + id,
             data: data,
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                    "content"
-                ),
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                $('#customerModal').modal("hide");
+                $("#customerModal").modal("hide");
                 table.row(crow).data(data).invalidate().draw(false);
             },
             error: function (error) {
