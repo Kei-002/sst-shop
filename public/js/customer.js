@@ -239,8 +239,9 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                $("#customerModal").modal("hide");
-                table.row(crow).data(data).invalidate().draw(false);
+                $("#editModal").modal("hide");
+                // table.row(crow).data(data).invalidate().draw(false);
+                table.ajax.reload();
             },
             error: function (error) {
                 console.log(error);
