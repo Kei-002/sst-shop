@@ -8,26 +8,36 @@ const Joi = require('joi');
 var cors = require('cors')
 
 const app = express()
-const custRoutes = require('./routes/customer');
-const api = process.env.API_URL
+const api = process.env.API_URL;
+
+// Routes
+const custRoutes = require("./routes/customer");
+const empRoutes = require("./routes/employee");
+const itemRoutes = require("./routes/item");
+const catRoutes = require("./routes/category");
+// Routes END
 
 // DECLARATION/REQUIRE SECTION END
 
 // APP USE SECTION START
 
-app.use(express.json())
-app.use(cors())
-app.use(`${api}/customers`, custRoutes)
-app.use("/public/uploads", express.static(__dirname + "/public/uploads"));
+app.use(express.json());
+app.use(cors());
 
+// Routes USE START
+app.use(`${api}/customers`, custRoutes);
+app.use(`${api}/employees`, empRoutes);
+app.use(`${api}/items`, itemRoutes);
+app.use(`${api}/categories`, catRoutes);
+// Routes USE END
+
+app.use("/public/uploads", express.static(__dirname + "/public/uploads"));
 // APP USE SECTION END
 
 // const schema = Joi.object({
 //     name: Joi.string().min(3).required()
 // })
 
-
-
-
 const port = process.env.PORT || 3000;
+// console.log();
 app.listen(port, () => console.log(`listening on port ${port}...`))
