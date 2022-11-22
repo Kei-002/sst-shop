@@ -62,8 +62,8 @@ class CustomerController extends Controller
         $customer->save();
 
         $data = array('status' => 'saved');
-        Storage::disk('public')->put('images/'.time().'-'.$files->getClientOriginalName(), file_get_contents($files));
-        // Storage::put('images/'.time().'-'.$files->getClientOriginalName(), file_get_contents($files));
+        // Storage::disk('public')->put('images/'.time().'-'.$files->getClientOriginalName(), file_get_contents($files));
+        Storage::put('public/images/'.time().'-'.$files->getClientOriginalName(), file_get_contents($files));
 
         return response()->json(["success" => "Customer Created Successfully.", "item" => $customer, "status" => 200]);
     }
