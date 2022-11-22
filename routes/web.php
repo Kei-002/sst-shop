@@ -20,4 +20,5 @@ Route::get('/', function () {
 // Route::resource('customer', 'CustomerController');
 Route::view('/customer-index', 'customer.index');
 Route::view('/employee-index', 'employee.index');
-Route::view('/item-index', 'item.index'); 
+Route::view('/item-index', 'item.index');
+Route::view('/category-index', 'category.index'); 

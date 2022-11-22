@@ -7,7 +7,8 @@ const mysql = require('mysql')
 const Joi = require('joi');
 var cors = require('cors')
 
-const app = express()
+const app = express();
+
 const api = process.env.API_URL;
 
 // Routes

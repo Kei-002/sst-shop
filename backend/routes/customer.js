@@ -71,7 +71,7 @@ router.post('/', uploadOptions.single('uploads'), (req, res) => {
     const encryptedPassword = bcrypt.hashSync(req.body.pass, saltRounds)
 
     let sql1 = `INSERT INTO users(email, password, created_at, updated_at) VALUES(?,?,?,?)`;
-    console.log(sql1, encryptedPassword)
+    console.log(sql1, encryptedPassword, req.body);
     con.query(sql1, [req.body.email, encryptedPassword, createdat, updatedat], (error, results, fields) => {
         if (error) {
 

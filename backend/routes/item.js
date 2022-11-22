@@ -78,7 +78,7 @@ router.post("/", uploadOptions.single("uploads"), (req, res) => {
     let img_path = `${basePath}${fileName}`;
 
     let sql1 = `INSERT INTO items(item_name, description, category_id, cost_price, sell_price, img_path) VALUES(?,?,?,?,?,?)`;
-    console.log(sql1);
+    console.log(sql1, req.body);
     con.query(
         sql1,
         [

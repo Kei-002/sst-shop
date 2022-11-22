@@ -18,7 +18,8 @@ return new class extends Migration
             $table->text('item_name');
             $table->text('description');
             $table->integer('category_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('categories')
+            ->onDelete('cascade');
             $table->decimal('cost_price', 8, 2);
             $table->decimal('sell_price', 8, 2);
             $table->text('img_path')->default('/storage/images/default.jpg');
