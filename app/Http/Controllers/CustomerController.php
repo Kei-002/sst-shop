@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use File;
 use View;
-use DB;
 use App\Models\User;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 
 class CustomerController extends Controller
@@ -54,9 +55,17 @@ class CustomerController extends Controller
         $customer->lname = $data["lname"];
         $customer->addressline = $data["addressline"];
         $customer->phone = $data["phone"];
-        $customer->save();
         // $customer = Customer::create($request->all());
-        return response()->json($customer);
+        $files = $request->file('uploads');
+
+        $customer->img_path = 'images/'.time().'-'.$files->getClientOriginalName();
+        $customer->save();
+
+        $data = array('status' => 'saved');
+        Storage::disk('public')->put('images/'.time().'-'.$files->getClientOriginalName(), file_get_contents($files));
+        // Storage::put('images/'.time().'-'.$files->getClientOriginalName(), file_get_contents($files));
+
+        return response()->json(["success" => "Customer Created Successfully.", "item" => $customer, "status" => 200]);
     }
 
     /**

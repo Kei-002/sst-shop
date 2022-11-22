@@ -260,7 +260,7 @@ section:nth-of-type(even) {
 
 
 
-/* order details features area css
+/* order details (DATATABLES CSS) features area css
   ============================================================================================ */
 .order_details_table {
     background: #e5ecee;
@@ -287,7 +287,7 @@ section:nth-of-type(even) {
 .order_details_table .table thead tr th {
     border-bottom: 1px solid #ddd;
     font-size: 14px;
-    font-family: "Roboto", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-weight: normal;
 }
 
