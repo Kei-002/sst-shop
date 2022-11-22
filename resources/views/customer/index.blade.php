@@ -92,7 +92,7 @@
                         <h4 class="modal-title">Edit Customer</h4>
 
                         <div class="modal-body">
-                            <form id="updateform" action="#">
+                            <form id="updateform" action="#" method="#" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <input type="hidden" class="form-control id" id="eid" name="id">
                                 </div>
@@ -112,7 +112,10 @@
                                     <label for="phone" class="control-label">Phone</label>
                                     <input type="text" class="form-control" id="ephone" name="phone">
                                 </div>
-
+                                <div class="form-group">
+                                    <label for="address" class="control-label">Customer Image</label>
+                                    <input type="file" class="form-control" id="img_path" name="uploads">
+                                </div>
                             </form>
                         </div>
 

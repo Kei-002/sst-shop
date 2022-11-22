@@ -7,12 +7,11 @@ $(document).ready(function () {
 
     $("#ctable").DataTable({
         ajax: {
-            url: "/api/customer",
+            url: "http://localhost:5000/api/sst/customers/",
             dataSrc: "",
         },
         dom: '<"top"<"left-col"B><"center-col"l><"right-col"f>>rtip',
-        buttons: [
-            {
+        buttons: [{
                 extend: "pdf",
                 className: "addNewRecord",
             },
@@ -30,8 +29,7 @@ $(document).ready(function () {
                 },
             },
         ],
-        columns: [
-            {
+        columns: [{
                 data: "id",
             },
             {
@@ -127,7 +125,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "/api/customer/",
+            url: "http://localhost:5000/api/sst/customers/",
             data: formData,
             contentType: false,
             processData: false,
@@ -139,7 +137,8 @@ $(document).ready(function () {
                 console.log(data);
                 $("#customerModal").modal("hide");
                 var $ctable = $("#ctable").DataTable();
-                $ctable.row.add(data.customer).draw(false);
+                // $ctable.row.add(data.customer).draw(false);
+                $ctable.ajax.reload();
             },
             error: function (error) {
                 console.log(error);
@@ -158,11 +157,11 @@ $(document).ready(function () {
             message: "Do You Want To Delete This Customer",
             buttons: {
                 confirm: {
-                    label: "yes",
+                    label: "Yes",
                     className: "btn-success",
                 },
                 cancel: {
-                    label: "no",
+                    label: "No",
                     className: "btn-danger",
                 },
             },
@@ -171,13 +170,14 @@ $(document).ready(function () {
                 if (result)
                     $.ajax({
                         type: "DELETE",
-                        url: "/api/customer/" + id,
+                        url: "http://localhost:5000/api/sst/customers/" + id,
                         headers: {
                             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
                                 "content"
                             ),
                         },
-                        dataType: "json",
+                        dataType: "text",
+                        contentType: "application/json",
                         success: function (data) {
                             console.log(data);
                             // bootbox.alert('success');
@@ -187,7 +187,7 @@ $(document).ready(function () {
                             bootbox.alert(data.success);
                         },
                         error: function (error) {
-                            console.log("error");
+                            console.log(error);
                         },
                     });
             },
@@ -201,15 +201,25 @@ $(document).ready(function () {
 
         $.ajax({
             type: "GET",
-            url: "/api/customer/" + id + "/edit",
+            enctype: 'multipart/form-data',
+            processData: false, // Important!
+            contentType: false,
+            cache: false,
+            url: "http://localhost:5000/api/sst/customers/" + id,
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                    "content"
+                ),
+            },
+            dataType: "json",
             success: function (data) {
                 console.log(data);
-                $("#euserid").val(data.user_id);
-                $("#eid").val(data.id);
-                $("#elname").val(data.lname);
-                $("#efname").val(data.fname);
-                $("#eaddress").val(data.addressline);
-                $("#ephone").val(data.phone);
+                $("#euserid").val(data[0].user_id);
+                $("#eid").val(data[0].id);
+                $("#elname").val(data[0].lname);
+                $("#efname").val(data[0].fname);
+                $("#eaddress").val(data[0].addressline);
+                $("#ephone").val(data[0].phone);
             },
             error: function () {
                 console.log("AJAX load did not work");
@@ -226,13 +236,19 @@ $(document).ready(function () {
 
         var crow = $("tr td:contains(" + id + ")").closest("tr");
         var table = $("#ctable").DataTable();
-        var data = $("#updateform").serialize();
+        // var data = $("#updateform").serialize();
+        var data = $('#updateform')[0];
+        let formData = new FormData(data);
 
         console.log(data);
         $.ajax({
             type: "PUT",
-            url: "/api/customer/" + id,
-            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            enctype: 'multipart/form-data',
+            url: "http://localhost:5000/api/sst/customers/" + id,
+            data: formData,
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
