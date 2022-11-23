@@ -7,7 +7,7 @@ $(document).ready(function () {
 
     $("#stable").DataTable({
         ajax: {
-            url: "http://localhost:5000/api/sst/shippers/",
+            url: "http://localhost:5000/api/sst/services/",
             dataSrc: "",
         },
         dom: '<"top"<"left-col"B><"center-col"l><"right-col"f>>rtip',
@@ -20,11 +20,11 @@ $(document).ready(function () {
                 className: "addNewRecord",
             },
             {
-                text: "New Shipper",
+                text: "New Service",
                 className: "addNewRecord",
                 action: function (e, dt, node, config) {
                     $("#sform").trigger("reset");
-                    $("#sModal").modal("show");
+                    $("#serviceModal").modal("show");
                     // $('#itemupdate').hide();
                 },
             },
@@ -33,10 +33,24 @@ $(document).ready(function () {
                 data: "id",
             },
             {
-                data: "shipper_name",
+                data: "service_name",
+            },
+
+            {
+                data: "description",
             },
             {
-                data: "phone",
+                data: "price",
+            },
+            {
+                data: null,
+                render: function (data, type, JsonResultRow, row) {
+                    return (
+                        '<img src="' +
+                        data.img_path +
+                        '" height="50px" width="50px">'
+                    );
+                },
             },
             {
                 data: null,
@@ -87,7 +101,7 @@ $(document).ready(function () {
     //                 "><i  class='fa-solid fa-trash' style='font-size:24px; color:red' ></a></i></td>"
     //             );
 
-    //             $("#cbody").append(tr);
+    //             $("#sbody").append(tr);
     //         });
     //     },
     //     error: function () {
@@ -108,7 +122,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "http://localhost:5000/api/sst/shippers/",
+            url: "http://localhost:5000/api/sst/services/",
             data: formData,
             contentType: false,
             processData: false,
@@ -118,7 +132,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                $("#sModal").modal("hide");
+                $("#serviceModal").modal("hide");
                 var $stable = $("#stable").DataTable();
                 // $stable.row.add(data.customer).draw(false);
                 $stable.ajax.reload();
@@ -137,7 +151,7 @@ $(document).ready(function () {
         console.log(id);
         e.preventDefault();
         bootbox.confirm({
-            message: "Do You Want To Delete This Category?",
+            message: "Do You Want To Delete This Service?",
             buttons: {
                 confirm: {
                     label: "Yes",
@@ -153,7 +167,7 @@ $(document).ready(function () {
                 if (result)
                     $.ajax({
                         type: "DELETE",
-                        url: "http://localhost:5000/api/sst/shippers/" + id,
+                        url: "http://localhost:5000/api/sst/services/" + id,
                         headers: {
                             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
                                 "content"
@@ -184,20 +198,23 @@ $(document).ready(function () {
 
         $.ajax({
             type: "GET",
-            enctype: "multipart/form-data",
+            enctype: 'multipart/form-data',
             processData: false, // Important!
             contentType: false,
             cache: false,
-            url: "http://localhost:5000/api/sst/shippers/" + id,
+            url: "http://localhost:5000/api/sst/services/" + id,
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                    "content"
+                ),
             },
             dataType: "json",
             success: function (data) {
                 console.log(data);
                 $("#eid").val(data[0].id);
-                $("#eshipper_name").val(data[0].shipper_name);
-                $("#ephone").val(data[0].phone);
+                $("#eservice_name").val(data[0].service_name);
+                $("#edescription").val(data[0].description);
+                $("#eprice").val(data[0].price);
             },
             error: function () {
                 console.log("AJAX load did not work");
@@ -215,7 +232,7 @@ $(document).ready(function () {
         var crow = $("tr td:contains(" + id + ")").closest("tr");
         var table = $("#stable").DataTable();
         // var data = $("#updateform").serialize();
-        var data = $("#updateform")[0];
+        var data = $('#updateform')[0];
         let formData = new FormData(data);
 
         console.log(data);
@@ -224,8 +241,8 @@ $(document).ready(function () {
             cache: false,
             contentType: false,
             processData: false,
-            enctype: "multipart/form-data",
-            url: "http://localhost:5000/api/sst/shippers/" + id,
+            enctype: 'multipart/form-data',
+            url: "http://localhost:5000/api/sst/services/" + id,
             data: formData,
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -242,4 +259,5 @@ $(document).ready(function () {
             },
         });
     });
+
 });

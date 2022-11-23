@@ -23,3 +23,4 @@ Route::view('/employee-index', 'employee.index');
 Route::view('/item-index', 'item.index');
 Route::view('/category-index', 'category.index'); 
 Route::view('/ship-index', 'shipper.index'); 
+Route::view('/services-index', 'services.index'); 

@@ -11,6 +11,21 @@ body {
     font-family: 'Poppins'sans-serif;
 }
 
+.left-col {
+    float: left;
+    width: 25%;
+}
+
+.center-col {
+    float: left;
+    width: 50%;
+}
+
+.right-col {
+    float: left;
+    width: 25%;
+}
+
 @media only screen and (min-width:1200px) {
     .nav-item>.nav-link {
         padding: 5px 20px !important;
