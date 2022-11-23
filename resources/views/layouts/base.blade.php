@@ -13,7 +13,7 @@
 
 <body>
     @include('layouts.header')
-    {{-- @include('layouts.navbar') --}}
+    @include('layouts.navbar')
 
     @yield('body')
 
