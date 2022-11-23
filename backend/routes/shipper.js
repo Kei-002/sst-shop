@@ -85,10 +85,10 @@ router.get("/:id", (req, res) => {
 //UPDATE SHIPPERS
 router.put("/:id", uploadOptions.single("uploads"), (req, res) => {
     let sql = `UPDATE shippers set shipper_name = ?, phone = ? WHERE id = ?`;
-    // console.log(fileName, sql);
+    console.log(req.body);
     con.query(
         sql,
-        [req.body.shipper_name, req.body.phone, req.params.id],
+        [req.body.eshipper_name, req.body.ephone, req.params.id],
         (error, results, fields) => {
             if (error) {
                 console.log(req.params.id);
