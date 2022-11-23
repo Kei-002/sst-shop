@@ -16,6 +16,7 @@ const custRoutes = require("./routes/customer");
 const empRoutes = require("./routes/employee");
 const itemRoutes = require("./routes/item");
 const catRoutes = require("./routes/category");
+const shipRoutes = require("./routes/shipper");
 // Routes END
 
 // DECLARATION/REQUIRE SECTION END
@@ -30,6 +31,7 @@ app.use(`${api}/customers`, custRoutes);
 app.use(`${api}/employees`, empRoutes);
 app.use(`${api}/items`, itemRoutes);
 app.use(`${api}/categories`, catRoutes);
+app.use(`${api}/shippers`, shipRoutes);
 // Routes USE END
 
 app.use("/public/uploads", express.static(__dirname + "/public/uploads"));

@@ -34,9 +34,9 @@ const uploadOptions = multer({
     storage: storage,
 });
 
-// GET CATEGORY LIST
+// GET SHIPPERS LIST
 router.get("/", (req, res) => {
-    let sql = `SELECT * FROM categories`;
+    let sql = `SELECT * FROM shippers`;
     con.query(sql, (error, results, fields) => {
         if (error) {
             return console.error(error.message);
@@ -46,11 +46,11 @@ router.get("/", (req, res) => {
     });
 });
 
-// CREATE CATEGORY
-router.post("/", uploadOptions.single("uploads"), (req, res) => {
-    let sql = `INSERT INTO categories(category_name) VALUES (?)`;
+// CREATE SHIPPERS
+router.post("/", (req, res) => {
+    let sql = `INSERT INTO shippers(shipper_name, phone) VALUES (?)`;
     // console.log(sql, req.body);
-    con.query(sql, [req.body.category_name], function (error, results, fields) {
+    con.query(sql, [req.body.shipper_name, req.body.phone], function (error, results, fields) {
         if (error) {
             return console.error(error.message);
         }
@@ -61,7 +61,7 @@ router.post("/", uploadOptions.single("uploads"), (req, res) => {
 // router.post('/', function (req, res, next) {
 //     var catn = req.body.catn;
 
-//     var sql = `INSERT INTO categories (category_name) VALUES ("${catn}")`;
+//     var sql = `INSERT INTO shippers (shipper_name) VALUES ("${catn}")`;
 //     con.query(sql, function (err, result) {
 //         if (err) throw err;
 //         console.log('Record Inserted');
@@ -71,7 +71,7 @@ router.post("/", uploadOptions.single("uploads"), (req, res) => {
 
 // GET ID (EDIT)
 router.get("/:id", (req, res) => {
-    let sql = `SELECT * FROM categories
+    let sql = `SELECT * FROM shippers
                 where id = ${req.params.id}`;
     con.query(sql, (error, results, fields) => {
         if (error) {
@@ -82,13 +82,13 @@ router.get("/:id", (req, res) => {
     });
 });
 
-//UPDATE CATEGORY
+//UPDATE SHIPPERS
 router.put("/:id", uploadOptions.single("uploads"), (req, res) => {
-    let sql = `UPDATE categories set category_name = ? WHERE id = ?`;
+    let sql = `UPDATE shippers set shipper_name = ?, phone = ? WHERE id = ?`;
     // console.log(fileName, sql);
     con.query(
         sql,
-        [req.body.category_name, req.params.id],
+        [req.body.shipper_name, req.body.phone, req.params.id],
         (error, results, fields) => {
             if (error) {
                 console.log(req.params.id);
@@ -100,9 +100,9 @@ router.put("/:id", uploadOptions.single("uploads"), (req, res) => {
     );
 });
 
-//DELETE CATEGORY
+//DELETE SHIPPERS
 router.delete("/:id", (req, res) => {
-    let sql = `DELETE FROM categories WHERE id = ${req.params.id}`;
+    let sql = `DELETE FROM shippers WHERE id = ${req.params.id}`;
     con.query(sql, (error, results, fields) => {
         if (error) {
             return console.error(error.message);
