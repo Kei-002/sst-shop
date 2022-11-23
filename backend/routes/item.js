@@ -170,17 +170,22 @@ router.put("/:id", uploadOptions.single("uploads"), (req, res) => {
 
 //DELETE ITEM
 router.delete("/:id", (req, res) => {
-    console.log(req.params.id);
-    let sql = `DELETE FROM items WHERE id = ${req.params.id}`;
+    let sql = `SELECT * from items where id = ${req.params.id}`;
     con.query(sql, (error, results, fields) => {
         if (error) {
             return console.error(error.message);
         }
-        // console.log(results[0]);
+        console.log(results[0]);
 
-        // delimg(results);
+        delimg(results);
 
-        return res.status(200).json(results);
+        let sql1 = `DELETE from items where id = ${req.params.id}`;
+        con.query(sql1, (error, results, fields) => {
+            if (error) {
+                return console.error(error.message);
+            }
+            return res.status(200).json(results[0]);
+        });
     });
 });
 
