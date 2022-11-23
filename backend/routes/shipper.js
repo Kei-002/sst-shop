@@ -47,7 +47,7 @@ router.get("/", (req, res) => {
 });
 
 // CREATE SHIPPERS
-router.post("/",uploadOptions.single("uploads"), (req, res) => {
+router.post("/", uploadOptions.single("uploads"), (req, res) => {
     let sql = `INSERT INTO shippers(shipper_name, phone) VALUES (?,?)`;
     // console.log(sql, req.body);
     con.query(sql, [req.body.shipper_name, req.body.phone], function (error, results, fields) {

@@ -2,8 +2,8 @@
 @section('body')
     <style>
         /* .banner {
-                        background: url('{{ asset('img/common-banner.jpg') }}') no-repeat;
-                    } */
+                                                                                background: url('{{ asset('img/common-banner.jpg') }}') no-repeat;
+                                                                            } */
     </style>
 
     <body>
@@ -11,22 +11,21 @@
         <section class="order_details">
             <div class="container">
                 <div class="order_details_table">
-                    <h2>Customer Details</h2>
+                    <h2>Service Details</h2>
                     <div class="table-responsive">
-                        <table class="table" id="ctable">
+                        <table class="table" id="stable">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Firstname</th>
-                                    <th scope="col">LastName</th>
-                                    <th scope="col">Address</th>
-                                    <th scope="col">Phone</th>
+                                    <th scope="col">Service Name</th>
+                                    <th scope="col">Service Description</th>
+                                    <th scope="col">Price</th>
                                     <th scope="col">Image</th>
                                     <th scope="col">Edit</th>
                                     <th scope="col">Delete</th>
                                 </tr>
                             </thead>
-                            <tbody id="cbody">
+                            <tbody id="sbody">
                             </tbody>
                         </table>
                     </div>
@@ -34,42 +33,29 @@
             </div>
         </section>
 
-        <div class="modal fade" id="customerModal" role="dialog" style="display:none">
+        <div class="modal fade" id="serviceModal" role="dialog" style="display:none">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Create New Customer</h4>
+                        <h4 class="modal-title">Create New Service</h4>
 
                         <div class="modal-body">
-                            <form id="cform" action="#" method="#" enctype="multipart/form-data">
+                            <form id="sform" action="#" method="#" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="fname" class="control-label">Email</label>
-                                    <input type="text" class="form-control " id="email" name="email">
+                                    <label for="fname" class="control-label">Service Name</label>
+                                    <input type="text" class="form-control " id="service_name" name="service_name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="lname" class="control-label">Password</label>
-                                    <input type="password" class="form-control " id="pass" name="pass"></text>
+                                    <label for="lname" class="control-label">Service Description</label>
+                                    <input type="text" class="form-control " id="description" name="description"></text>
                                 </div>
                                 <div class="form-group">
-                                    <label for="fname" class="control-label">First Name</label>
-                                    <input type="text" class="form-control " id="fname" name="fname">
+                                    <label for="fname" class="control-label">Price</label>
+                                    <input type="text" class="form-control " id="price" name="price">
                                 </div>
                                 <div class="form-group">
-                                    <label for="lname" class="control-label">Last Name</label>
-                                    <input type="text" class="form-control " id="lname" name="lname"></text>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="address" class="control-label">Address</label>
-                                    <input type="text" class="form-control" id="address" name="addressline">
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone" class="control-label">Phone</label>
-                                    <input type="text" class="form-control" id="phone" name="phone">
-                                </div>
-                                <div class="form-group">
-                                    <label for="address" class="control-label">Customer Image</label>
+                                    <label for="address" class="control-label">Service Image</label>
                                     <input type="file" class="form-control" id="img_path" name="uploads">
                                 </div>
                             </form>
@@ -97,23 +83,20 @@
                                     <input type="hidden" class="form-control id" id="eid" name="id">
                                 </div>
                                 <div class="form-group">
-                                    <label for="fname" class="control-label">First Name</label>
-                                    <input type="text" class="form-control " id="efname" name="fname">
+                                    <label for="fname" class="control-label">Service Name</label>
+                                    <input type="text" class="form-control " id="eservice_name" name="eservice_name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="lname" class="control-label">Last name</label>
-                                    <input type="text" class="form-control " id="elname" name="lname"></text>
+                                    <label for="lname" class="control-label">Description</label>
+                                    <input type="text" class="form-control " id="edescription"
+                                        name="edescription"></text>
                                 </div>
                                 <div class="form-group">
-                                    <label for="address" class="control-label">Address</label>
-                                    <input type="text" class="form-control" id="eaddress" name="addressline">
+                                    <label for="address" class="control-label">Price</label>
+                                    <input type="text" class="form-control" id="eprice" name="eprice">
                                 </div>
                                 <div class="form-group">
-                                    <label for="phone" class="control-label">Phone</label>
-                                    <input type="text" class="form-control" id="ephone" name="phone">
-                                </div>
-                                <div class="form-group">
-                                    <label for="address" class="control-label">Customer Image</label>
+                                    <label for="address" class="control-label">Service Image</label>
                                     <input type="file" class="form-control" id="img_path" name="uploads">
                                 </div>
                             </form>
@@ -132,7 +115,7 @@
 
 
 
-        <script src="js/customer.js"></script>
+        <script src="js/service.js"></script>
 
     </body>
 @endsection
