@@ -7,7 +7,7 @@ $(document).ready(function () {
 
     $("#stable").DataTable({
         ajax: {
-            url: "http://localhost:5000/api/sst/shipper/",
+            url: "http://localhost:5000/api/sst/shippers/",
             dataSrc: "",
         },
         dom: '<"top"<"left-col"B><"center-col"l><"right-col"f>>rtip',
