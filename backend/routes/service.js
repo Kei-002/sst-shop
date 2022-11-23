@@ -113,15 +113,24 @@ router.put('/:id', uploadOptions.single('uploads'), (req, res) => {
     let img_path = `${basePath}${fileName}`
     let sql = `UPDATE services set service_name = ?, description = ?, price = ?, img_path = ? WHERE id = ?`;
     console.log(fileName, sql)
-    con.query(sql, [req.body.service_name, req.body.description, req.body.price, img_path, req.params.id], (error, results, fields) => {
-        if (error) {
+    con.query(
+        sql,
+        [
+            req.body.eservice_name,
+            req.body.edescription,
+            req.body.eprice,
+            img_path,
+            req.params.id,
+        ],
+        (error, results, fields) => {
+            if (error) {
+                console.log(req.params.id);
+                return console.error(error.message);
+            }
 
-            console.log(req.params.id)
-            return console.error(error.message);
+            return res.status(200).json(results);
         }
-
-        return res.status(200).json(results)
-    });
+    );
 
 })
 
