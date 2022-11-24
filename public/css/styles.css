@@ -200,11 +200,6 @@ section {
     padding: 4rem 0rem 4rem;
 }
 
-.features-area {
-    background-image: linear-gradient(335deg, #13547a 0%, #80d0c7 100%);
-    color: white;
-}
-
 /* start features area css
 ============================================================================================ */
 @media (max-width: 768px) {
