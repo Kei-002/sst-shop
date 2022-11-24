@@ -11,12 +11,16 @@
 
         <link rel="stylesheet" href="css/styles.css">
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> --}}
 
         <!--fontawesome-->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-            integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        {{-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+            integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> --}}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="{{ asset('styles/aos/aos.css') }}">
+        <link rel="stylesheet" href="{{ asset('styles/glightbox/css/glightbox.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('styles/swiper/swiper-bundle.min.css') }}">
 
     </head>
 
@@ -28,7 +32,7 @@
             <div class="container-fluid px-lg-5">
                 <nav class="navbar navbar-expand-lg my-navbar">
                     <a class="navbar-brand" href="#"><span class="logo">
-                            <img src="img/sstlogo1.png" class="img-fluid"
+                            <img src="img/sstlogo1.png" class="img-fluid port"
                                 style="width:30px; margin:-3px 0px 0px 0px;">SST</span>
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -156,97 +160,150 @@
         </section>
         <!-- end features Area -->
 
-        <div class="about">
-            <div class="content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo impedit atque consequatur! Iusto
-                    distinctio
-                    temporibus repellendus labore odit adipisci harum ipsa beatae natus, eum eius, hic aperiam odio!
-                    Quasi
-                    molestias magnam illo voluptatem iusto ipsam blanditiis, tempore cumque reiciendis quaerat vero
-                    tenetur,
-                    sequi dolores libero voluptas vitae voluptate placeat dolorum modi ipsa nisi repellat facilis
-                    aliquam
-                    asperiores. Aut nam repellat harum quas saepe dolorum voluptates ratione, itaque consectetur
-                    explicabo a
-                    facilis rem mollitia maxime repudiandae fuga reprehenderit, odio cum incidunt labore molestiae quis
-                    non
-                    perferendis ipsam. Illum, in, deserunt. Ipsa.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit hic excepturi nobis id, eos dolor
-                    libero, nam assumenda, at culpa quos perspiciatis ratione ea modi! Natus sapiente a, explicabo sit
-                    quisquam eligendi esse provident eos enim doloremque blanditiis aut placeat veniam, libero nostrum
-                    quae.
-                    Ipsam, iste reprehenderit minima accusantium illo dolorem recusandae, ipsa autem quidem reiciendis a
-                    mollitia sit tenetur.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint doloremque perspiciatis voluptate
-                    ducimus
-                    reiciendis rem expedita voluptatibus dicta harum, quo, aspernatur maiores possimus officia quod?
-                    Aliquid
-                    molestiae illo sequi, tempora perferendis at incidunt nam porro voluptatibus, iste aperiam
-                    blanditiis
-                    adipisci ducimus repellendus distinctio nostrum ipsum! Voluptas facilis cum, atque tempora magnam
-                    beatae
-                    sequi! Doloribus expedita, cupiditate quo quod nemo aliquam, mollitia cum ea nam ullam soluta
-                    temporibus! Repudiandae incidunt consequatur distinctio deleniti obcaecati sit facilis unde,
-                    quisquam
-                    veniam ad doloribus!</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet veniam error deleniti cum beatae non
-                    assumenda illum est dolores, possimus suscipit quibusdam eveniet id fuga dolore unde modi, sapiente
-                    voluptas. Mollitia veritatis explicabo cumque enim quia voluptates provident totam perferendis
-                    excepturi
-                    animi assumenda optio minus laudantium eveniet possimus amet blanditiis dolore in fuga atque, earum
-                    officia tempora quam similique est.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque ad sunt distinctio quidem incidunt
-                    cupiditate sequi deleniti, corrupti officia nam veritatis facilis veniam dolorum enim nisi ipsum
-                    dolor
-                    rem! Doloribus, eaque odit voluptatem iste laboriosam provident facere quo. Cum repellat pariatur,
-                    error
-                    ratione repellendus nisi quam culpa tempora facere in atque nesciunt, magni est aliquid unde soluta
-                    optio! Dolore pariatur, quaerat quo in cupiditate deleniti exercitationem. Facilis suscipit corporis
-                    unde aut minima nihil, eum molestias itaque, tenetur, beatae ipsa at!</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet veniam error deleniti cum beatae non
-                    assumenda illum est dolores, possimus suscipit quibusdam eveniet id fuga dolore unde modi, sapiente
-                    voluptas. Mollitia veritatis explicabo cumque enim quia voluptates provident totam perferendis
-                    excepturi
-                    animi assumenda optio minus laudantium eveniet possimus amet blanditiis dolore in fuga atque, earum
-                    officia tempora quam similique est.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque ad sunt distinctio quidem incidunt
-                    cupiditate sequi deleniti, corrupti officia nam veritatis facilis veniam dolorum enim nisi ipsum
-                    dolor
-                    rem! Doloribus, eaque odit voluptatem iste laboriosam provident facere quo. Cum repellat pariatur,
-                    error
-                    ratione repellendus nisi quam culpa tempora facere in atque nesciunt, magni est aliquid unde soluta
-                    optio! Dolore pariatur, quaerat quo in cupiditate deleniti exercitationem. Facilis suscipit corporis
-                    unde aut minima nihil, eum molestias itaque, tenetur, beatae ipsa at!</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet veniam error deleniti cum beatae non
-                    assumenda illum est dolores, possimus suscipit quibusdam eveniet id fuga dolore unde modi, sapiente
-                    voluptas. Mollitia veritatis explicabo cumque enim quia voluptates provident totam perferendis
-                    excepturi
-                    animi assumenda optio minus laudantium eveniet possimus amet blanditiis dolore in fuga atque, earum
-                    officia tempora quam similique est.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque ad sunt distinctio quidem incidunt
-                    cupiditate sequi deleniti, corrupti officia nam veritatis facilis veniam dolorum enim nisi ipsum
-                    dolor
-                    rem! Doloribus, eaque odit voluptatem iste laboriosam provident facere quo. Cum repellat pariatur,
-                    error
-                    ratione repellendus nisi quam culpa tempora facere in atque nesciunt, magni est aliquid unde soluta
-                    optio! Dolore pariatur, quaerat quo in cupiditate deleniti exercitationem. Facilis suscipit corporis
-                    unde aut minima nihil, eum molestias itaque, tenetur, beatae ipsa at!</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet veniam error deleniti cum beatae non
-                    assumenda illum est dolores, possimus suscipit quibusdam eveniet id fuga dolore unde modi, sapiente
-                    voluptas. Mollitia veritatis explicabo cumque enim quia voluptates provident totam perferendis
-                    excepturi
-                    animi assumenda optio minus laudantium eveniet possimus amet blanditiis dolore in fuga atque, earum
-                    officia tempora quam similique est.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque ad sunt distinctio quidem incidunt
-                    cupiditate sequi deleniti, corrupti officia nam veritatis facilis veniam dolorum enim nisi ipsum
-                    dolor
-                    rem! Doloribus, eaque odit voluptatem iste laboriosam provident facere quo. Cum repellat pariatur,
-                    error
-                    ratione repellendus nisi quam culpa tempora facere in atque nesciunt, magni est aliquid unde soluta
-                    optio! Dolore pariatur, quaerat quo in cupiditate deleniti exercitationem. Facilis suscipit corporis
-                    unde aut minima nihil, eum molestias itaque, tenetur, beatae ipsa at!</p>
+        <!-- ======= Portfolio Section ======= -->
+        <section id="portfolio" class="portfolio section-bg">
+            <div class="container">
+                <div class="section-title">
+                    <span>Services</span>
+                    <h2>Services</h2>
+                </div>
+
+                <div class="row portfolio-container">
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                        <div class="portfolio-wrap">
+                            <img src="{{ asset('img/banner.jpg') }}" class="img-fluid port" alt="" />
+                            <div class="portfolio-info">
+                                <h4>Factory</h4>
+                                <p>Factory</p>
+                            </div>
+                            <div class="portfolio-links">
+                                <a href="{{ asset('img/banner.jpg') }}" data-gallery="portfolioGallery"
+                                    class="portfolio-lightbox" title="Factory"><i class="bi bi-arrows-fullscreen"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                        <div class="portfolio-wrap">
+                            <img src="{{ asset('img/sstlogo.png') }}" class="img-fluid port" alt="" />
+                            <div class="portfolio-info">
+                                <h4>Train Tracks</h4>
+                                <p>Train Tracks</p>
+                            </div>
+                            <div class="portfolio-links">
+                                <a href="{{ asset('img/sstlogo.png') }}" data-gallery="portfolioGallery"
+                                    class="portfolio-lightbox" title="Train Tracks"><i
+                                        class="bi bi-arrows-fullscreen"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                        <div class="portfolio-wrap">
+                            <img src="{{ asset('img/common-banner.jpg') }}" class="img-fluid port" alt="" />
+                            <div class="portfolio-info">
+                                <h4>Stadium</h4>
+                                <p>Stadium</p>
+                            </div>
+                            <div class="portfolio-links">
+                                <a href="{{ asset('img/common-banner.jpg') }}" data-gallery="portfolioGallery"
+                                    class="portfolio-lightbox" title="Stadium"><i class="bi bi-arrows-fullscreen"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                        <div class="portfolio-wrap">
+                            <img src="{{ asset('img/common-banner.jpg') }}" class="img-fluid port" alt="" />
+                            <div class="portfolio-info">
+                                <h4>Power Lines</h4>
+                                <p>Power Lines</p>
+                            </div>
+                            <div class="portfolio-links">
+                                <a href="{{ asset('img/common-banner.jpg') }}" data-gallery="portfolioGallery"
+                                    class="portfolio-lightbox" title="Power Lines"><i
+                                        class="bi bi-arrows-fullscreen"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                        <div class="portfolio-wrap">
+                            <img src="{{ asset('img/common-banner.jpg') }}" class="img-fluid port" alt="" />
+                            <div class="portfolio-info">
+                                <h4>Artificial Intelligence</h4>
+                                <p>AI</p>
+                            </div>
+                            <div class="portfolio-links">
+                                <a href="{{ asset('img/common-banner.jpg') }}" data-gallery="portfolioGallery"
+                                    class="portfolio-lightbox" title="Artificial Intelligence"><i
+                                        class="bi bi-arrows-fullscreen"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                        <div class="portfolio-wrap">
+                            <img src="{{ asset('img/common-banner.jpg') }}" class="img-fluid port" alt="" />
+                            <div class="portfolio-info">
+                                <h4>Virtual Reality</h4>
+                                <p>VR</p>
+                            </div>
+                            <div class="portfolio-links">
+                                <a href="{{ asset('img/common-banner.jpg') }}" data-gallery="portfolioGallery"
+                                    class="portfolio-lightbox" title="Virtual Reality"><i
+                                        class="bi bi-arrows-fullscreen"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                        <div class="portfolio-wrap">
+                            <img src="{{ asset('img/common-banner.jpg') }}" class="img-fluid port" alt="" />
+                            <div class="portfolio-info">
+                                <h4>Drones</h4>
+                                <p>Drones</p>
+                            </div>
+                            <div class="portfolio-links">
+                                <a href="{{ asset('img/common-banner.jpg') }}" data-gallery="portfolioGallery"
+                                    class="portfolio-lightbox" title="Drones"><i class="bi bi-arrows-fullscreen"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                        <div class="portfolio-wrap">
+                            <img src="{{ asset('img/common-banner.jpg') }}" class="img-fluid port" alt="" />
+                            <div class="portfolio-info">
+                                <h4>Bridges</h4>
+                                <p>Bridges</p>
+                            </div>
+                            <div class="portfolio-links">
+                                <a href="{{ asset('img/common-banner.jpg') }}" data-gallery="portfolioGallery"
+                                    class="portfolio-lightbox" title="Bridges"><i
+                                        class="bi bi-arrows-fullscreen"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                        <div class="portfolio-wrap">
+                            <img src="{{ asset('img/common-banner.jpg') }}" class="img-fluid port" alt="" />
+                            <div class="portfolio-info">
+                                <h4>Modern House</h4>
+                                <p>Modern House</p>
+                            </div>
+                            <div class="portfolio-links">
+                                <a href="{{ asset('img/common-banner.jpg') }}" data-gallery="portfolioGallery"
+                                    class="portfolio-lightbox" title="Modern House"><i
+                                        class="bi bi-arrows-fullscreen"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+        <!-- End Portfolio Section -->
 
         {{-- <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -273,6 +330,12 @@
                 });
             });
         </script> --}}
+
+        <script src="{{ asset('styles/aos/aos.js') }}"></script>
+        <script src="{{ asset('styles/glightbox/js/glightbox.min.js') }}"></script>
+        <script src="{{ asset('styles/swiper/swiper-bundle.min.js') }}"></script>
+        <script src="{{ asset('js/styles.js') }}"></script>
+
 
     </body>
 
