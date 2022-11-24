@@ -140,6 +140,7 @@ $(document).ready(function () {
                 $("#employeeModal").modal("hide");
                 var $etable = $("#etable").DataTable();
                 // $etable.row.add(data.customer).draw(false);
+                toastr.success( "Employee added!");
                 $etable.ajax.reload();
             },
             error: function (error) {
@@ -186,7 +187,7 @@ $(document).ready(function () {
                             $row.fadeOut(4000, function () {
                                 table.row($row).remove().draw(false);
                             });
-                            bootbox.alert(data.success);
+                            toastr.success("Employee deleted!");
                         },
                         error: function (error) {
                             console.log(error);
@@ -257,6 +258,7 @@ $(document).ready(function () {
                 console.log(data);
                 $("#editModal").modal("hide");
                 // table.row(crow).data(data).invalidate().draw(false);
+                toastr.success("Employee updated!");
                 table.ajax.reload();
             },
             error: function (error) {

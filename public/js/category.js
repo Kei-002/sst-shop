@@ -120,6 +120,7 @@ $(document).ready(function () {
                 $("#categoryModal").modal("hide");
                 var $ctable = $("#ctable").DataTable();
                 // $ctable.row.add(data.customer).draw(false);
+                toastr.success( "Category added!");
                 $ctable.ajax.reload();
             },
             error: function (error) {
@@ -166,7 +167,7 @@ $(document).ready(function () {
                             $row.fadeOut(4000, function () {
                                 table.row($row).remove().draw(false);
                             });
-                            bootbox.alert(data.success);
+                            toastr.success( "Category deleted!");
                         },
                         error: function (error) {
                             console.log(error);
@@ -233,6 +234,7 @@ $(document).ready(function () {
                 console.log(data);
                 $("#editModal").modal("hide");
                 // table.row(crow).data(data).invalidate().draw(false);
+                toastr.success( "Category updated!");
                 table.ajax.reload();
             },
             error: function (error) {

@@ -5,6 +5,24 @@ $(document).ready(function () {
     //     $("#customers").show();
     // });
 
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-bottom-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      }
+
     $("#stable").DataTable({
         ajax: {
             url: "http://localhost:5000/api/sst/shippers/",
@@ -25,6 +43,7 @@ $(document).ready(function () {
                 action: function (e, dt, node, config) {
                     $("#sform").trigger("reset");
                     $("#sModal").modal("show");
+                    
                     // $('#itemupdate').hide();
                 },
             },
@@ -121,10 +140,12 @@ $(document).ready(function () {
                 $("#sModal").modal("hide");
                 var $stable = $("#stable").DataTable();
                 // $stable.row.add(data.customer).draw(false);
+                toastr.success("Shipper successfully added!");
                 $stable.ajax.reload();
             },
             error: function (error) {
                 console.log(error);
+                toastr.warning(error, "Something went wrong");
             },
         });
     });
@@ -167,10 +188,12 @@ $(document).ready(function () {
                             $row.fadeOut(4000, function () {
                                 table.row($row).remove().draw(false);
                             });
-                            bootbox.alert(data.success);
+                            // bootbox.alert(data.success);
+                            toastr.success("Shipper deleted")
                         },
                         error: function (error) {
                             console.log(error);
+                            toastr.warning("Something went wrong");
                         },
                     });
             },
@@ -201,6 +224,7 @@ $(document).ready(function () {
             },
             error: function () {
                 console.log("AJAX load did not work");
+                toastr.warning("Something went wrong");
                 alert("error");
             },
         });
@@ -235,6 +259,7 @@ $(document).ready(function () {
                 console.log(data);
                 $("#editModal").modal("hide");
                 // table.row(crow).data(data).invalidate().draw(false);
+                toastr.success("Shipper successfully updated!");
                 table.ajax.reload();
             },
             error: function (error) {

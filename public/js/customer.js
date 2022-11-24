@@ -138,9 +138,11 @@ $(document).ready(function () {
                 $("#customerModal").modal("hide");
                 var $ctable = $("#ctable").DataTable();
                 // $ctable.row.add(data.customer).draw(false);
+                toastr.success( "Customer added!");
                 $ctable.ajax.reload();
             },
             error: function (error) {
+                toastr.success(error ,"There seems to be a problem");
                 console.log(error);
             },
         });
@@ -184,7 +186,7 @@ $(document).ready(function () {
                             $row.fadeOut(4000, function () {
                                 table.row($row).remove().draw(false);
                             });
-                            bootbox.alert(data.success);
+                            toastr.success( "Customer deleted!");
                         },
                         error: function (error) {
                             console.log(error);
@@ -257,6 +259,7 @@ $(document).ready(function () {
                 console.log(data);
                 $("#editModal").modal("hide");
                 // table.row(crow).data(data).invalidate().draw(false);
+                toastr.success( "Customer updated!");
                 table.ajax.reload();
             },
             error: function (error) {

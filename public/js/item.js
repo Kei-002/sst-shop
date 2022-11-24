@@ -166,10 +166,12 @@ $(document).ready(function () {
                 $("#itemModal").modal("hide");
                 var $itable = $("#itable").DataTable();
                 // $itable.row.add(data.customer).draw(false);
+                toastr.success("Item successfully added!");
                 $itable.ajax.reload();
             },
             error: function (error) {
                 console.log(error);
+                toastr.error("Something went wrong");
             },
         });
     });
@@ -212,7 +214,7 @@ $(document).ready(function () {
                             $row.fadeOut(4000, function () {
                                 table.row($row).remove().draw(false);
                             });
-                            bootbox.alert(data.success);
+                            toastr.success("Item successfully deleted!");
                         },
                         error: function (error) {
                             console.log(error);
@@ -303,6 +305,7 @@ $(document).ready(function () {
                 console.log(data);
                 $("#editModal").modal("hide");
                 // table.row(crow).data(data).invalidate().draw(false);
+                toastr.success("Item successfully updated!");
                 table.ajax.reload();
             },
             error: function (error) {

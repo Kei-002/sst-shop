@@ -5,6 +5,24 @@ $(document).ready(function () {
     //     $("#customers").show();
     // });
 
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-bottom-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      }
+
     $("#stable").DataTable({
         ajax: {
             url: "http://localhost:5000/api/sst/services/",
@@ -135,10 +153,12 @@ $(document).ready(function () {
                 $("#serviceModal").modal("hide");
                 var $stable = $("#stable").DataTable();
                 // $stable.row.add(data.customer).draw(false);
+                toastr.success("Service successfully added!");
                 $stable.ajax.reload();
             },
             error: function (error) {
                 console.log(error);
+                toastr.error(error, "Oh no!")
             },
         });
     });
@@ -181,10 +201,11 @@ $(document).ready(function () {
                             $row.fadeOut(4000, function () {
                                 table.row($row).remove().draw(false);
                             });
-                            bootbox.alert(data.success);
+                            toastr.success("Service successfully deleted!");
                         },
                         error: function (error) {
                             console.log(error);
+                            toastr.error(error ,"Somethings wrong :/");
                         },
                     });
             },
@@ -252,6 +273,7 @@ $(document).ready(function () {
                 console.log(data);
                 $("#editModal").modal("hide");
                 // table.row(crow).data(data).invalidate().draw(false);
+                toastr.success("Service successfully updated!");
                 table.ajax.reload();
             },
             error: function (error) {
