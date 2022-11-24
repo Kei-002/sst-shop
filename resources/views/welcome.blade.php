@@ -168,7 +168,7 @@
                     <h2>Services</h2>
                 </div>
 
-                <div class="row portfolio-container">
+                <div class="row portfolio-container" id="serviceContainer">
                     <div class="col-lg-4 col-md-6 portfolio-item filter-app">
                         <div class="portfolio-wrap">
                             <img src="{{ asset('img/banner.jpg') }}" class="img-fluid port" alt="" />
@@ -335,6 +335,7 @@
         <script src="{{ asset('styles/glightbox/js/glightbox.min.js') }}"></script>
         <script src="{{ asset('styles/swiper/swiper-bundle.min.js') }}"></script>
         <script src="{{ asset('js/styles.js') }}"></script>
+        <script src="{{ asset('js/populateTest.js') }}"></script>
 
 
     </body>
