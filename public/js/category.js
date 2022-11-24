@@ -4,6 +4,23 @@ $(document).ready(function () {
     //     $("#items").hide("slow");
     //     $("#customers").show();
     // });
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-bottom-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
 
     $("#ctable").DataTable({
         ajax: {
@@ -11,8 +28,7 @@ $(document).ready(function () {
             dataSrc: "",
         },
         dom: '<"top"<"left-col"B><"center-col"l><"right-col"f>>rtip',
-        buttons: [
-            {
+        buttons: [{
                 extend: "pdf",
                 className: "addNewRecord",
             },
@@ -30,8 +46,7 @@ $(document).ready(function () {
                 },
             },
         ],
-        columns: [
-            {
+        columns: [{
                 data: "id",
             },
             {
@@ -120,7 +135,7 @@ $(document).ready(function () {
                 $("#categoryModal").modal("hide");
                 var $ctable = $("#ctable").DataTable();
                 // $ctable.row.add(data.customer).draw(false);
-                toastr.success( "Category added!");
+                toastr.success("Category added!");
                 $ctable.ajax.reload();
             },
             error: function (error) {
@@ -167,7 +182,7 @@ $(document).ready(function () {
                             $row.fadeOut(4000, function () {
                                 table.row($row).remove().draw(false);
                             });
-                            toastr.success( "Category deleted!");
+                            toastr.success("Category deleted!");
                         },
                         error: function (error) {
                             console.log(error);
@@ -234,7 +249,7 @@ $(document).ready(function () {
                 console.log(data);
                 $("#editModal").modal("hide");
                 // table.row(crow).data(data).invalidate().draw(false);
-                toastr.success( "Category updated!");
+                toastr.success("Category updated!");
                 table.ajax.reload();
             },
             error: function (error) {

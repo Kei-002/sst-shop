@@ -4,6 +4,25 @@ $(document).ready(function () {
     //     $("#items").hide("slow");
     //     $("#customers").show();
     // });
+
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-bottom-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+
     $.ajax({
         type: "GET",
         url: "http://localhost:5000/api/sst/categories/",
@@ -32,8 +51,7 @@ $(document).ready(function () {
             dataSrc: "",
         },
         dom: '<"top"<"left-col"B><"center-col"l><"right-col"f>>rtip',
-        buttons: [
-            {
+        buttons: [{
                 extend: "pdf",
                 className: "addNewRecord",
             },
@@ -51,8 +69,7 @@ $(document).ready(function () {
                 },
             },
         ],
-        columns: [
-            {
+        columns: [{
                 data: "id",
             },
             {

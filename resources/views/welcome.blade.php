@@ -178,7 +178,7 @@
                             </div>
                             <div class="portfolio-links">
                                 <a href="{{ asset('img/banner.jpg') }}" data-gallery="portfolioGallery"
-                                    class="portfolio-lightbox" title="Factory"><i class="bi bi-arrows-fullscreen"></i></a>
+                                    class="portfolio-lightbox" title="TEST DATA"><i class="bi bi-arrows-fullscreen"></i></a>
                             </div>
                         </div>
                     </div>

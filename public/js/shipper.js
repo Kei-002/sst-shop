@@ -21,7 +21,7 @@ $(document).ready(function () {
         "hideEasing": "linear",
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
-      }
+    }
 
     $("#stable").DataTable({
         ajax: {
@@ -43,7 +43,7 @@ $(document).ready(function () {
                 action: function (e, dt, node, config) {
                     $("#sform").trigger("reset");
                     $("#sModal").modal("show");
-                    
+
                     // $('#itemupdate').hide();
                 },
             },

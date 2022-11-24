@@ -4,6 +4,24 @@ $(document).ready(function () {
     //     $("#items").hide("slow");
     //     $("#customers").show();
     // });
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-bottom-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+
 
     $("#ctable").DataTable({
         ajax: {
@@ -138,11 +156,11 @@ $(document).ready(function () {
                 $("#customerModal").modal("hide");
                 var $ctable = $("#ctable").DataTable();
                 // $ctable.row.add(data.customer).draw(false);
-                toastr.success( "Customer added!");
+                toastr.success("Customer added!");
                 $ctable.ajax.reload();
             },
             error: function (error) {
-                toastr.success(error ,"There seems to be a problem");
+                toastr.success(error, "There seems to be a problem");
                 console.log(error);
             },
         });
@@ -186,7 +204,7 @@ $(document).ready(function () {
                             $row.fadeOut(4000, function () {
                                 table.row($row).remove().draw(false);
                             });
-                            toastr.success( "Customer deleted!");
+                            toastr.success("Customer deleted!");
                         },
                         error: function (error) {
                             console.log(error);
@@ -259,7 +277,7 @@ $(document).ready(function () {
                 console.log(data);
                 $("#editModal").modal("hide");
                 // table.row(crow).data(data).invalidate().draw(false);
-                toastr.success( "Customer updated!");
+                toastr.success("Customer updated!");
                 table.ajax.reload();
             },
             error: function (error) {

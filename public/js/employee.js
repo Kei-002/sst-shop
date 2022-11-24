@@ -4,6 +4,23 @@ $(document).ready(function () {
     //     $("#items").hide("slow");
     //     $("#customers").show();
     // });
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-bottom-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
 
     $("#etable").DataTable({
         ajax: {
@@ -11,8 +28,7 @@ $(document).ready(function () {
             dataSrc: "",
         },
         dom: '<"top"<"left-col"B><"center-col"l><"right-col"f>>rtip',
-        buttons: [
-            {
+        buttons: [{
                 extend: "pdf",
                 className: "addNewRecord",
             },
@@ -30,8 +46,7 @@ $(document).ready(function () {
                 },
             },
         ],
-        columns: [
-            {
+        columns: [{
                 data: "id",
             },
             {
@@ -140,7 +155,7 @@ $(document).ready(function () {
                 $("#employeeModal").modal("hide");
                 var $etable = $("#etable").DataTable();
                 // $etable.row.add(data.customer).draw(false);
-                toastr.success( "Employee added!");
+                toastr.success("Employee added!");
                 $etable.ajax.reload();
             },
             error: function (error) {
