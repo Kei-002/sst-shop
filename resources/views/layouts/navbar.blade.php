@@ -33,6 +33,7 @@
                                 <a class="dropdown-item" href="{{ url('/ship-index') }}">Shipper</a>
                                 <a class="dropdown-item" href="{{ url('/category-index') }}">Category</a>
                                 <a class="dropdown-item" href="{{ url('/item-index') }}">Items</a>
+                                <a class="dropdown-item" href="{{ url('/services-index') }}">Services</a>
                             </div>
                         </li>
                         <li class="nav-item">

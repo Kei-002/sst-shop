@@ -4,6 +4,10 @@
         .banner {
             background: url('{{ asset('img/common-banner.jpg') }}') no-repeat;
         }
+
+        .order_details_table {
+            background: #afb7c9 !important;
+        }
     </style> --}}
 
     <body>
