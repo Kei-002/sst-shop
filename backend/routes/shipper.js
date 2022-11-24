@@ -6,6 +6,7 @@ const moment = require("moment");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const fs = require("fs");
+const toastr = require("toastr");
 
 const FILE_TYPE_MAP = {
     "image/png": "png",
@@ -52,8 +53,10 @@ router.post("/", uploadOptions.single("uploads"), (req, res) => {
     // console.log(sql, req.body);
     con.query(sql, [req.body.shipper_name, req.body.phone], function (error, results, fields) {
         if (error) {
+            
             return console.error(error.message);
         }
+        // toastr.success('Have fun storming the castle!', 'Miracle Max Says');
         return res.status(200).json(results);
     });
 });
