@@ -122,8 +122,9 @@
                                     class="portfolio-lightbox" title="TEST DATA"><i class="bi bi-arrows-fullscreen"></i></a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
+                    {{--
                     <div class="col-lg-4 col-md-6 portfolio-item filter-web">
                         <div class="portfolio-wrap">
                             <img src="{{ asset('img/sstlogo.png') }}" class="img-fluid port" alt="" />

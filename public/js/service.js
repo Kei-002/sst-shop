@@ -86,7 +86,7 @@ $(document).ready(function () {
                     return (
                         "<a href='#' class='deletebtn' data-id=" +
                         data.id +
-                        "><i class='fa-solid fa-trash-can' style='font-size:24px; color:red; margin-left:15px;'></a></i>"
+                        "><i class='fa-solid fa-trash-can' style='font-size:24px; color:red;'></a></i>"
                     );
                 },
             },
