@@ -51,7 +51,7 @@ function delimg(results) {
 }
 
 
-// GET CUSTOMER LIST
+// GET SERVICE LIST
 router.get('/', (req, res) => {
     let sql = `SELECT * FROM services`;
     con.query(sql, (error, results, fields) => {
