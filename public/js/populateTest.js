@@ -2,6 +2,20 @@ $(document).ready(function () {
     // $("#serviceContainer").load(getServices());
 
     // function getServices() {
+    var serviceHtml =
+        '<div class="col-lg-4 col-md-6 portfolio-item filter-app">';
+    serviceHtml += '<div class="portfolio-wrap imgServ">';
+    // serviceHtml += '<img class="img-fluid port" id="servicePhoto"alt="" />';
+    serviceHtml += '<div class="portfolio-info" id="portInfo">';
+    serviceHtml += '<h4 id="serviceName"></h4>';
+    serviceHtml += '<p id="serviceDesc"></p>';
+    serviceHtml += "</div>";
+    serviceHtml += '<div class="portfolio-links" id="portLink">';
+    serviceHtml += "</div>";
+    serviceHtml += "</div>";
+    serviceHtml += "</div>";
+    $(".portfol:first").hide();
+
     $.ajax({
         type: "GET",
         url: "http://localhost:5000/api/sst/services/",
@@ -10,40 +24,37 @@ $(document).ready(function () {
             console.log(data);
             $.each(data, function (key, value) {
                 console.log(key, value);
-                var id = value.item_id;
-                var tr = $("<tr>");
+                var id = value.id;
+                var serviceName = value.service_name;
+                var serviceDesc = value.description;
+                var serviceImg = value.img_path;
+
+               
+
+                var cont = $("#serviceContainer");
+                // var tr = $("<tr>");
                 var start = $('<div class="col-lg-4 col-md-6 portfolio-item filter-app">')
                 var infoDiv = $('<div class="portfolio-info">');
+                var wrapDiv = $('<div class="portfolio-wrap">');
                 var linksDiv = $('<div class="portfolio-links">');
                 // var insideA = $('<div class="portfolio-links">');
-                var cont = $("#serviceContainer");
-                start.append($('<div class="portfolio-wrap">'));
-                start.append($('<img class="img-fluid port" alt=""  />').attr('src', value.img_path))
+                
+                // start.append($('<div class="portfolio-wrap">'));
+                wrapDiv.append($('<img class="img-fluid port" alt=""  />').attr('src',serviceImg))
                 // start.append($("<div>").html(value.service_name));
-                infoDiv.append($("<h4>").html(value.service_name));
+                infoDiv.append($("<h4>").html(serviceName));
                 // start.append($('<h4>').html(value.service_name));
-                infoDiv.append($('<p>').html(value.description));
-                start.append(infoDiv)
+                infoDiv.append($('<p>').html(serviceDesc));
+                linksDiv.append($('<a href="'+ serviceImg +'" data-gallery="portfolioGallery" id="serviceLink" class="portfolio-lightbox" title="'+serviceImg+'"><i class="bi bi-arrows-fullscreen"></i></a>'))
+                start.append(wrapDiv)
+                infoDiv.appendTo(wrapDiv)
+                linksDiv.appendTo(wrapDiv)
 
-                // start.append($('</div'));
-                // tr.append($("<td>").html(value.description));
-                // tr.append($("<td>").html(value.cost_price));
-                // tr.append($("<td>").html(value.sell_price));
-                // tr.append($("<td>").html(value.title));
-                // tr.append($("<td>").html(value.imagePath));
-                // tr.append(
-                //     "<td align='center'><a href='#' data-bs-toggle='modal' data-bs-target='#editModal' id='editbtn' data-id=" +
-                //         id +
-                //         "><i class='fa fa-pencil' aria-hidden='true' style='font-size:24px' ></a></i></td>"
-                // );
-                // tr.append(
-                //     "<td><a href='#'  class='deletebtn' data-id=" +
-                //         id +
-                //         "><i  class='fa fa-trash' style='font-size:24px; color:red' ></a></i></td>"
-                // );
-
+             
                 cont.append(start);
             });
+
+           
         },
         error: function () {
             console.log("AJAX load did not work");

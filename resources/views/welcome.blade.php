@@ -178,7 +178,22 @@
                 </div>
 
                 <div class="row portfolio-container" id="serviceContainer">
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                    {{-- Test --}}
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-app portfol">
+                        <div class="portfolio-wrap">
+                            <img src="" class="img-fluid port" id="servicePic" alt="" />
+                            <div class="portfolio-info">
+                                <h4 id="serviceName"></h4>
+                                <p id="serviceDesc"></p>
+                            </div>
+                            <div class="portfolio-links">
+                                <a href="" data-gallery="portfolioGallery" id="serviceLink"
+                                    class="portfolio-lightbox" title="TEST DATA"><i class="bi bi-arrows-fullscreen"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- end Test --}}
+                    {{-- <div class="col-lg-4 col-md-6 portfolio-item filter-app">
                         <div class="portfolio-wrap">
                             <img src="{{ asset('img/banner.jpg') }}" class="img-fluid port" alt="" />
                             <div class="portfolio-info">
@@ -308,7 +323,7 @@
                                         class="bi bi-arrows-fullscreen"></i></a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </section>
