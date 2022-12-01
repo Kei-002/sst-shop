@@ -17,10 +17,8 @@
         <!--fontawesome-->
         {{-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
             integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> --}}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-        <link rel="stylesheet" href="{{ asset('styles/aos/aos.css') }}">
-        <link rel="stylesheet" href="{{ asset('styles/glightbox/css/glightbox.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('styles/swiper/swiper-bundle.min.css') }}">
 
         <style>
             section:nth-of-type(even) {
@@ -96,7 +94,7 @@
 
                 <div class="row portfolio-container" id="serviceContainer">
                     {{-- Test --}}
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app portfol">
+                    {{-- <div class="col-lg-4 col-md-6 portfol">
                         <div class="portfolio-wrap">
                             <img src="" class="img-fluid port" id="servicePic" alt="" />
                             <div class="portfolio-info">
@@ -108,9 +106,9 @@
                                     class="portfolio-lightbox" title="TEST DATA"><i class="bi bi-arrows-fullscreen"></i></a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     {{-- end Test --}}
-                    {{-- <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                    {{-- <div class="col-lg-4 col-md-6">
                         <div class="portfolio-wrap">
                             <img src="{{ asset('img/banner.jpg') }}" class="img-fluid port" alt="" />
                             <div class="portfolio-info">
@@ -123,128 +121,31 @@
                             </div>
                         </div>
                     </div> --}}
-
-                    {{--
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <div class="portfolio-wrap">
-                            <img src="{{ asset('img/sstlogo.png') }}" class="img-fluid port" alt="" />
-                            <div class="portfolio-info">
-                                <h4>Train Tracks</h4>
-                                <p>Train Tracks</p>
-                            </div>
-                            <div class="portfolio-links">
-                                <a href="{{ asset('img/sstlogo.png') }}" data-gallery="portfolioGallery"
-                                    class="portfolio-lightbox" title="Train Tracks"><i
-                                        class="bi bi-arrows-fullscreen"></i></a>
-                            </div>
+                    {{-- <div class="col-lg-4 col-md-6">
+                        <div class="portfolio-wrap portfolio-item ">
+                            <a data-fancybox="gallery" href="https://lipsum.app/id/60/1600x1200" data-caption="First image">
+                                <img src="https://lipsum.app/id/60/200x150" class="img-fluid port" />
+                            </a>
                         </div>
                     </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <div class="portfolio-wrap">
-                            <img src="{{ asset('img/common-banner.jpg') }}" class="img-fluid port" alt="" />
-                            <div class="portfolio-info">
-                                <h4>Stadium</h4>
-                                <p>Stadium</p>
-                            </div>
-                            <div class="portfolio-links">
-                                <a href="{{ asset('img/common-banner.jpg') }}" data-gallery="portfolioGallery"
-                                    class="portfolio-lightbox" title="Stadium"><i class="bi bi-arrows-fullscreen"></i></a>
-                            </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="portfolio-wrap portfolio-item ">
+                            <a data-fancybox="gallery" href="https://lipsum.app/id/60/1600x1200" data-caption="First image">
+                                <img src="https://lipsum.app/id/60/200x150" class="img-fluid port" />
+                            </a>
                         </div>
                     </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <div class="portfolio-wrap">
-                            <img src="{{ asset('img/common-banner.jpg') }}" class="img-fluid port" alt="" />
-                            <div class="portfolio-info">
-                                <h4>Power Lines</h4>
-                                <p>Power Lines</p>
-                            </div>
-                            <div class="portfolio-links">
-                                <a href="{{ asset('img/common-banner.jpg') }}" data-gallery="portfolioGallery"
-                                    class="portfolio-lightbox" title="Power Lines"><i
-                                        class="bi bi-arrows-fullscreen"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <div class="portfolio-wrap">
-                            <img src="{{ asset('img/common-banner.jpg') }}" class="img-fluid port" alt="" />
-                            <div class="portfolio-info">
-                                <h4>Artificial Intelligence</h4>
-                                <p>AI</p>
-                            </div>
-                            <div class="portfolio-links">
-                                <a href="{{ asset('img/common-banner.jpg') }}" data-gallery="portfolioGallery"
-                                    class="portfolio-lightbox" title="Artificial Intelligence"><i
-                                        class="bi bi-arrows-fullscreen"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <div class="portfolio-wrap">
-                            <img src="{{ asset('img/common-banner.jpg') }}" class="img-fluid port" alt="" />
-                            <div class="portfolio-info">
-                                <h4>Virtual Reality</h4>
-                                <p>VR</p>
-                            </div>
-                            <div class="portfolio-links">
-                                <a href="{{ asset('img/common-banner.jpg') }}" data-gallery="portfolioGallery"
-                                    class="portfolio-lightbox" title="Virtual Reality"><i
-                                        class="bi bi-arrows-fullscreen"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <div class="portfolio-wrap">
-                            <img src="{{ asset('img/common-banner.jpg') }}" class="img-fluid port" alt="" />
-                            <div class="portfolio-info">
-                                <h4>Drones</h4>
-                                <p>Drones</p>
-                            </div>
-                            <div class="portfolio-links">
-                                <a href="{{ asset('img/common-banner.jpg') }}" data-gallery="portfolioGallery"
-                                    class="portfolio-lightbox" title="Drones"><i class="bi bi-arrows-fullscreen"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <div class="portfolio-wrap">
-                            <img src="{{ asset('img/common-banner.jpg') }}" class="img-fluid port" alt="" />
-                            <div class="portfolio-info">
-                                <h4>Bridges</h4>
-                                <p>Bridges</p>
-                            </div>
-                            <div class="portfolio-links">
-                                <a href="{{ asset('img/common-banner.jpg') }}" data-gallery="portfolioGallery"
-                                    class="portfolio-lightbox" title="Bridges"><i
-                                        class="bi bi-arrows-fullscreen"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <div class="portfolio-wrap">
-                            <img src="{{ asset('img/common-banner.jpg') }}" class="img-fluid port" alt="" />
-                            <div class="portfolio-info">
-                                <h4>Modern House</h4>
-                                <p>Modern House</p>
-                            </div>
-                            <div class="portfolio-links">
-                                <a href="{{ asset('img/common-banner.jpg') }}" data-gallery="portfolioGallery"
-                                    class="portfolio-lightbox" title="Modern House"><i
-                                        class="bi bi-arrows-fullscreen"></i></a>
-                            </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="portfolio-wrap portfolio-item ">
+                            <a data-fancybox="gallery" href="https://lipsum.app/id/60/1600x1200" data-caption="First image">
+                                <img src="https://lipsum.app/id/60/200x150" class="img-fluid port" />
+                            </a>
                         </div>
                     </div> --}}
                 </div>
             </div>
         </section>
+
 
         <section>
             <div class="container">
@@ -295,13 +196,16 @@
                 });
             });
         </script> --}}
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+        <script>
+            // Customization example
+            Fancybox.bind('[data-fancybox="gallery"]', {
+                infinite: false
+            });
+        </script>
 
-        <script src="{{ asset('styles/aos/aos.js') }}"></script>
-        <script src="{{ asset('styles/glightbox/js/glightbox.min.js') }}"></script>
-        <script src="{{ asset('styles/swiper/swiper-bundle.min.js') }}"></script>
         <script src="{{ asset('js/styles.js') }}"></script>
         <script src="{{ asset('js/populateTest.js') }}"></script>
-
 
     </body>
 
