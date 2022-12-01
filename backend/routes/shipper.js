@@ -53,7 +53,7 @@ router.post("/", uploadOptions.single("uploads"), (req, res) => {
     // console.log(sql, req.body);
     con.query(sql, [req.body.shipper_name, req.body.phone], function (error, results, fields) {
         if (error) {
-            
+
             return console.error(error.message);
         }
         // toastr.success('Have fun storming the castle!', 'Miracle Max Says');
@@ -91,7 +91,7 @@ router.put("/:id", uploadOptions.single("uploads"), (req, res) => {
     console.log(req.body);
     con.query(
         sql,
-        [req.body.eshipper_name, req.body.ephone, req.params.id],
+        [req.body.eshipper_name, req.body.shipphone, req.params.id],
         (error, results, fields) => {
             if (error) {
                 console.log(req.params.id);

@@ -2,8 +2,8 @@
 @section('body')
     <style>
         /* .banner {
-                                                                                background: url('{{ asset('img/common-banner.jpg') }}') no-repeat;
-                                                                            } */
+                                                                                    background: url('{{ asset('img/common-banner.jpg') }}') no-repeat;
+                                                                                } */
     </style>
 
     <body>
@@ -13,7 +13,7 @@
                 <div class="order_details_table">
                     <h2>Service Details</h2>
                     <div class="table-responsive">
-                        <table class="table" id="stable">
+                        <table class="table" id="servicetable">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>

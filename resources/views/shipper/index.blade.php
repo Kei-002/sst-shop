@@ -13,7 +13,7 @@
                 <div class="order_details_table">
                     <h2>Shipper Details</h2>
                     <div class="table-responsive">
-                        <table class="table" id="stable">
+                        <table class="table" id="shippertable">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>

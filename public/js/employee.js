@@ -22,7 +22,7 @@ $(document).ready(function () {
         "hideMethod": "fadeOut"
     }
 
-    $("#etable").DataTable({
+    $("#emptable").DataTable({
         ajax: {
             url: "http://localhost:5000/api/sst/employees/",
             dataSrc: "",
@@ -40,7 +40,7 @@ $(document).ready(function () {
                 text: "New Employee",
                 className: "addNewRecord",
                 action: function (e, dt, node, config) {
-                    $("#eform").trigger("reset");
+                    $("#empForm").trigger("reset");
                     $("#employeeModal").modal("show");
                     // $('#itemupdate').hide();
                 },
@@ -130,9 +130,9 @@ $(document).ready(function () {
     //     },
     // });
 
-    $("#myFormSubmit").on("click", function (e) {
+    $("#empSubmit").on("click", function (e) {
         e.preventDefault();
-        var data = $("#eform")[0];
+        var data = $("#empForm")[0];
         console.log(data);
         let formData = new FormData(data);
         console.log(formData);
@@ -153,10 +153,10 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
                 $("#employeeModal").modal("hide");
-                var $etable = $("#etable").DataTable();
-                // $etable.row.add(data.customer).draw(false);
+                var $emptable = $("#emptable").DataTable();
+                // $emptable.row.add(data.customer).draw(false);
                 toastr.success("Employee added!");
-                $etable.ajax.reload();
+                $emptable.ajax.reload();
             },
             error: function (error) {
                 console.log(error);
@@ -164,8 +164,8 @@ $(document).ready(function () {
         });
     });
 
-    $("#etable tbody").on("click", "a.deletebtn", function (e) {
-        var table = $("#etable").DataTable();
+    $("#emptable tbody").on("click", "a.deletebtn", function (e) {
+        var table = $("#emptable").DataTable();
         var id = $(this).data("id");
         var $row = $(this).closest("tr");
 
@@ -212,9 +212,9 @@ $(document).ready(function () {
         });
     });
 
-    $("#etable tbody").on("click", "a.editBtn", function (e) {
+    $("#emptable tbody").on("click", "a.editBtn", function (e) {
         e.preventDefault();
-        $("#editModal").modal("show");
+        $("#eempModal").modal("show");
         var id = $(this).data("id");
 
         $.ajax({
@@ -231,11 +231,11 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
                 $("#euserid").val(data[0].user_id);
-                $("#eid").val(data[0].id);
-                $("#elname").val(data[0].lname);
-                $("#efname").val(data[0].fname);
-                $("#eaddress").val(data[0].addressline);
-                $("#ephone").val(data[0].phone);
+                $("#empid").val(data[0].id);
+                $("#emplname").val(data[0].lname);
+                $("#empfname").val(data[0].fname);
+                $("#empadd").val(data[0].addressline);
+                $("#empphone").val(data[0].phone);
             },
             error: function () {
                 console.log("AJAX load did not work");
@@ -244,16 +244,16 @@ $(document).ready(function () {
         });
     });
 
-    $("#myFormUpdate").on("click", function (e) {
+    $("#empUpdate").on("click", function (e) {
         e.preventDefault();
         // var id = $(e.relatedTarget).attr("data-id");
-        var id = $("#eid").val();
+        var id = $("#empid").val();
         console.log(id);
 
         // var crow = $("tr td:contains(" + id + ")").closest("tr");
-        var table = $("#etable").DataTable();
+        var table = $("#emptable").DataTable();
         // var data = $("#updateform").serialize();
-        var data = $("#updateform")[0];
+        var data = $("#eempForm")[0];
         let formData = new FormData(data);
 
         console.log(data);
@@ -271,7 +271,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                $("#editModal").modal("hide");
+                $("#eempModal").modal("hide");
                 // table.row(crow).data(data).invalidate().draw(false);
                 toastr.success("Employee updated!");
                 table.ajax.reload();

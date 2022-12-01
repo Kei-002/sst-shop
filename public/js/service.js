@@ -21,9 +21,9 @@ $(document).ready(function () {
         "hideEasing": "linear",
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
-      }
+    }
 
-    $("#stable").DataTable({
+    $("#servicetable").DataTable({
         ajax: {
             url: "http://localhost:5000/api/sst/services/",
             dataSrc: "",
@@ -41,7 +41,7 @@ $(document).ready(function () {
                 text: "New Service",
                 className: "addNewRecord",
                 action: function (e, dt, node, config) {
-                    $("#sform").trigger("reset");
+                    $("#serviceForm").trigger("reset");
                     $("#serviceModal").modal("show");
                     // $('#itemupdate').hide();
                 },
@@ -128,9 +128,9 @@ $(document).ready(function () {
     //     },
     // });
 
-    $("#myFormSubmit").on("click", function (e) {
+    $("#serviceSubmit").on("click", function (e) {
         e.preventDefault();
-        var data = $("#sform")[0];
+        var data = $("#serviceForm")[0];
         console.log(data);
         let formData = new FormData(data);
         console.log(formData);
@@ -151,10 +151,10 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
                 $("#serviceModal").modal("hide");
-                var $stable = $("#stable").DataTable();
-                // $stable.row.add(data.customer).draw(false);
+                var $servicetable = $("#servicetable").DataTable();
+                // $servicetable.row.add(data.customer).draw(false);
                 toastr.success("Service successfully added!");
-                $stable.ajax.reload();
+                $servicetable.ajax.reload();
             },
             error: function (error) {
                 console.log(error);
@@ -163,8 +163,8 @@ $(document).ready(function () {
         });
     });
 
-    $("#stable tbody").on("click", "a.deletebtn", function (e) {
-        var table = $("#stable").DataTable();
+    $("#servicetable tbody").on("click", "a.deletebtn", function (e) {
+        var table = $("#servicetable").DataTable();
         var id = $(this).data("id");
         var $row = $(this).closest("tr");
 
@@ -205,16 +205,16 @@ $(document).ready(function () {
                         },
                         error: function (error) {
                             console.log(error);
-                            toastr.error(error ,"Somethings wrong :/");
+                            toastr.error(error, "Somethings wrong :/");
                         },
                     });
             },
         });
     });
 
-    $("#stable tbody").on("click", "a.editBtn", function (e) {
+    $("#servicetable tbody").on("click", "a.editBtn", function (e) {
         e.preventDefault();
-        $("#editModal").modal("show");
+        $("#eserviceModal").modal("show");
         var id = $(this).data("id");
 
         $.ajax({
@@ -232,7 +232,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                $("#eid").val(data[0].id);
+                $("#eserid").val(data[0].id);
                 $("#eservice_name").val(data[0].service_name);
                 $("#edescription").val(data[0].description);
                 $("#eprice").val(data[0].price);
@@ -244,16 +244,16 @@ $(document).ready(function () {
         });
     });
 
-    $("#myFormUpdate").on("click", function (e) {
+    $("#serviceUpdate").on("click", function (e) {
         e.preventDefault();
         // var id = $(e.relatedTarget).attr("data-id");
-        var id = $("#eid").val();
+        var id = $("#eserid").val();
         console.log(id);
 
         var crow = $("tr td:contains(" + id + ")").closest("tr");
-        var table = $("#stable").DataTable();
+        var table = $("#servicetable").DataTable();
         // var data = $("#updateform").serialize();
-        var data = $('#updateform')[0];
+        var data = $('#eserviceForm')[0];
         let formData = new FormData(data);
 
         console.log(data);
@@ -271,7 +271,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                $("#editModal").modal("hide");
+                $("#eserviceModal").modal("hide");
                 // table.row(crow).data(data).invalidate().draw(false);
                 toastr.success("Service successfully updated!");
                 table.ajax.reload();

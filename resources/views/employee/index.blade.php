@@ -17,7 +17,7 @@
                 <div class="order_details_table">
                     <h2>Employee Details</h2>
                     <div class="table-responsive">
-                        <table class="table" id="etable">
+                        <table class="table" id="emptable">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>

@@ -43,7 +43,7 @@ $(document).ready(function () {
         },
     });
 
-    $("#itable").DataTable({
+    $("#itemtable").DataTable({
         // scrollY: 200,
         // scrollX: true,
         ajax: {
@@ -63,7 +63,7 @@ $(document).ready(function () {
                 text: "New Item",
                 className: "addNewRecord",
                 action: function (e, dt, node, config) {
-                    $("#iform").trigger("reset");
+                    $("#itemForm").trigger("reset");
                     $("#itemModal").modal("show");
                     // $('#itemupdate').hide();
                 },
@@ -158,9 +158,9 @@ $(document).ready(function () {
     //     },
     // });
 
-    $("#myFormSubmit").on("click", function (e) {
+    $("#itemSubmit").on("click", function (e) {
         e.preventDefault();
-        var data = $("#iform")[0];
+        var data = $("#itemForm")[0];
         console.log(data);
         let formData = new FormData(data);
         console.log(formData);
@@ -181,10 +181,10 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
                 $("#itemModal").modal("hide");
-                var $itable = $("#itable").DataTable();
-                // $itable.row.add(data.customer).draw(false);
+                var $itemtable = $("#itemtable").DataTable();
+                // $itemtable.row.add(data.customer).draw(false);
                 toastr.success("Item successfully added!");
-                $itable.ajax.reload();
+                $itemtable.ajax.reload();
             },
             error: function (error) {
                 console.log(error);
@@ -193,8 +193,8 @@ $(document).ready(function () {
         });
     });
 
-    $("#itable tbody").on("click", "a.deletebtn", function (e) {
-        var table = $("#itable").DataTable();
+    $("#itemtable tbody").on("click", "a.deletebtn", function (e) {
+        var table = $("#itemtable").DataTable();
         var id = $(this).data("id");
         var $row = $(this).closest("tr");
 
@@ -241,9 +241,9 @@ $(document).ready(function () {
         });
     });
 
-    $("#itable tbody").on("click", "a.editBtn", function (e) {
+    $("#itemtable tbody").on("click", "a.editBtn", function (e) {
         e.preventDefault();
-        $("#editModal").modal("show");
+        $("#eitemModal").modal("show");
         var id = $(this).data("id");
         $.ajax({
             type: "GET",
@@ -293,16 +293,16 @@ $(document).ready(function () {
         });
     });
 
-    $("#myFormUpdate").on("click", function (e) {
+    $("#itemUpdate").on("click", function (e) {
         e.preventDefault();
         // var id = $(e.relatedTarget).attr("data-id");
         var id = $("#eid").val();
         console.log(id);
 
         // var crow = $("tr td:contains(" + id + ")").closest("tr");
-        var table = $("#itable").DataTable();
+        var table = $("#itemtable").DataTable();
         // var data = $("#updateform").serialize();
-        var data = $("#updateform")[0];
+        var data = $("#eitemForm")[0];
         let formData = new FormData(data);
         // console.log("here");
         console.log(data);
@@ -320,7 +320,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                $("#editModal").modal("hide");
+                $("#eitemModal").modal("hide");
                 // table.row(crow).data(data).invalidate().draw(false);
                 toastr.success("Item successfully updated!");
                 table.ajax.reload();

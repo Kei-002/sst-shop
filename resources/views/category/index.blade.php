@@ -13,7 +13,7 @@
                 <div class="order_details_table">
                     <h2>Category Details</h2>
                     <div class="table-responsive">
-                        <table class="table" id="ctable">
+                        <table class="table" id="cattable">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>

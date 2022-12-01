@@ -13,7 +13,7 @@
                 <div class="order_details_table">
                     <h2>Item Details</h2>
                     <div class="table-responsive">
-                        <table class="table" id="itable">
+                        <table class="table" id="itemtable">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -55,8 +55,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="catDropdown">Categories</label>
-                                    <select class="form-control" id="catDropdown"
-                                        name="catDropdown"></select>
+                                    <select class="form-control" id="catDropdown" name="catDropdown"></select>
                                 </div>
                                 <div class="form-group">
                                     <label for="lname" class="control-label">Cost Price</label>
@@ -109,12 +108,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="catDropdown">Categories</label>
-                                    <select class="form-control" id="ecatDropdown"
-                                        name="catDropdown"></select>
+                                    <select class="form-control" id="ecatDropdown" name="catDropdown"></select>
                                 </div>
                                 <div class="form-group">
                                     <label for="lname" class="control-label">Cost Price</label>
-                                    <input type="text" class="form-control " id="ecost_price" name="cost_price"></text>
+                                    <input type="text" class="form-control " id="ecost_price"
+                                        name="cost_price"></text>
                                 </div>
 
                                 <div class="form-group">

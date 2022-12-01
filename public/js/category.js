@@ -22,7 +22,7 @@ $(document).ready(function () {
         "hideMethod": "fadeOut"
     }
 
-    $("#ctable").DataTable({
+    $("#cattable").DataTable({
         ajax: {
             url: "http://localhost:5000/api/sst/categories/",
             dataSrc: "",
@@ -40,8 +40,8 @@ $(document).ready(function () {
                 text: "New Category",
                 className: "addNewRecord",
                 action: function (e, dt, node, config) {
-                    $("#cform").trigger("reset");
-                    $("#categoryModal").modal("show");
+                    $("#catForm").trigger("reset");
+                    $("#catModal").modal("show");
                     // $('#itemupdate').hide();
                 },
             },
@@ -110,9 +110,9 @@ $(document).ready(function () {
     //     },
     // });
 
-    $("#myFormSubmit").on("click", function (e) {
+    $("#catSubmit").on("click", function (e) {
         e.preventDefault();
-        var data = $("#cform")[0];
+        var data = $("#catForm")[0];
         console.log(data);
         let formData = new FormData(data);
         console.log(formData);
@@ -132,11 +132,11 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                $("#categoryModal").modal("hide");
-                var $ctable = $("#ctable").DataTable();
-                // $ctable.row.add(data.customer).draw(false);
+                $("#catModal").modal("hide");
+                var $cattable = $("#cattable").DataTable();
+                // $cattable.row.add(data.customer).draw(false);
                 toastr.success("Category added!");
-                $ctable.ajax.reload();
+                $cattable.ajax.reload();
             },
             error: function (error) {
                 console.log(error);
@@ -144,8 +144,8 @@ $(document).ready(function () {
         });
     });
 
-    $("#ctable tbody").on("click", "a.deletebtn", function (e) {
-        var table = $("#ctable").DataTable();
+    $("#cattable tbody").on("click", "a.deletebtn", function (e) {
+        var table = $("#cattable").DataTable();
         var id = $(this).data("id");
         var $row = $(this).closest("tr");
 
@@ -192,9 +192,9 @@ $(document).ready(function () {
         });
     });
 
-    $("#ctable tbody").on("click", "a.editBtn", function (e) {
+    $("#cattable tbody").on("click", "a.editBtn", function (e) {
         e.preventDefault();
-        $("#editModal").modal("show");
+        $("#ecatModal").modal("show");
         var id = $(this).data("id");
 
         $.ajax({
@@ -210,7 +210,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                $("#eid").val(data[0].id);
+                $("#catid").val(data[0].id);
                 $("#ecategory_name").val(data[0].category_name);
             },
             error: function () {
@@ -220,16 +220,16 @@ $(document).ready(function () {
         });
     });
 
-    $("#myFormUpdate").on("click", function (e) {
+    $("#catUpdate").on("click", function (e) {
         e.preventDefault();
         // var id = $(e.relatedTarget).attr("data-id");
-        var id = $("#eid").val();
+        var id = $("#catid").val();
         console.log(id);
 
         var crow = $("tr td:contains(" + id + ")").closest("tr");
-        var table = $("#ctable").DataTable();
+        var table = $("#cattable").DataTable();
         // var data = $("#updateform").serialize();
-        var data = $("#updateform")[0];
+        var data = $("#ecatForm")[0];
         let formData = new FormData(data);
 
         console.log(data);
@@ -247,7 +247,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                $("#editModal").modal("hide");
+                $("#ecatModal").modal("hide");
                 // table.row(crow).data(data).invalidate().draw(false);
                 toastr.success("Category updated!");
                 table.ajax.reload();

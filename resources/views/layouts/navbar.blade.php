@@ -37,7 +37,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Enterprice</a>
+                            <a class="nav-link" href="{{ url('/admin') }}">Admin</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"

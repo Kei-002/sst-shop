@@ -23,7 +23,7 @@ $(document).ready(function () {
         "hideMethod": "fadeOut"
     }
 
-    $("#stable").DataTable({
+    $("#shippertable").DataTable({
         ajax: {
             url: "http://localhost:5000/api/sst/shippers/",
             dataSrc: "",
@@ -41,8 +41,8 @@ $(document).ready(function () {
                 text: "New Shipper",
                 className: "addNewRecord",
                 action: function (e, dt, node, config) {
-                    $("#sform").trigger("reset");
-                    $("#sModal").modal("show");
+                    $("#shipForm").trigger("reset");
+                    $("#shipModal").modal("show");
 
                     // $('#itemupdate').hide();
                 },
@@ -115,9 +115,9 @@ $(document).ready(function () {
     //     },
     // });
 
-    $("#myFormSubmit").on("click", function (e) {
+    $("#shipSubmit").on("click", function (e) {
         e.preventDefault();
-        var data = $("#sform")[0];
+        var data = $("#shipForm")[0];
         console.log(data);
         let formData = new FormData(data);
         console.log(formData);
@@ -137,11 +137,11 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                $("#sModal").modal("hide");
-                var $stable = $("#stable").DataTable();
-                // $stable.row.add(data.customer).draw(false);
+                $("#shipModal").modal("hide");
+                var $shippertable = $("#shippertable").DataTable();
+                // $shippertable.row.add(data.customer).draw(false);
                 toastr.success("Shipper successfully added!");
-                $stable.ajax.reload();
+                $shippertable.ajax.reload();
             },
             error: function (error) {
                 console.log(error);
@@ -150,8 +150,8 @@ $(document).ready(function () {
         });
     });
 
-    $("#stable tbody").on("click", "a.deletebtn", function (e) {
-        var table = $("#stable").DataTable();
+    $("#shippertable tbody").on("click", "a.deletebtn", function (e) {
+        var table = $("#shippertable").DataTable();
         var id = $(this).data("id");
         var $row = $(this).closest("tr");
 
@@ -200,9 +200,9 @@ $(document).ready(function () {
         });
     });
 
-    $("#stable tbody").on("click", "a.editBtn", function (e) {
+    $("#shippertable tbody").on("click", "a.editBtn", function (e) {
         e.preventDefault();
-        $("#editModal").modal("show");
+        $("#eshipModal").modal("show");
         var id = $(this).data("id");
 
         $.ajax({
@@ -218,9 +218,9 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                $("#eid").val(data[0].id);
+                $("#shipid").val(data[0].id);
                 $("#eshipper_name").val(data[0].shipper_name);
-                $("#ephone").val(data[0].phone);
+                $("#shipphone").val(data[0].phone);
             },
             error: function () {
                 console.log("AJAX load did not work");
@@ -230,16 +230,16 @@ $(document).ready(function () {
         });
     });
 
-    $("#myFormUpdate").on("click", function (e) {
+    $("#shipUpdate").on("click", function (e) {
         e.preventDefault();
         // var id = $(e.relatedTarget).attr("data-id");
-        var id = $("#eid").val();
+        var id = $("#shipid").val();
         console.log(id);
 
         var crow = $("tr td:contains(" + id + ")").closest("tr");
-        var table = $("#stable").DataTable();
+        var table = $("#shippertable").DataTable();
         // var data = $("#updateform").serialize();
-        var data = $("#updateform")[0];
+        var data = $("#eshipForm")[0];
         let formData = new FormData(data);
 
         console.log(data);
@@ -257,7 +257,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                $("#editModal").modal("hide");
+                $("#eshipModal").modal("hide");
                 // table.row(crow).data(data).invalidate().draw(false);
                 toastr.success("Shipper successfully updated!");
                 table.ajax.reload();

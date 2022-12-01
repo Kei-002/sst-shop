@@ -23,7 +23,7 @@ $(document).ready(function () {
     }
 
 
-    $("#ctable").DataTable({
+    $("#customertable").DataTable({
         ajax: {
             url: "http://localhost:5000/api/sst/customers/",
             dataSrc: "",
@@ -41,7 +41,7 @@ $(document).ready(function () {
                 text: "New Customer",
                 className: "addNewRecord",
                 action: function (e, dt, node, config) {
-                    $("#cform").trigger("reset");
+                    $("#customerForm").trigger("reset");
                     $("#customerModal").modal("show");
                     // $('#itemupdate').hide();
                 },
@@ -131,9 +131,9 @@ $(document).ready(function () {
     //     },
     // });
 
-    $("#myFormSubmit").on("click", function (e) {
+    $("#customerSubmit").on("click", function (e) {
         e.preventDefault();
-        var data = $("#cform")[0];
+        var data = $("#customerForm")[0];
         console.log(data);
         let formData = new FormData(data);
         console.log(formData);
@@ -154,10 +154,10 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
                 $("#customerModal").modal("hide");
-                var $ctable = $("#ctable").DataTable();
-                // $ctable.row.add(data.customer).draw(false);
+                var $customertable = $("#customertable").DataTable();
+                // $customertable.row.add(data.customer).draw(false);
                 toastr.success("Customer added!");
-                $ctable.ajax.reload();
+                $customertable.ajax.reload();
             },
             error: function (error) {
                 toastr.success(error, "There seems to be a problem");
@@ -166,8 +166,8 @@ $(document).ready(function () {
         });
     });
 
-    $("#ctable tbody").on("click", "a.deletebtn", function (e) {
-        var table = $("#ctable").DataTable();
+    $("#customertable tbody").on("click", "a.deletebtn", function (e) {
+        var table = $("#customertable").DataTable();
         var id = $(this).data("id");
         var $row = $(this).closest("tr");
 
@@ -214,9 +214,9 @@ $(document).ready(function () {
         });
     });
 
-    $("#ctable tbody").on("click", "a.editBtn", function (e) {
+    $("#customertable tbody").on("click", "a.editBtn", function (e) {
         e.preventDefault();
-        $("#editModal").modal("show");
+        $("#ecustomerModal").modal("show");
         var id = $(this).data("id");
 
         $.ajax({
@@ -248,16 +248,16 @@ $(document).ready(function () {
         });
     });
 
-    $("#myFormUpdate").on("click", function (e) {
+    $("#customerUpdate").on("click", function (e) {
         e.preventDefault();
         // var id = $(e.relatedTarget).attr("data-id");
         var id = $("#eid").val();
         console.log(id);
 
         var crow = $("tr td:contains(" + id + ")").closest("tr");
-        var table = $("#ctable").DataTable();
+        var table = $("#customertable").DataTable();
         // var data = $("#updateform").serialize();
-        var data = $('#updateform')[0];
+        var data = $('#ecustomerForm')[0];
         let formData = new FormData(data);
 
         console.log(data);
@@ -275,7 +275,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                $("#editModal").modal("hide");
+                $("#ecustomerModal").modal("hide");
                 // table.row(crow).data(data).invalidate().draw(false);
                 toastr.success("Customer updated!");
                 table.ajax.reload();
