@@ -352,6 +352,23 @@ section {
     margin-bottom: 30px;
 }
 
+.portfolio-container:hover .port {
+    filter: brightness(0.5) saturate(0) contrast(0.7) blur(4px);
+    transform-origin: center;
+    transform: scale(0.9) translateZ(0);
+    transition: filter 250ms linear, transform 250ms linear;
+    opacity: 0.5;
+}
+
+
+.portfolio-container .port:hover {
+    filter: brightness(0.75) saturate(1.2) contrast(0.85);
+    transform-origin: center;
+    transform: scale(1) translateZ(0);
+    transition: filter 250ms linear, transform 250ms linear;
+    opacity: 1;
+}
+
 
 /*--------------------------------------------------------------
 # Sections General
@@ -484,7 +501,7 @@ button.active {
 }
 
 .active {
-    background-color: white;
+    /* background-color: white; */
 }
 
 .content {
@@ -497,3 +514,35 @@ button.active {
 }
 
 /* END CRUDS TABS SWITCH  */
+
+
+/* START LOGIN CSS  */
+
+.pen-title {
+    padding: 50px 0;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.pen-title h1 {
+    margin: 0 0 20px;
+    font-size: 48px;
+    font-weight: 300;
+}
+
+.pen-title span {
+    font-size: 12px;
+}
+
+.pen-title span .fa {
+    color: #ed2553;
+}
+
+.pen-title span a {
+    color: #ed2553;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+
+/* END LOGIN CSS  */

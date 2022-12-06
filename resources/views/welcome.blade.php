@@ -108,7 +108,7 @@
                         </div>
                     </div> --}}
                     {{-- end Test --}}
-                    {{-- <div class="col-lg-4 col-md-6">
+                    {{-- <div class="col-lg-4 col-md-6 cardimg">
                         <div class="portfolio-wrap">
                             <img src="{{ asset('img/banner.jpg') }}" class="img-fluid port" alt="" />
                             <div class="portfolio-info">

@@ -34,7 +34,7 @@ $(document).ready(function () {
 
                 var cont = $("#serviceContainer");
                 // var tr = $("<tr>");
-                var start = $('<div class="col-lg-4 col-md-6">')
+                var start = $('<div class="col-lg-4 col-md-6 cont">')
                 var gallery = $('<a data-fancybox="gallery" href="' + serviceImg + '" data-caption="' + serviceName + '">')
                 var imgsrc = $('<img class="img-fluid port"/>').attr('src', serviceImg)
                 // var infoDiv = $('<div class="portfolio-info">');
