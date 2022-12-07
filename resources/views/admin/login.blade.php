@@ -419,19 +419,20 @@
             <div class="card"></div>
             <div class="card div1">
                 <h1 class="title">Login</h1>
-                <form>
+                <form id="loginForm" action="#" method="#">
+                     @csrf
                     <div class="input-containerr">
-                        <input type="#{type}" id="#{label}" required="required" />
+                        <input type="text" id="email" required="required" />
                         <label for="#{label}">Email</label>
                         <div class="bar"></div>
                     </div>
                     <div class="input-containerr">
-                        <input type="#{type}" id="#{label}" required="required" />
+                        <input type="password" id="pass" required="required" />
                         <label for="#{label}">Password</label>
                         <div class="bar"></div>
                     </div>
                     <div class="button-containerr">
-                        <button id="login"><span>Login</span></button>
+                        <button id="login" type="submit"><span>Login</span></button>
                     </div>
                 </form>
             </div>
@@ -440,7 +441,8 @@
                 <h1 class="title">Register
                     <div class="close"></div>
                 </h1>
-                <form>
+                <form  id="regForm" action="#" method="#">
+                    @csrf
                     <div class="input-containerr">
                         <input type="#{type}" id="#{label}" required="required" />
                         <label for="#{label}">First Name</label>
@@ -488,7 +490,7 @@
         </div>
 
     </body>
-
+    <script src="js/login.js"></script>
     <script>
         $('.toggle').on('click', function() {
             $('.containerr').stop().addClass('active');

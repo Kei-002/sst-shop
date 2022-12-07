@@ -6,6 +6,9 @@ require('dotenv').config()
 const mysql = require('mysql')
 const Joi = require('joi');
 var cors = require('cors')
+var verifyJWT = require("./middleware/verifyJWT");
+const cookieParser = require("cookie-parser");
+// const sequelize = require("./dbtest");
 
 const app = express();
 
@@ -18,6 +21,11 @@ const itemRoutes = require("./routes/item");
 const catRoutes = require("./routes/category");
 const shipRoutes = require("./routes/shipper");
 const serviceRoutes = require("./routes/service");
+const registerRoutes = require("./routes/register");
+const authRoutes = require("./routes/authTest");
+const authinRoutes = require("./routes/auth");
+const refreshRoutes = require("./routes/refresh");
+const logoutRoutes = require("./routes/logout");
 // Routes END
 
 // DECLARATION/REQUIRE SECTION END
@@ -26,14 +34,26 @@ const serviceRoutes = require("./routes/service");
 
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
+// app.use(bodyParser.json());
 
 // Routes USE START
+app.use(`${api}/register`, registerRoutes);
+app.use(`${api}/auths`, authRoutes);
+app.use(`${api}/login`, authinRoutes);
+app.use(`${api}/refresh`, refreshRoutes);
+app.use(`${api}/logout`, logoutRoutes);
+
+// verify first if user has token
+// app.use(verifyJWT);
 app.use(`${api}/customers`, custRoutes);
 app.use(`${api}/employees`, empRoutes);
 app.use(`${api}/items`, itemRoutes);
 app.use(`${api}/categories`, catRoutes);
 app.use(`${api}/shippers`, shipRoutes);
 app.use(`${api}/services`, serviceRoutes);
+
+
 // Routes USE END
 
 app.use("/public/uploads", express.static(__dirname + "/public/uploads"));

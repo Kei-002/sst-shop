@@ -1,12 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const con = require("../conmysql");
+// const Shipper = require("../conmysql");
 const multer = require("multer");
 const moment = require("moment");
 const bcrypt = require("bcrypt");
+const verifyJWT = require("../middleware/verifyJWT");
 const saltRounds = 10;
 const fs = require("fs");
 const toastr = require("toastr");
+var mysqlBackbone = require("mysql-backbone");
+
+var Shipper = mysqlBackbone.Model.extend({
+    connection: con,
+    tableName: "shippers",
+});
 
 const FILE_TYPE_MAP = {
     "image/png": "png",
@@ -51,14 +59,17 @@ router.get("/", (req, res) => {
 router.post("/", uploadOptions.single("uploads"), (req, res) => {
     let sql = `INSERT INTO shippers(shipper_name, phone) VALUES (?,?)`;
     // console.log(sql, req.body);
-    con.query(sql, [req.body.shipper_name, req.body.phone], function (error, results, fields) {
-        if (error) {
-
-            return console.error(error.message);
+    con.query(
+        sql,
+        [req.body.shipper_name, req.body.phone],
+        function (error, results, fields) {
+            if (error) {
+                return console.error(error.message);
+            }
+            // toastr.success('Have fun storming the castle!', 'Miracle Max Says');
+            return res.status(200).json(results);
         }
-        // toastr.success('Have fun storming the castle!', 'Miracle Max Says');
-        return res.status(200).json(results);
-    });
+    );
 });
 
 // router.post('/', function (req, res, next) {
@@ -105,13 +116,18 @@ router.put("/:id", uploadOptions.single("uploads"), (req, res) => {
 
 //DELETE SHIPPERS
 router.delete("/:id", (req, res) => {
-    let sql = `DELETE FROM shippers WHERE id = ${req.params.id}`;
-    con.query(sql, (error, results, fields) => {
-        if (error) {
-            return console.error(error.message);
-        }
-        return res.status(200).json(results);
-    });
+    // let sql = `DELETE FROM shippers WHERE id = ${req.params.id}`;
+    // con.query(sql, (error, results, fields) => {
+    //     if (error) {
+    //         return console.error(error.message);
+    //     }
+    //     return res.status(200).json(results);
+    // });
+    var ship = new Shipper();
+
+    // console.log(ship.fetch(req.params.id));
+    ship.destroy(req.params.id);
+    return res.status(200).json({message: 'Shipper Deleted'});
 });
 
 module.exports = router;

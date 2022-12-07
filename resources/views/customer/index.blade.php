@@ -44,6 +44,9 @@
                             <form id="cform" action="#" method="#" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
+                                    <input type="hidden" class="form-control " id="role" name="role" value="customer">
+                                </div>
+                                <div class="form-group">
                                     <label for="fname" class="control-label">Email</label>
                                     <input type="text" class="form-control " id="email" name="email">
                                 </div>
@@ -102,7 +105,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="lname" class="control-label">Last name</label>
-                                    <input type="text" class="form-control " id="elname" name="lname"></text>
+                                    <input type="text" class="form-control " id="elname" name="lname">
                                 </div>
                                 <div class="form-group">
                                     <label for="address" class="control-label">Address</label>
