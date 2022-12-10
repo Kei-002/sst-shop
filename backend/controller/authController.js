@@ -7,6 +7,8 @@ const saltRounds = 10;
 const Promise = require("promise");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
+const User = require("../models/User");
+const PersonalToken = require("../models/PersonalToken");
 
 let createdat = moment(Date.now()).format("YYYY-MM-DD HH:mm:ss");
 let updatedat = moment(Date.now()).format("YYYY-MM-DD HH:mm:ss");
@@ -117,55 +119,98 @@ const handleLogin = async (req, res) => {
     // Check if no data in the body
     if (!email || !pass)
         return res.status(400).json({ message: "No email or password" });
-    var foundUser = getUser(email);
 
-    foundUser.then(async function (result) {
-        console.log(result);
-        // Compare passwords
-        const match = await bcrypt.compare(pass, result.password);
-        if (match) {
-            // JWT
-            const accessToken = jwt.sign(
-                { email: result.email },
-                process.env.ACCESS_TOKEN_SECRET,
-                { expiresIn: "20s" }
-            );
-            const refreshToken = jwt.sign(
-                { email: result.email },
-                process.env.REFRESH_TOKEN_SECRET,
-                { expiresIn: "1d" }
-            );
-            console.log(refreshToken, accessToken);
-            // sql = "INSERT INTO personal_access_token ";
-            let sql = `INSERT INTO personal_access_tokens(tokenable_type, tokenable_id, name, token,expires_at,created_at, updated_at) VALUES(?,?,?,?,?,?,?)`;
-            console.log(sql);
-            con.query(
-                sql,
-                [
-                    "ACCESS",
-                    result.id,
-                    result.email,
-                    accessToken,
-                    createdat,
-                    createdat,
-                    updatedat,
-                ],
-                (error, results, fields) => {
-                    if (error) {
-                        return console.error(error.message);
-                    }
-                }
-            );
-            res.cookie("jwt", refreshToken, {
-                httpOnly: true,
-                maxAge: 24 * 60 * 60 * 1000,
-            }); // 100days maxAge
-            res.json({ accessToken });
-            // res.json({ message: `User ${result.email} is logged in` });
-        }
+    // Find if user exists
+    User.findOne({ where: { email: email } })
+        .then(async (data) => {
+            console.log(data);
+            // Compare passwords
+            const match = await bcrypt.compare(pass, data.password);
+            if (match) {
+                // JWT
+                const accessToken = jwt.sign(
+                    { email: data.email },
+                    process.env.SECRET_KEY,
+                    { expiresIn: "2h" }
+                );
+                const refreshToken = jwt.sign(
+                    { email: data.email },
+                    process.env.SECRET_KEY,
+                    { expiresIn: "1y" }
+                );
+                console.log(refreshToken, accessToken);
+                PersonalToken.create({
+                    tokenable_type: "ACCESS",
+                    tokenable_id: data.id,
+                    name: data.email,
+                    token: accessToken,
+                });
+                res.cookie("jwtAccess", accessToken, {
+                    httpOnly: true,
+                    maxAge: 300000, //5 minutes
+                });
+                res.cookie("jwtRefresh", refreshToken, {
+                    httpOnly: true,
+                    maxAge: 3.154e10, // 1year
+                });
+                res.json({ accessToken });
+            }
+        })
+        .catch((err) => {
+            res.status(401).send({
+                Message: err.message,
+            });
+        });
 
-        res.sendStatus(401);
-    });
+    // var foundUser = getUser(email);
+
+    // foundUser.then(async function (result) {
+    //     console.log(result);
+    //     // Compare passwords
+    //     const match = await bcrypt.compare(pass, result.password);
+    //     if (match) {
+    //         // JWT
+    //         const accessToken = jwt.sign(
+    //             { email: result.email },
+    //             process.env.ACCESS_TOKEN_SECRET,
+    //             { expiresIn: "3d" }
+    //         );
+    //         const refreshToken = jwt.sign(
+    //             { email: result.email },
+    //             process.env.REFRESH_TOKEN_SECRET,
+    //             { expiresIn: "7d" }
+    //         );
+    //         console.log(refreshToken, accessToken);
+    //         // sql = "INSERT INTO personal_access_token ";
+    //         let sql = `INSERT INTO personal_access_tokens(tokenable_type, tokenable_id, name, token,expires_at,created_at, updated_at) VALUES(?,?,?,?,?,?,?)`;
+    //         console.log(sql);
+    //         con.query(
+    //             sql,
+    //             [
+    //                 "ACCESS",
+    //                 result.id,
+    //                 result.email,
+    //                 accessToken,
+    //                 createdat,
+    //                 createdat,
+    //                 updatedat,
+    //             ],
+    //             (error, results, fields) => {
+    //                 if (error) {
+    //                     return console.error(error.message);
+    //                 }
+    //             }
+    //         );
+    //         res.cookie("jwt", refreshToken, {
+    //             httpOnly: true,
+    //             maxAge: 24 * 60 * 60 * 1000,
+    //         }); // 100days maxAge
+    //         res.json({ accessToken });
+    //         // res.json({ message: `User ${result.email} is logged in` });
+    //     }
+
+    //     res.sendStatus(401);
+    // });
 };
 
 module.exports = {

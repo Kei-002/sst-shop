@@ -7,6 +7,7 @@ const saltRounds = 10;
 const Promise = require("promise");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
+const PersonalToken = require("../models/PersonalToken");
 
 let createdat = moment(Date.now()).format("YYYY-MM-DD HH:mm:ss");
 let updatedat = moment(Date.now()).format("YYYY-MM-DD HH:mm:ss");
@@ -46,32 +47,56 @@ const handleRefreshToken = (req, res) => {
     var { email, pass } = data;
     console.log(email, pass);
     // Check if no cookies
-    if (!cookies?.jwt) return res.sendStatus(401);
-    console.log(cookies.jwt);
-    const refreshToken = cookies.jwt;
+    if (!cookies?.jwtAccess || !cookies?.jwtRefresh) return res.sendStatus(401);
+    console.log(cookies.jwtAccess, cookies.jwtRefresh);
+    const refreshToken = cookies.jwtRefresh;
     console.log("this is a test");
-    var foundUser = getUserToken(refreshToken);
 
-    foundUser.then(async function (result) {
-        console.log(result);
-        jwt.verify(
-            refreshToken,
-            process.env.REFRESH_TOKEN_SECRET,
-            (err, decoded) => {
-                if (err || result.email !== decoded.email)
-                    return res.sendStatus(403);
-                const accessToken = jwt.sign(
-                    { email: result.email },
-                    process.env.ACCESS_TOKEN_SECRET,
-                    { expiresIn: "20s" }
-                );
-                updateUserToken(refreshToken, result.id);
-                res.json({ accessToken });
-            }
-        );
+    PersonalToken.findOne({ where: { name: email } }).then((data) => {
+        // console.log(data);
+        const result = data.dataValues;
+        jwt.verify(refreshToken, process.env.SECRET_KEY, (err, decoded) => {
+            console.log(decoded, result);
+            if (err || result.name !== decoded.email)
+                return res.sendStatus(403);
+            const accessToken = jwt.sign(
+                { email: result.name },
+                process.env.SECRET_KEY,
+                { expiresIn: "5m" }
+            );
+
+            PersonalToken.update(
+                { token: accessToken },
+                {
+                    where: {
+                        id: result.id,
+                    },
+                }
+            );
+            console.log("Nope");
+            // updateUserToken(refreshToken, result.id);
+            res.json({ accessToken });
+        });
     });
-    console.log("nah");
-    res.sendStatus(401);
+
+    // var foundUser = getUserToken(refreshToken);
+
+    // foundUser.then(async function (result) {
+    //     console.log(result);
+    //     jwt.verify(refreshToken, process.env.SECRET_KEY, (err, decoded) => {
+    //         if (err || result.email !== decoded.email)
+    //             return res.sendStatus(403);
+    //         const accessToken = jwt.sign(
+    //             { email: result.email },
+    //             process.env.SECRET_KEY,
+    //             { expiresIn: "20s" }
+    //         );
+    //         updateUserToken(refreshToken, result.id);
+    //         res.json({ accessToken });
+    //     });
+    // });
+    // console.log("nah");
+    // res.sendStatus(401);
 };
 
 module.exports = {
