@@ -24,6 +24,7 @@
         "mysql": "^2.18.1",
         "mysql-backbone": "^1.0.2",
         "mysql2": "^2.3.3",
+        "nodemailer": "^6.8.0",
         "nodemon": "^2.0.20",
         "promise": "^8.3.0",
         "sequelize": "^6.26.0",
