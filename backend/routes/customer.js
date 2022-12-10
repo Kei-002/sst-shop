@@ -1,12 +1,15 @@
-const express = require('express')
-const router = express.Router()
-const con = require('../conmysql')
-const multer = require('multer')
-const moment = require('moment')
-const bcrypt = require('bcrypt');
+const express = require("express");
+const router = express.Router();
+const con = require("../conmysql");
+const multer = require("multer");
+const moment = require("moment");
+const bcrypt = require("bcrypt");
 const saltRounds = 10;
-const fs = require('fs')
+const fs = require("fs");
 const { insertUser } = require("../controller/authController");
+const Customer = require("../models/Customer");
+const User = require("../models/User");
+
 const FILE_TYPE_MAP = {
     "image/png": "png",
     "image/jpeg": "jpeg",
@@ -61,98 +64,154 @@ router.get("/", (req, res) => {
 });
 
 // CREATE CUSTOMER
-router.post("/", uploadOptions.single("uploads"), (req, res) => {
-    let createdat = moment(Date.now()).format("YYYY-MM-DD HH:mm:ss");
-    let updatedat = moment(Date.now()).format("YYYY-MM-DD HH:mm:ss");
-    const encryptedPassword = bcrypt.hashSync(req.body.pass, saltRounds);
+// router.post("/", uploadOptions.single("uploads"), (req, res) => {
+//     let createdat = moment(Date.now()).format("YYYY-MM-DD HH:mm:ss");
+//     let updatedat = moment(Date.now()).format("YYYY-MM-DD HH:mm:ss");
+//     const encryptedPassword = bcrypt.hashSync(req.body.pass, saltRounds);
 
-    let sql1 = `INSERT INTO users(email, password, created_at, updated_at) VALUES(?,?,?,?)`;
-    console.log(sql1, encryptedPassword, req.body);
+//     let sql1 = `INSERT INTO users(email, password, created_at, updated_at) VALUES(?,?,?,?)`;
+//     console.log(sql1, encryptedPassword, req.body);
+//     con.query(
+//         sql1,
+//         [req.body.email, encryptedPassword, createdat, updatedat],
+//         (error, results, fields) => {
+//             if (error) {
+//                 return console.error(error.message);
+//             }
+
+//             var userid = results.insertId;
+//             const file = req.file;
+
+//             // console.log(req.file)
+//             if (!file) return res.status(400).send("No image in the request");
+
+//             const fileName = file.filename;
+//             const basePath = `${req.protocol}://${req.get(
+//                 "host"
+//             )}/public/uploads/`;
+//             let img_path = `${basePath}${fileName}`;
+//             let sql = `INSERT INTO customers(user_id, fname, lname, addressline, phone, img_path, created_at, updated_at) VALUES(?,?,?,?,?,?,?,?)`;
+//             console.log(sql);
+//             con.query(
+//                 sql,
+//                 [
+//                     userid,
+//                     req.body.fname,
+//                     req.body.lname,
+//                     req.body.addressline,
+//                     req.body.phone,
+//                     img_path,
+//                     createdat,
+//                     updatedat,
+//                 ],
+//                 (error, results, fields) => {
+//                     if (error) {
+//                         return console.error(error.message);
+//                     }
+
+//                     return res.status(200).json(results);
+//                 }
+//             );
+//         }
+//     );
+// });
+
+router.post("/", uploadOptions.single("uploads"), (req, res) => {
+    const encryptedPassword = bcrypt.hashSync(req.body.pass, saltRounds);
+    const file = req.file;
+
+    // console.log(req.file)
+    if (!file) return res.status(400).send("No image in the request");
+
+    const fileName = file.filename;
+    const basePath = `${req.protocol}://${req.get("host")}/public/uploads/`;
+    let img_path = `${basePath}${fileName}`;
+    User.create({
+        email: req.body.email,
+        password: encryptedPassword,
+        role: "customer",
+        remember_token: null,
+    })
+        .then((data) => {
+            Customer.create({
+                user_id: data.id,
+                fname: req.body.fname,
+                lname: req.body.lname,
+                addressline: req.body.addressline,
+                phone: req.body.phone,
+                img_path: img_path,
+            });
+            res.status(200).json(data);
+        })
+        .catch((err) => {
+            res.status(500).send({
+                Message:
+                    err.message ||
+                    "Some errors will occur when creating a tutorial",
+            });
+        });
+});
+
+// GET ID (EDIT)
+router.get("/:id", (req, res) => {
+    // let sql = `SELECT * FROM customers where id = ${req.params.id}`;
+    // con.query(sql, (error, results, fields) => {
+    //     if (error) {
+    //         return console.error(error.message);
+    //     }
+    //     console.log(results);
+    //     return res.status(200).json(results);
+    // });
+
+    User.findByPk(req.params.id)
+        .then((data) => {
+            console.log([data.dataValues]);
+            res.status(200).json([data.dataValues]);
+        })
+        .catch((err) => {
+            res.status(500).send({
+                Message:
+                    err.message ||
+                    "Some errors will occur when creating a tutorial",
+            });
+        });
+});
+
+//UPDATE CUSTOMER
+router.put("/:id", uploadOptions.single("uploads"), (req, res) => {
+    const file = req.file;
+
+    // console.log(req.file)
+    if (!file) return res.status(400).send("No image in the request");
+
+    const fileName = file.filename;
+    const basePath = `${req.protocol}://${req.get("host")}/public/uploads/`;
+    let img_path = `${basePath}${fileName}`;
+    let sql = `UPDATE customers set fname = ?, lname = ?, addressline = ?, phone = ?, img_path = ? WHERE id = ?`;
+    console.log(fileName, sql);
     con.query(
-        sql1,
-        [req.body.email, encryptedPassword, createdat, updatedat],
+        sql,
+        [
+            req.body.fname,
+            req.body.lname,
+            req.body.addressline,
+            req.body.phone,
+            img_path,
+            req.params.id,
+        ],
         (error, results, fields) => {
             if (error) {
+                console.log(req.params.id);
                 return console.error(error.message);
             }
 
-            var userid = results.insertId;
-            const file = req.file;
-
-            // console.log(req.file)
-            if (!file) return res.status(400).send("No image in the request");
-
-            const fileName = file.filename;
-            const basePath = `${req.protocol}://${req.get(
-                "host"
-            )}/public/uploads/`;
-            let img_path = `${basePath}${fileName}`;
-            let sql = `INSERT INTO customers(user_id, fname, lname, addressline, phone, img_path, created_at, updated_at) VALUES(?,?,?,?,?,?,?,?)`;
-            console.log(sql);
-            con.query(
-                sql,
-                [
-                    userid,
-                    req.body.fname,
-                    req.body.lname,
-                    req.body.addressline,
-                    req.body.phone,
-                    img_path,
-                    createdat,
-                    updatedat,
-                ],
-                (error, results, fields) => {
-                    if (error) {
-                        return console.error(error.message);
-                    }
-
-                    return res.status(200).json(results);
-                }
-            );
+            return res.status(200).json(results);
         }
     );
 });
 
-// GET ID (EDIT)
-router.get('/:id', (req, res) => {
-    let sql = `SELECT * FROM customers where id = ${req.params.id}`;
-    con.query(sql, (error, results, fields) => {
-        if (error) {
-            return console.error(error.message);
-        }
-        console.log(results);
-        return res.status(200).json(results);
-    });
-});
-
-//UPDATE CUSTOMER
-router.put('/:id', uploadOptions.single('uploads'), (req, res) => {
-
-    const file = req.file;
-
-    // console.log(req.file)
-    if (!file) return res.status(400).send('No image in the request');
-
-    const fileName = file.filename;
-    const basePath = `${req.protocol}://${req.get('host')}/public/uploads/`;
-    let img_path = `${basePath}${fileName}`
-    let sql = `UPDATE customers set fname = ?, lname = ?, addressline = ?, phone = ?, img_path = ? WHERE id = ?`;
-    console.log(fileName, sql)
-    con.query(sql, [req.body.fname, req.body.lname, req.body.addressline, req.body.phone, img_path, req.params.id], (error, results, fields) => {
-        if (error) {
-
-            console.log(req.params.id)
-            return console.error(error.message);
-        }
-
-        return res.status(200).json(results)
-    });
-
-})
-
-
 //DELETE CUSTOMER
-router.delete('/:id', (req, res) => {
+router.delete("/:id", (req, res) => {
     let sql = `SELECT * from customers where id = ${req.params.id}`;
     con.query(sql, (error, results, fields) => {
         if (error) {
@@ -160,7 +219,7 @@ router.delete('/:id', (req, res) => {
         }
         console.log(results[0]);
 
-        delimg(results)
+        delimg(results);
 
         let sql1 = `DELETE from users where id = ${results[0].user_id}`;
         con.query(sql1, (error, results, fields) => {
@@ -172,4 +231,4 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-module.exports = router
+module.exports = router;
