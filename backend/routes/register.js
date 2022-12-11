@@ -44,4 +44,5 @@ router.post(
     registerController.handleNewUser
 );
 
+
 module.exports = router;
