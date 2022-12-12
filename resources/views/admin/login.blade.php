@@ -308,12 +308,12 @@
                 <button type="button" class="submit">Sign In</button>
 
                 <div class="row">
-                    <div class="col-sm-5 col-md-6">
+                    <div class="col-sm-5 col-md-6 justify-content-end d-flex">
                         <div class="g-signin2" data-onsuccess="onSignIn"></div>
                     </div>
                     <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
-                        <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with"
-                            data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>
+                        <div class="fb-login-button" data-width="120" data-size="large" data-button-type="login_with"
+                            data-layout="default" data-auto-logout-link="true" data-use-continue-as="true"></div>
                     </div>
                 </div>
 
