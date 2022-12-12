@@ -122,8 +122,8 @@ function sendMail(to, subject, message) {
     let mailTransporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-            user: "joshua.madla@tup.edu.ph",
-            pass: "xgclabvdrkprtqtx"
+            user: "juswatoktok@gmail.com",
+            pass: "ggadiftlkcdbguyk"
         }
     })
 

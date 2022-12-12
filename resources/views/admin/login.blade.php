@@ -1,12 +1,12 @@
 @extends('layouts.base')
 @section('body')
+
+    <head>
+        <meta name="google-signin-client_id"
+            content="120405037620-lum8mjkpd3v61jv526v6t9ehkfib657k.apps.googleusercontent.com">
+    </head>
+
     <style>
-        /* containerr */
-
-        html {
-            height: 100%
-        }
-
         body {
             min-height: 100%;
             background: linear-gradient(to bottom, #c1c4c4, #bac5c5, #b3c5c7, #acc6c9, #a4c6cb, #9ec5cb, #97c5cb, #90c4cb, #89c3c7, #83c1c3, #7dc0bf, #77beba) no-repeat center center fixed;
@@ -16,488 +16,391 @@
             background-size: cover;
         }
 
-        .containerr {
+        .cont {
+            border-radius: 20px;
+            overflow: hidden;
             position: relative;
-            max-width: 460px;
-            width: 100%;
+            width: 900px;
+            height: 830px;
             margin: 0 auto 100px;
+            background: white;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         }
 
-        .containerr.active .card:first-child {
-            background: #f2f2f2;
-
-            margin: 0 15px;
+        .formlog {
+            position: relative;
+            width: 640px;
+            height: 100%;
+            margin-top: 190px;
+            margin -webkit-transition: -webkit-transform 1.2s ease-in-out;
+            transition: -webkit-transform 1.2s ease-in-out;
+            transition: transform 1.2s ease-in-out;
+            transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
+            padding: 50px 30px 0;
         }
 
-        .containerr.active .card:nth-child(2) {
-            background: #fafafa;
-
-            margin: 0 10px;
-        }
-
-        .containerr.active .card.alt {
-            top: 20px;
-            right: 0;
-            width: 100%;
-            min-width: 100%;
-            height: auto;
-            border-radius: 5px;
-            padding: 60px 0 40px;
+        .sub-cont {
             overflow: hidden;
-        }
-
-        .containerr.active .card.alt .toggle {
             position: absolute;
-            top: 40px;
-            right: -70px;
-            box-shadow: none;
-            transform: scale(10);
-            transition: transform 0.3s ease;
-        }
-
-        .containerr.active .card.alt .toggle:before {
-            content: "";
-        }
-
-        .containerr.active .card.alt .title,
-        .containerr.active .card.alt .input-containerr,
-        .containerr.active .card.alt .button-containerr {
-            left: 0;
-            opacity: 1;
-            visibility: visible;
-            transition: 0.3s ease;
-        }
-
-        .containerr.active .card.alt .title {
-            transition-delay: 0.3s;
-        }
-
-        .containerr.active .card.alt .input-containerr {
-            transition-delay: 0.4s;
-        }
-
-        .containerr.active .card.alt .input-containerr:nth-child(2) {
-            transition-delay: 0.5s;
-        }
-
-        .containerr.active .card.alt .input-containerr:nth-child(3) {
-            transition-delay: 0.6s;
-        }
-
-        .containerr.active .card.alt .button-containerr {
-            transition-delay: 0.7s;
-        }
-
-        /* Card */
-        .card {
-            padding-top: 100px;
-            position: relative;
-            background: #ffffff;
-            border-radius: 5px;
-            padding: 60px 0 40px 0;
-            box-sizing: border-box;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-            transition: 0.3s ease;
-            /* Title */
-            /* Inputs */
-            /* Button */
-            /* Footer */
-            /* Alt Card */
-        }
-
-        .card:first-child {
-            background: #fafafa;
-            height: 10px;
-            border-radius: 5px 5px 0 0;
-            margin: 0 10px;
-            padding: 0;
-        }
-
-        .card .title {
-            position: relative;
-            z-index: 1;
-            border-left: 5px solid #80d0c7;
-            margin: 0 0 35px;
-            padding: 10px 0 10px 50px;
-            color: #80d0c7;
-            font-size: 32px;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .card .input-containerr {
-            position: relative;
-            margin: 0 60px 50px;
-        }
-
-        .card .input-containerr input {
-            outline: none;
-            z-index: 1;
-            position: relative;
-            background: none;
-            width: 100%;
-            height: 60px;
-            border: 0;
-            color: #212121;
-            font-size: 24px;
-            font-weight: 400;
-        }
-
-        .card .input-containerr input:focus~label {
-            color: #9d9d9d;
-            transform: translate(-12%, -50%) scale(0.75);
-        }
-
-        .card .input-containerr input:focus~.bar:before,
-        .card .input-containerr input:focus~.bar:after {
-            width: 50%;
-        }
-
-        .card .input-containerr input:valid~label {
-            color: #9d9d9d;
-            transform: translate(-12%, -50%) scale(0.75);
-        }
-
-        .card .input-containerr label {
-            position: absolute;
+            left: 640px;
             top: 0;
-            left: 0;
-            color: #757575;
-            font-size: 24px;
-            font-weight: 300;
-            line-height: 60px;
-            transition: 0.2s ease;
+            width: 900px;
+            height: 100%;
+            padding-left: 260px;
+            background: #fff;
+            -webkit-transition: -webkit-transform 1.2s ease-in-out;
+            transition: -webkit-transform 1.2s ease-in-out;
+            transition: transform 1.2s ease-in-out;
+            transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
         }
 
-        .card .input-containerr .bar {
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            background: #757575;
-            width: 100%;
-            height: 1px;
+        .cont.s--signup .sub-cont {
+            -webkit-transform: translate3d(-640px, 0, 0);
+            transform: translate3d(-640px, 0, 0);
         }
 
-        .card .input-containerr .bar:before,
-        .card .input-containerr .bar:after {
-            content: "";
-            position: absolute;
-            background: #80d0c7;
-            width: 0;
-            height: 2px;
-            transition: 0.2s ease;
-        }
-
-        .card .input-containerr .bar:before {
-            left: 50%;
-        }
-
-        .card .input-containerr .bar:after {
-            right: 50%;
-        }
-
-        .card .button-containerr {
-            margin: 0 60px;
-            text-align: center;
-        }
-
-        .card .button-containerr button {
-            outline: 0;
-            cursor: pointer;
-            position: relative;
-            display: inline-block;
-            background: 0;
-            width: 240px;
-            border: 2px solid #e3e3e3;
-            padding: 20px 0;
-            font-size: 24px;
-            font-weight: 600;
-            line-height: 1;
-            text-transform: uppercase;
-            overflow: hidden;
-            transition: 0.3s ease;
-        }
-
-        .card .button-containerr button span {
-            position: relative;
-            z-index: 1;
-            color: #ddd;
-            transition: 0.3s ease;
-        }
-
-        .card .button-containerr button:before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
+        button {
             display: block;
-            background: #80d0c7;
-            width: 30px;
-            height: 30px;
-            border-radius: 100%;
-            margin: -15px 0 0 -15px;
-            opacity: 0;
-            transition: 0.3s ease;
-        }
-
-        .card .button-containerr button:hover,
-        .card .button-containerr button:active,
-        .card .button-containerr button:focus {
-            border-color: #80d0c7;
-        }
-
-        .card .button-containerr button:hover span,
-        .card .button-containerr button:active span,
-        .card .button-containerr button:focus span {
-            color: #80d0c7;
-        }
-
-        .card .button-containerr button:active span,
-        .card .button-containerr button:focus span {
-            color: #ffffff;
-        }
-
-        .card .button-containerr button:active:before,
-        .card .button-containerr button:focus:before {
-            opacity: 1;
-            transform: scale(10);
-        }
-
-        .card .footer {
-            margin: 40px 0 0;
-            color: #d3d3d3;
-            font-size: 24px;
-            font-weight: 300;
-            text-align: center;
-        }
-
-        .card .footer a {
-            color: inherit;
-            text-decoration: none;
-            transition: 0.3s ease;
-        }
-
-        .card .footer a:hover {
-            color: #bababa;
-        }
-
-        .card.alt {
-            position: absolute;
-            top: 60px;
-            right: -70px;
-            z-index: 10;
-            width: 140px;
-            height: 140px;
-            background: none;
-            /* border-radius: 100%; */
-            box-shadow: none;
-            padding: 0;
-            transition: 0.3s ease;
-            /* Toggle */
-            /* Title */
-            /* Input */
-            /* Button */
-        }
-
-        .card.alt .toggle {
-            position: relative;
-            background: #80d0c7;
-            width: 140px;
-            height: 200px;
-            /* border-radius: 100%; */
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-            color: #ffffff;
-            font-size: 58px;
-            line-height: 140px;
-            text-align: center;
+            margin: 0 auto;
+            width: 260px;
+            height: 36px;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 15px;
             cursor: pointer;
         }
 
-        .card.alt .toggle:before {
-            content: "";
-            display: inline-block;
-            font: normal normal normal 14px/1 FontAwesome;
-            font-size: inherit;
-            text-rendering: auto;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            transform: translate(0, 0);
-        }
-
-        .card.alt .title,
-        .card.alt .input-containerr,
-        .card.alt .button-containerr {
-            left: 100px;
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .card.alt .title {
-            position: relative;
-            border-color: #ffffff;
-            color: #ffffff;
-        }
-
-        .card.alt .title .close {
-            cursor: pointer;
+        .img {
+            overflow: hidden;
+            z-index: 2;
             position: absolute;
+            left: 0;
             top: 0;
-            right: 60px;
-            display: inline;
-            color: #ffffff;
-            font-size: 58px;
-            font-weight: 400;
+            width: 260px;
+            height: 100%;
+            padding-top: 360px;
         }
 
-        .card.alt .title .close:before {
-            content: "×";
+        .img:before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 900px;
+            height: 100%;
+            opacity: .8;
+            background-size: cover;
+            -webkit-transition: -webkit-transform 1.2s ease-in-out;
+            transition: transform 1.2s ease-in-out;
+            transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
         }
 
-        .card.alt .input-containerr input {
-            color: #ffffff;
-        }
-
-        .card.alt .input-containerr input:focus~label {
-            color: #ffffff;
-        }
-
-        .card.alt .input-containerr input:focus~.bar:before,
-        .card.alt .input-containerr input:focus~.bar:after {
-            background: #ffffff;
-        }
-
-        .card.alt .input-containerr input:valid~label {
-            color: #ffffff;
-        }
-
-        .card.alt .input-containerr label {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .card.alt .input-containerr .bar {
-            background: rgba(255, 255, 255, 0.8);
-        }
-
-        .card.alt .button-containerr button {
+        .img:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
             width: 100%;
-            background: #ffffff;
-            border-color: #ffffff;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
         }
 
-        .card.alt .button-containerr button span {
-            color: #80d0c7;
+        .cont.s--signup .img:before {
+            -webkit-transform: translate3d(640px, 0, 0);
+            transform: translate3d(640px, 0, 0);
         }
 
-        .card.alt .button-containerr button:hover {
-            background: rgba(255, 255, 255, 0.9);
+        .img__text {
+            z-index: 2;
+            position: absolute;
+            left: 0;
+            top: 50px;
+            width: 100%;
+            padding: 0 20px;
+            text-align: center;
+            color: #fff;
+            -webkit-transition: -webkit-transform 1.2s ease-in-out;
+            transition: -webkit-transform 1.2s ease-in-out;
+            transition: transform 1.2s ease-in-out;
+            transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
         }
 
-        .card.alt .button-containerr button:active:before,
-        .card.alt .button-containerr button:focus:before {
-            display: none;
+        .img__text h2 {
+            margin-bottom: 10px;
+            font-weight: normal;
         }
 
-        /* Keyframes */
-        @-webkit-keyframes buttonFadeInUp {
-            0% {
-                bottom: 30px;
-                opacity: 0;
-            }
+        .img__text p {
+            font-size: 14px;
+            line-height: 1.5;
         }
 
-        @keyframes buttonFadeInUp {
-            0% {
-                bottom: 30px;
-                opacity: 0;
-            }
+        .cont.s--signup .img__text.m--up {
+            -webkit-transform: translateX(520px);
+            transform: translateX(520px);
+        }
+
+        .img__text.m--in {
+            -webkit-transform: translateX(-520px);
+            transform: translateX(-520px);
+        }
+
+        .cont.s--signup .img__text.m--in {
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+        }
+
+        .img__btn {
+            overflow: hidden;
+            z-index: 2;
+            position: relative;
+            width: 100px;
+            height: 36px;
+            margin: 0 auto;
+            background: transparent;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .img__btn:after {
+            content: '';
+            z-index: 2;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #fff;
+            border-radius: 30px;
+        }
+
+        .img__btn span {
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: -webkit-box;
+            display: flex;
+            -webkit-box-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            -webkit-transition: -webkit-transform 1.2s;
+            transition: -webkit-transform 1.2s;
+            transition: transform 1.2s;
+            transition: transform 1.2s, -webkit-transform 1.2s;
+        }
+
+        .img__btn span.m--in {
+            -webkit-transform: translateY(-72px);
+            transform: translateY(-72px);
+        }
+
+        .cont.s--signup .img__btn span.m--in {
+            -webkit-transform: translateY(0);
+            transform: translateY(0);
+        }
+
+        .cont.s--signup .img__btn span.m--up {
+            -webkit-transform: translateY(72px);
+            transform: translateY(72px);
+        }
+
+        h2 {
+            width: 100%;
+            font-size: 26px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            width: 260px;
+            margin: 25px auto 0;
+            text-align: center;
+        }
+
+        label span {
+            font-size: 12px;
+            color: #cfcfcf;
+            text-transform: uppercase;
+        }
+
+        input {
+            display: block;
+            width: 100%;
+            margin-top: 5px;
+            padding-bottom: 5px;
+            font-size: 16px;
+            border-top-style: hidden;
+            border-right-style: hidden;
+            border-left-style: hidden;
+            border-bottom-style: groove;
+            text-align: center;
+        }
+
+        .forgot-pass {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #cfcfcf;
+        }
+
+        .submit {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            background: #7ad1d4;
+            text-transform: uppercase;
+        }
+
+        .fb-btn {
+            border: 2px solid #d3dae9;
+            color: #8fa1c7;
+        }
+
+        .fb-btn span {
+            font-weight: bold;
+            color: #455a81;
+        }
+
+        .sign-in {
+            -webkit-transition-timing-function: ease-out;
+            transition-timing-function: ease-out;
+        }
+
+        .cont.s--signup .sign-in {
+            -webkit-transition-timing-function: ease-in-out;
+            transition-timing-function: ease-in-out;
+            -webkit-transition-duration: 1.2s;
+            transition-duration: 1.2s;
+            -webkit-transform: translate3d(640px, 0, 0);
+            transform: translate3d(640px, 0, 0);
+        }
+
+        .sign-up {
+            -webkit-transform: translate3d(-900px, 0, 0);
+            transform: translate3d(-900px, 0, 0);
+        }
+
+        .cont.s--signup .sign-up {
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
         }
     </style>
 
     <body>
 
-        <div class="containerr" style="padding-top: 80px;">
-            <div class="card"></div>
-            <div class="card div1">
-                <h1 class="title">Login</h1>
-                <form id="loginForm" action="#" method="#">
-                     @csrf
-                    <div class="input-containerr">
-                        <input type="text" id="email" required="required" />
-                        <label for="#{label}">Email</label>
-                        <div class="bar"></div>
+        <br>
+        <br>
+        <div class="cont">
+            <div class="formlog sign-in">
+                <h2>Welcome</h2>
+                <label>
+                    <span>Email</span>
+                    <input type="email" />
+                </label>
+                <label>
+                    <span>Password</span>
+                    <input type="password" />
+                </label>
+                <button type="button" class="submit">Sign In</button>
+
+                <div class="row">
+                    <div class="col-sm-5 col-md-6">
+                        <div class="g-signin2" data-onsuccess="onSignIn"></div>
                     </div>
-                    <div class="input-containerr">
-                        <input type="password" id="pass" required="required" />
-                        <label for="#{label}">Password</label>
-                        <div class="bar"></div>
+                    <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+                        <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with"
+                            data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>
                     </div>
-                    <div class="button-containerr">
-                        <button id="login" type="submit"><span>Login</span></button>
-                    </div>
-                </form>
+                </div>
+
+                <script>
+                    function signOut() {
+                        var auth2 = gapi.auth2.getAuthInstance();
+                        auth2.signOut().then(function() {
+                            console.log('User signed out.');
+                        });
+                    }
+                </script>
+
+                <script>
+                    function onSignIn(googleUser) {
+                        var profile = googleUser.getBasicProfile();
+                        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+                        console.log('Name: ' + profile.getName());
+                        console.log('Image URL: ' + profile.getImageUrl());
+                        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+                    }
+                </script>
+
+                <div id="fb-root"></div>
+                <script async defer crossorigin="anonymous"
+                    src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v15.0&appId=703883347717377&autoLogAppEvents=1"
+                    nonce="MurbXqMI"></script>
+
             </div>
-            <div class="card alt">
-                <div class="toggle"></div>
-                <h1 class="title">Register
-                    <div class="close"></div>
-                </h1>
-                <form  id="regForm" action="#" method="#">
-                    @csrf
-                    <div class="input-containerr">
-                        <input type="#{type}" id="#{label}" required="required" />
-                        <label for="#{label}">First Name</label>
-                        <div class="bar"></div>
+            <div class="sub-cont">
+                <div class="img">
+                    <div class="img__text m--up">
+
+                        <h3>Don't have an account? Please Sign up!<h3>
                     </div>
-                    <div class="input-containerr">
-                        <input type="#{type}" id="#{label}" required="required" />
-                        <label for="#{label}">Last Name</label>
-                        <div class="bar"></div>
+                    <div class="img__text m--in">
+
+                        <h3>If you already has an account, just sign in.<h3>
                     </div>
-                    <div class="input-containerr">
-                        <input type="#{type}" id="#{label}" required="required" />
-                        <label for="#{label}">Address</label>
-                        <div class="bar"></div>
+                    <div class="img__btn">
+                        <span class="m--up">Sign Up</span>
+                        <span class="m--in">Sign In</span>
                     </div>
-                    <div class="input-containerr">
-                        <input type="#{type}" id="#{label}" required="required" />
-                        <label for="#{label}">Phone</label>
-                        <div class="bar"></div>
-                    </div>
-                    <div class="input-containerr">
-                        <input type="#{type}" id="#{label}" required="required" />
-                        <label for="#{label}">Email</label>
-                        <div class="bar"></div>
-                    </div>
-                    <div class="input-containerr">
-                        <input type="#{type}" id="#{label}" required="required" />
-                        <label for="#{label}">Password</label>
-                        <div class="bar"></div>
-                    </div>
-                    <div class="input-containerr">
-                        <input type="#{type}" id="#{label}" required="required" />
-                        <label for="#{label}">Repeat Password</label>
-                        <div class="bar"></div>
-                    </div>
-                    <div class="input-containerr">
-                        <input type="file" id="#{label}" required="required" />
-                        <div class="bar"></div>
-                    </div>
-                    <div class="button-containerr">
-                        <button id="register"><span>Register</span></button>
-                    </div>
-                </form>
+                </div>
+                <div class="formlog sign-up" style="margin-top: 0 !important;">
+                    <h2>Create Your Account</h2>
+                    <label>
+                        <span>First Name</span>
+                        <input type="text" />
+                    </label>
+                    <label>
+                        <span>Last Name</span>
+                        <input type="text" />
+                    </label>
+                    <label>
+                        <span>Address</span>
+                        <input type="text" />
+                    </label>
+                    <label>
+                        <span>Phone</span>
+                        <input type="text" />
+                    </label>
+                    <label>
+                        <span>Email</span>
+                        <input type="email" />
+                    </label>
+                    <label>
+                        <span>Password</span>
+                        <input type="password" />
+                    </label>
+                    <label>
+                        <span>Image</span>
+                        <input type="file" />
+                    </label>
+                    <button type="button" class="submit">Sign Up</button>
+
+                </div>
             </div>
         </div>
 
     </body>
     <script src="js/login.js"></script>
-    <script>
-        $('.toggle').on('click', function() {
-            $('.containerr').stop().addClass('active');
-        });
 
-        $('.close').on('click', function() {
-            $('.containerr').stop().removeClass('active');
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+
+    <script>
+        document.querySelector('.img__btn').addEventListener('click', function() {
+            document.querySelector('.cont').classList.toggle('s--signup');
         });
     </script>
 @endsection
