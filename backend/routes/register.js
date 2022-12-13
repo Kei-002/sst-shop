@@ -8,6 +8,8 @@ const saltRounds = 10;
 const fs = require("fs");
 const registerController = require("../controller/registerController");
 
+
+
 const FILE_TYPE_MAP = {
     "image/png": "png",
     "image/jpeg": "jpeg",

@@ -78,7 +78,7 @@ const handleNewUser = async (req, res) => {
                 // return res
                 //     .status(201)
                 //     .json({ message: `New user ${data.email} created` });
-                sendMail(email, 'Welcome to SangSanTek!', fileData());
+                sendMail(email, 'Welcome to SangSanTek! Please Confirm your Email!', fileData());
             })
             .catch((err) => {
                 res.status(500).send({
@@ -96,31 +96,6 @@ const handleNewUser = async (req, res) => {
 };
 
 function sendMail(to, subject, message) {
-    // var configDataSMTP = {
-    //     service: '',
-    //     auth: {
-    //         user: '',
-    //         pass: ''
-    //     }
-    // };
-    // var transporter = nodemailer.createTransport(configDataSMTP);
-    // var realTimeNodeMsgSend = {
-    //     from: '"SangSang Tek" ',
-    //     to: to,
-    //     subject: subject,
-    //     text: 'Thank you for Registering!',
-    //     html: message
-    // };
-
-    // transporter.sendMail(realTimeNodeMsgSend, function (error, info) {
-    //     if (error) {
-
-    //         return console.log(error);
-    //     } else {
-
-    //         return console.log(info.response);
-    //     }
-    // });
 
     let mailTransporter = nodemailer.createTransport({
         service: "gmail",
