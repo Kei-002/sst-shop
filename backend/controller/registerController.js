@@ -97,21 +97,31 @@ const handleNewUser = async (req, res) => {
 
 function sendMail(to, subject, message) {
 
+    const token_mail_verification = jwt.sign(to, process.env.SECRET_KEY, {
+        expiresIn: "1d",
+    });
+    var url =
+        "http://localhost:5000/api/sst/register/verify?email=" +
+        token_mail_verification;
+
     let mailTransporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
             user: "juswatoktok@gmail.com",
-            pass: "ggadiftlkcdbguyk"
-        }
-    })
+            pass: "ggadiftlkcdbguyk",
+        },
+    });
 
     let details = {
         from: "SangSang Tek",
         to: to,
         subject: subject,
-        text: "Thank you for Registering!",
-        html: fileData()
-    }
+        text:
+            "Thank you for Registering! Click the button below to confirm your registration! <a href='" +
+            url +
+            "'>Confirm Email</a> ",
+        html: fileData(),
+    };
 
     mailTransporter.sendMail(details, (err) => {
         if (err) {
