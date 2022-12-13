@@ -30,11 +30,8 @@ var message = '<p>Hi! Enjoy Shopping At SangSang Tek!</p>';
 
 const handleNewUser = async (req, res) => {
     // var allUser = [];
-    var {
-        email,
-        pass,
-        role
-    } = req.body;
+    var { email, pass } = req.body;
+    var role = "customer";
     console.log(email, pass, role);
     // Check if no data in the body
     if (!email || !pass)
