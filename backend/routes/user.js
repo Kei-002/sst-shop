@@ -9,7 +9,7 @@ const verifyJWT = require("../middleware/verifyJWT");
 const fs = require("fs");
 const toastr = require("toastr");
 var mysqlBackbone = require("mysql-backbone");
-
+const User = require("../models/User");
 
 const FILE_TYPE_MAP = {
     "image/png": "png",
@@ -39,15 +39,33 @@ const uploadOptions = multer({
 });
 
 // GET SHIPPERS LIST
-router.get("/", (req, res) => {
-    let sql = `SELECT * FROM users`;
-    con.query(sql, (error, results, fields) => {
-        if (error) {
-            return console.error(error.message);
-        }
-        console.log(results);
-        return res.status(200).json(results);
+router.get("/", async (req, res) => {
+    await User.findAll({ paranoid: false }).then((data) => {
+        return res.status(200).json(data);
     });
+});
+router.get("/restore/:id", (req, res) => {
+    User.update(
+        { status: "active" },
+        { where: { id: req.params.id }, paranoid: false }
+    );
+    User.restore({ where: { id: req.params.id } });
+
+    return res.status(200).json({ message: "Account restored" });
+});
+
+//DELETE SHIPPERS
+router.delete("/:id", async (req, res) => {
+    User.update(
+        { status: "deactivated" },
+        { where: { id: req.params.id }, paranoid: false }
+    );
+    User.destroy({ where: { id: req.params.id } });
+
+    return res.status(200).json({ message: "Account deactivated" });
 });
 
 module.exports = router;
+
+
+

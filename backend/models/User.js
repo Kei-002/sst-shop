@@ -26,11 +26,16 @@ const User = sequelize.define(
         confirmed: {
             type: Sequelize.DataTypes.BOOLEAN,
         },
+        status: {
+            type: Sequelize.DataTypes.STRING,
+        },
     },
     {
         timestamps: true,
         createdAt: "created_at",
         updatedAt: "updated_at",
+        paranoid: true,
+        deletedAt: "deleted_at",
     }
 );
 
