@@ -400,17 +400,17 @@
                         </label>
                         <label>
                             <span>Email</span>
-                            <input type="email" name="remail" id="remail" />
+                            <input type="email" name="email" id="email" />
                         </label>
                         <label>
                             <span>Password</span>
-                            <input type="password" name="rpass" id="rpass" />
+                            <input type="password" name="pass" id="pass" />
                         </label>
                         <label>
                             <span>Image</span>
                             <input type="file" name="uploads" id="uploads" />
                         </label>
-                        <button type="button" class="submit">Sign Up</button>
+                        <button id="registerSubmit"type="button" class="submit">Sign Up</button>
                     </form>
                 </div>
             </div>
