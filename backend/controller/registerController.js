@@ -5,9 +5,16 @@ const Customer = require("../models/Customer");
 const User = require("../models/User");
 const Employee = require("../models/Employee");
 const nodemailer = require('nodemailer');
-const fileData = () => fs.readFileSync(require.resolve("../routes/email.html"), {
-    encoding: "utf8"
-});
+const jwt = require("jsonwebtoken");
+const handlebars = require('handlebars');
+const filePath = path.join(__dirname, '../routes/email.html');
+const source = fs.readFileSync(filePath, 'utf-8').toString();
+const template = handlebars.compile(source);
+
+
+// const fileData = () => fs.readFileSync(require.resolve("../routes/email.html"), {
+//     encoding: "utf8"
+// });
 
 const {
     getAllUsers,
@@ -78,16 +85,27 @@ const handleNewUser = async (req, res) => {
                 // return res
                 //     .status(201)
                 //     .json({ message: `New user ${data.email} created` });
-                sendMail(email, 'Welcome to SangSanTek! Please Confirm your Email!', fileData());
+                const usrdata = {
+                    lastname: req.body.lname,
+                };
+
+                var mail = {
+                    "email": email,
+                }
+
+                sendMail(mail, 'Welcome to SangSanTek! Please Confirm your Email!', usrdata);
+                return res.status(201).json({
+                    message: `New User ${email} created`
+                });
             })
             .catch((err) => {
                 res.status(500).send({
                     Message: err.message,
                 });
             });
-        return res.status(201).json({
-            message: `New user ${email} created`
-        });
+        // return res.status(201).json({
+        //     message: `New user ${email} created`
+        // });
     } catch (err) {
         return res.status(500).json({
             message: err.message
@@ -95,14 +113,19 @@ const handleNewUser = async (req, res) => {
     }
 };
 
-function sendMail(to, subject, message) {
+function sendMail(to, subject, userdata) {
 
     const token_mail_verification = jwt.sign(to, process.env.SECRET_KEY, {
         expiresIn: "1d",
     });
     var url =
-        "http://localhost:5000/api/sst/register/verify?email=" +
-        token_mail_verification;
+        "http://localhost:5000/api/sst/register/verify?email=" + token_mail_verification;
+
+    const replacements = {
+        url: url,
+        lname: userdata.lastname,
+    };
+    const htmldata = template(replacements);
 
     let mailTransporter = nodemailer.createTransport({
         service: "gmail",
@@ -114,13 +137,10 @@ function sendMail(to, subject, message) {
 
     let details = {
         from: "SangSang Tek",
-        to: to,
+        to: to.email,
         subject: subject,
-        text:
-            "Thank you for Registering! Click the button below to confirm your registration! <a href='" +
-            url +
-            "'>Confirm Email</a> ",
-        html: fileData(),
+        text: "Thank you for Registering!",
+        html: htmldata,
     };
 
     mailTransporter.sendMail(details, (err) => {
@@ -130,6 +150,7 @@ function sendMail(to, subject, message) {
             console.log("Email has Sent");
         }
     })
+
 
 }
 
