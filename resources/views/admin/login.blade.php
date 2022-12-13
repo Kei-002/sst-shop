@@ -296,37 +296,57 @@
         <br>
         <div class="cont">
             <div class="formlog sign-in">
-                <h2>Welcome</h2>
-                <label>
-                    <span>Email</span>
-                    <input type="email" />
-                </label>
-                <label>
-                    <span>Password</span>
-                    <input type="password" />
-                </label>
-                <button type="button" class="submit">Sign In</button>
+                <form action="" id="loginForm" enctype="multipart/form-data">
+                    <h2>Welcome</h2>
+                    <label>
+                        <span>Email</span>
+                        <input type="email" name="email" id="email" />
+                    </label>
+                    <label>
+                        <span>Password</span>
+                        <input type="password" name="pass" id="pass" />
+                    </label>
+                    <button type="button" class="submit" id="loginSubmit">Sign In</button>
+                </form>
+
 
                 <div class="row">
-                    <div class="col-sm-5 col-md-6 justify-content-end d-flex">
-                        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                    {{-- <div class="col-sm-5 col-md-6 justify-content-end d-flex">
+                        <div id="loginGoogle" class="g-signin2"></div>
                     </div>
                     <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
-                        <div class="fb-login-button" data-width="120" data-size="large" data-button-type="login_with"
+                        <div id="loginFacebook" class="fb-login-button" data-width="120" data-size="large" data-button-type="login_with"
                             data-layout="default" data-auto-logout-link="true" data-use-continue-as="true"></div>
+                    </div> --}}
+                    <div style="padding-bottom: 10px">
+                        <a href="">
+                        <button id="loginGoogle" >
+                            <img src="img/google.png" width="15" style="padding-bottom: 10px" alt="" className="icon" />
+                            
+                        </button>
+                        </a>
+
                     </div>
+                    <div>
+                        <button id="loginFacebook">
+                            <img src="img/facebook.png" width="15" style="padding-bottom: 10px" alt="" className="icon" />
+                            
+                        </button>
+
+                    </div>
+
                 </div>
 
-                <script>
+                {{-- <script>
                     function signOut() {
                         var auth2 = gapi.auth2.getAuthInstance();
                         auth2.signOut().then(function() {
                             console.log('User signed out.');
                         });
                     }
-                </script>
+                </script> --}}
 
-                <script>
+                {{-- <script>
                     function onSignIn(googleUser) {
                         var profile = googleUser.getBasicProfile();
                         console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -334,12 +354,12 @@
                         console.log('Image URL: ' + profile.getImageUrl());
                         console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
                     }
-                </script>
+                </script> --}}
 
-                <div id="fb-root"></div>
+                {{-- <div id="fb-root"></div>
                 <script async defer crossorigin="anonymous"
                     src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v15.0&appId=703883347717377&autoLogAppEvents=1"
-                    nonce="MurbXqMI"></script>
+                    nonce="MurbXqMI"></script> --}}
 
             </div>
             <div class="sub-cont">
@@ -358,37 +378,38 @@
                     </div>
                 </div>
                 <div class="formlog sign-up" style="margin-top: 0 !important;">
-                    <h2>Create Your Account</h2>
-                    <label>
-                        <span>First Name</span>
-                        <input type="text" />
-                    </label>
-                    <label>
-                        <span>Last Name</span>
-                        <input type="text" />
-                    </label>
-                    <label>
-                        <span>Address</span>
-                        <input type="text" />
-                    </label>
-                    <label>
-                        <span>Phone</span>
-                        <input type="text" />
-                    </label>
-                    <label>
-                        <span>Email</span>
-                        <input type="email" />
-                    </label>
-                    <label>
-                        <span>Password</span>
-                        <input type="password" />
-                    </label>
-                    <label>
-                        <span>Image</span>
-                        <input type="file" />
-                    </label>
-                    <button type="button" class="submit">Sign Up</button>
-
+                    <form action="" id="registerForm" enctype="multipart/form-data">
+                        <h2>Create Your Account</h2>
+                        <label>
+                            <span>First Name</span>
+                            <input type="text" name="fname" id="fname" />
+                        </label>
+                        <label>
+                            <span>Last Name</span>
+                            <input type="text" name="lname" id="lname" />
+                        </label>
+                        <label>
+                            <span>Address</span>
+                            <input type="text" name="address" id="address" />
+                        </label>
+                        <label>
+                            <span>Phone</span>
+                            <input type="text" name="phone" id="phone" />
+                        </label>
+                        <label>
+                            <span>Email</span>
+                            <input type="email" name="remail" id="remail" />
+                        </label>
+                        <label>
+                            <span>Password</span>
+                            <input type="password" name="rpass" id="rpass" />
+                        </label>
+                        <label>
+                            <span>Image</span>
+                            <input type="file" name="uploads" id="uploads" />
+                        </label>
+                        <button type="button" class="submit">Sign Up</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -396,11 +417,11 @@
     </body>
     <script src="js/login.js"></script>
 
-    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script> --}}
 
-    <script>
+    {{-- <script>
         document.querySelector('.img__btn').addEventListener('click', function() {
             document.querySelector('.cont').classList.toggle('s--signup');
         });
     </script>
-@endsection
+    @endsection

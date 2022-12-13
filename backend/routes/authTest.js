@@ -5,6 +5,8 @@ const con = require("../conmysql");
 const moment = require("moment");
 const bcrypt = require("bcrypt");
 
+const User = require("../models/User");
+const Customer = require("../models/Customer");
 const saltRounds = 10;
 const fs = require("fs");
 const {
@@ -92,9 +94,13 @@ router.get("/login", (req, res) => {
     });
 });
 
-router.get("/test", (req, res) => {
-    const users = User.findAll();
-    console.log(users.every((user) => user instanceof User));
+router.get("/test", async (req, res) => {
+    // const users = User.findAll();
+    // console.log(users.every((user) => user instanceof User));
+    // const users = await User.findAll({ include: Customer });
+    const customers = await Customer.findAll({ include: User });
+    res.json(customers);
+    // console.log(JSON.stringify(users, null, 2));
 });
 
 module.exports = router;

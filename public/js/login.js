@@ -1,13 +1,13 @@
 $(document).ready(function () {
-    $("#login").on("click", function (e) {
-        console.log("test");
+    $("#loginSubmit").on("click", function (e) {
+        // console.log("test");
         e.preventDefault();
-        var data = $("#loginForm")[1];
-        console.log("this", data);
+        var data = $("#loginForm")[0];
+        // console.log("this", data);
         let formData = new FormData(data);
-        console.log("this1", formData);
+        // console.log("this1", formData);
         for (var pair of formData.entries()) {
-            console.log("test", pair[0] + "," + pair[1]);
+            console.log(pair[0] + "," + pair[1]);
         }
         console.log("this2");
 
@@ -33,5 +33,51 @@ $(document).ready(function () {
                 console.log(error);
             },
         });
+    });
+
+    $("#loginGoogle").on("click", function (e) {
+        // console.log("test");
+        e.preventDefault();
+        // window.open(
+        //     "http://localhost:5000/api/sst/login/google",
+        //     "",
+        //     "width=500,height=900"
+        // );
+        location.href = "http://localhost:5000/api/sst/login/google";
+
+        // $.ajax({
+        //     type: "GET",
+        //     url: "http://localhost:5000/api/sst/login/google",
+        //     success: function (data) {
+        //         console.log(data);
+        //         toastr.success("Succesfully Logged in");
+        //     },
+        //     error: function (error) {
+        //         console.log(error);
+        //     },
+        // });
+    });
+
+    $("#loginFacebook").on("click", function (e) {
+        // console.log("test");
+        e.preventDefault();
+        // window.open(
+        //     "http://localhost:5000/api/sst/login/google",
+        //     "",
+        //     "width=500,height=900"
+        // );
+        location.href = "http://localhost:5000/api/sst/login/facebook";
+
+        // $.ajax({
+        //     type: "GET",
+        //     url: "http://localhost:5000/api/sst/login/google",
+        //     success: function (data) {
+        //         console.log(data);
+        //         toastr.success("Succesfully Logged in");
+        //     },
+        //     error: function (error) {
+        //         console.log(error);
+        //     },
+        // });
     });
 });

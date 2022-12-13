@@ -52,32 +52,36 @@ const handleRefreshToken = (req, res) => {
     const refreshToken = cookies.jwtRefresh;
     console.log("this is a test");
 
-    PersonalToken.findOne({ where: { name: email } }).then((data) => {
-        // console.log(data);
-        const result = data.dataValues;
-        jwt.verify(refreshToken, process.env.SECRET_KEY, (err, decoded) => {
-            console.log(decoded, result);
-            if (err || result.name !== decoded.email)
-                return res.sendStatus(403);
-            const accessToken = jwt.sign(
-                { email: result.name },
-                process.env.SECRET_KEY,
-                { expiresIn: "5m" }
-            );
+    const decodedInfo = jwt.verify(refreshToken, process.env.SECRET_KEY);
 
-            PersonalToken.update(
-                { token: accessToken },
-                {
-                    where: {
-                        id: result.id,
-                    },
-                }
-            );
-            console.log("Nope");
-            // updateUserToken(refreshToken, result.id);
-            res.json({ accessToken });
-        });
-    });
+    PersonalToken.findOne({ where: { name: decodedInfo.email } }).then(
+        (data) => {
+            // console.log(data);
+            const result = data.dataValues;
+            jwt.verify(refreshToken, process.env.SECRET_KEY, (err, decoded) => {
+                console.log(decoded, result);
+                if (err || result.name !== decoded.email)
+                    return res.sendStatus(403);
+                const accessToken = jwt.sign(
+                    { email: result.name },
+                    process.env.SECRET_KEY,
+                    { expiresIn: "5m" }
+                );
+
+                PersonalToken.update(
+                    { token: accessToken },
+                    {
+                        where: {
+                            id: result.id,
+                        },
+                    }
+                );
+                console.log("Nope");
+                // updateUserToken(refreshToken, result.id);
+                res.json({ accessToken });
+            });
+        }
+    );
 
     // var foundUser = getUserToken(refreshToken);
 
