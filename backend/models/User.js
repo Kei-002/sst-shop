@@ -23,6 +23,9 @@ const User = sequelize.define(
         role: {
             type: Sequelize.DataTypes.STRING,
         },
+        confirmed: {
+            type: Sequelize.DataTypes.BOOLEAN,
+        },
     },
     {
         timestamps: true,

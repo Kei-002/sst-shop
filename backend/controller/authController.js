@@ -27,33 +27,39 @@ const handleLogin = async (req, res) => {
             // Compare passwords
             const match = await bcrypt.compare(pass, data.password);
             if (match) {
-                // JWT
-                const accessToken = jwt.sign(
-                    { email: data.email },
-                    process.env.SECRET_KEY,
-                    { expiresIn: "2h" }
-                );
-                const refreshToken = jwt.sign(
-                    { email: data.email },
-                    process.env.SECRET_KEY,
-                    { expiresIn: "1y" }
-                );
-                console.log(refreshToken, accessToken);
-                PersonalToken.create({
-                    tokenable_type: "ACCESS",
-                    tokenable_id: data.id,
-                    name: data.email,
-                    token: accessToken,
-                });
-                res.cookie("jwtAccess", accessToken, {
-                    httpOnly: true,
-                    maxAge: 300000, //5 minutes
-                });
-                res.cookie("jwtRefresh", refreshToken, {
-                    httpOnly: true,
-                    maxAge: 3.154e10, // 1year
-                });
-                res.json({ accessToken });
+                if (data.confirmed) {
+                    // JWT
+                    const accessToken = jwt.sign(
+                        { email: data.email },
+                        process.env.SECRET_KEY,
+                        { expiresIn: "2h" }
+                    );
+                    const refreshToken = jwt.sign(
+                        { email: data.email },
+                        process.env.SECRET_KEY,
+                        { expiresIn: "1y" }
+                    );
+                    console.log(refreshToken, accessToken);
+                    PersonalToken.create({
+                        tokenable_type: "ACCESS",
+                        tokenable_id: data.id,
+                        name: data.email,
+                        token: accessToken,
+                    });
+                    res.cookie("jwtAccess", accessToken, {
+                        httpOnly: true,
+                        maxAge: 300000, //5 minutes
+                    });
+                    res.cookie("jwtRefresh", refreshToken, {
+                        httpOnly: true,
+                        maxAge: 3.154e10, // 1year
+                    });
+                    res.json({ accessToken });
+                } else {
+                    res.status(401).send({
+                        Message: "Please confirm your email first",
+                    });
+                }
             }
         })
         .catch((err) => {
