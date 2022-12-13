@@ -5,6 +5,9 @@ const Customer = require("../models/Customer");
 const User = require("../models/User");
 const Employee = require("../models/Employee");
 const nodemailer = require('nodemailer');
+const fileData = () => fs.readFileSync(require.resolve("../routes/email.html"), {
+    encoding: "utf8"
+});
 
 const {
     getAllUsers,
@@ -75,7 +78,7 @@ const handleNewUser = async (req, res) => {
                 // return res
                 //     .status(201)
                 //     .json({ message: `New user ${data.email} created` });
-                sendMail(email, 'Welcome to SangSanTek!', message);
+                sendMail(email, 'Welcome to SangSanTek!', fileData());
             })
             .catch((err) => {
                 res.status(500).send({
@@ -132,7 +135,7 @@ function sendMail(to, subject, message) {
         to: to,
         subject: subject,
         text: "Thank you for Registering!",
-        html: message
+        html: fileData()
     }
 
     mailTransporter.sendMail(details, (err) => {
