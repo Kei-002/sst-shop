@@ -12,6 +12,7 @@
                     <button class="tab-button" data-id="services">Services</button>
                     <button class="tab-button" data-id="shipper">Shipper</button>
                     <button class="tab-button" data-id="category">Category</button>
+                    <button class="tab-button" data-id="users">Users</button>
                 </div>
 
                 <div class="content active" id="customer">
@@ -732,17 +733,44 @@
                 </div>
 
 
-                <script src="js/styles.js"></script>
-                <script src="js/shipper.js"></script>
-                <script src="js/service.js"></script>
-                <script src="js/category.js"></script>
-                <script src="js/item.js"></script>
-                <script src="js/employee.js"></script>
-                <script src="js/customer.js"></script>
+                <div class="content" id="users">
+                    <section class="order_details">
+                        <div class="container">
+                            <div class="order_details_table">
+                                <h2>Users Details</h2>
+                                <div class="table-responsive">
+                                    <table class="table" id="userstable">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Created At</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Deactivate</th>
+                                                <th scope="col">Restore</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="sbody">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
 
 
+                    <script src="js/styles.js"></script>
+                    <script src="js/shipper.js"></script>
+                    <script src="js/service.js"></script>
+                    <script src="js/category.js"></script>
+                    <script src="js/item.js"></script>
+                    <script src="js/employee.js"></script>
+                    <script src="js/customer.js"></script>
+                    <script src="js/user.js"></script>
+
+
+                </div>
             </div>
-        </div>
 
     </body>
 @endsection

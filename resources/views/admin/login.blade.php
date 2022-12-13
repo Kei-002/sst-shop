@@ -102,7 +102,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6);
+            background: cadetblue;
         }
 
         .cont.s--signup .img:before {
@@ -297,7 +297,7 @@
         <div class="cont">
             <div class="formlog sign-in">
                 <form action="" id="loginForm" enctype="multipart/form-data">
-                    <h2>Welcome</h2>
+                    <h2>Welcome, Log In</h2>
                     <label>
                         <span>Email</span>
                         <input type="email" name="email" id="email" />
@@ -320,17 +320,19 @@
                     </div> --}}
                     <div style="padding-bottom: 10px">
                         <a href="">
-                        <button id="loginGoogle" >
-                            <img src="img/google.png" width="15" style="padding-bottom: 10px" alt="" className="icon" />
-                            
-                        </button>
+                            <button id="loginGoogle">
+                                <img src="img/google.png" width="15" style="padding-bottom: 10px" alt=""
+                                    className="icon" />
+
+                            </button>
                         </a>
 
                     </div>
                     <div>
                         <button id="loginFacebook">
-                            <img src="img/facebook.png" width="15" style="padding-bottom: 10px" alt="" className="icon" />
-                            
+                            <img src="img/facebook.png" width="15" style="padding-bottom: 10px" alt=""
+                                className="icon" />
+
                         </button>
 
                     </div>
@@ -366,11 +368,11 @@
                 <div class="img">
                     <div class="img__text m--up">
 
-                        <h3>Don't have an account? Please Sign up!<h3>
+                        <h3>Sign up!<h3>
                     </div>
                     <div class="img__text m--in">
 
-                        <h3>If you already has an account, just sign in.<h3>
+                        <h3>Sign in.<h3>
                     </div>
                     <div class="img__btn">
                         <span class="m--up">Sign Up</span>

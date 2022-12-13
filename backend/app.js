@@ -26,6 +26,7 @@ const authRoutes = require("./routes/authTest");
 const authinRoutes = require("./routes/auth");
 const refreshRoutes = require("./routes/refresh");
 const logoutRoutes = require("./routes/logout");
+const usrRoutes = require("./routes/user");
 // Routes END
 
 // DECLARATION/REQUIRE SECTION END
@@ -52,6 +53,7 @@ app.use(`${api}/items`, itemRoutes);
 app.use(`${api}/categories`, catRoutes);
 app.use(`${api}/shippers`, shipRoutes);
 app.use(`${api}/services`, serviceRoutes);
+app.use(`${api}/users`, usrRoutes);
 
 
 // Routes USE END
