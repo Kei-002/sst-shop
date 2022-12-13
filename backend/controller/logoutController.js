@@ -9,31 +9,6 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const PersonalToken = require("../models/PersonalToken");
 
-const getUserToken = (data) =>
-    new Promise((resolve, reject) => {
-        con.query(
-            `SELECT * FROM personal_access_tokens where name = '${data}'`,
-            (err, rows) => {
-                if (err) {
-                    reject(err);
-                }
-                resolve(rows[0]);
-            }
-        );
-    });
-
-const deleteToken = (data) =>
-    new Promise((resolve, reject) => {
-        con.query(
-            `DELETE FROM personal_access_tokens where token = '${data}'`,
-            (err, rows) => {
-                if (err) {
-                    reject(err);
-                }
-                resolve(rows[0]);
-            }
-        );
-    });
 
 const handleLogout = async (req, res) => {
     console.log(req.body);
@@ -49,23 +24,54 @@ const handleLogout = async (req, res) => {
     // var foundUser = getUserToken(email);
     // PersonalToken.findOne({ where: { name: email } }).then(async (data) => {});
 
-    PersonalToken.destroy({ where: { name: email } })
-        .then((data) => {
-            res.clearCookie("jwtAccess", {
-                httpOnly: true,
-                maxAge: 300000, //5 minutes
+    jwt.verify(refreshToken, process.env.SECRET_KEY, (err, decoded) => {
+        console.log(decoded);
+        // if (err || result.name !== decoded.email) return res.sendStatus(403);
+        // const accessToken = jwt.sign(
+        //     { email: result.name },
+        //     process.env.SECRET_KEY,
+        //     { expiresIn: "5m" }
+        // );
+
+        PersonalToken.destroy({ where: { name: decoded.email } })
+            .then((data) => {
+                res.clearCookie("jwtAccess", {
+                    httpOnly: true,
+                    maxAge: 300000, //5 minutes
+                });
+                res.clearCookie("jwtRefresh", {
+                    httpOnly: true,
+                    maxAge: 3.154e10, // 1year
+                });
+                res.sendStatus(204);
+            })
+            .catch((err) => {
+                res.status(401).send({
+                    Message: err.message,
+                });
             });
-            res.clearCookie("jwtRefresh", {
-                httpOnly: true,
-                maxAge: 3.154e10, // 1year
-            });
-            res.sendStatus(204);
-        })
-        .catch((err) => {
-            res.status(401).send({
-                Message: err.message,
-            });
-        });
+        console.log("Nope");
+        // updateUserToken(refreshToken, result.id);
+        // res.sendStatus(204);
+    });
+
+    // PersonalToken.destroy({ where: { name: email } })
+    //     .then((data) => {
+    //         res.clearCookie("jwtAccess", {
+    //             httpOnly: true,
+    //             maxAge: 300000, //5 minutes
+    //         });
+    //         res.clearCookie("jwtRefresh", {
+    //             httpOnly: true,
+    //             maxAge: 3.154e10, // 1year
+    //         });
+    //         res.sendStatus(204);
+    //     })
+    //     .catch((err) => {
+    //         res.status(401).send({
+    //             Message: err.message,
+    //         });
+    //     });
 
     // foundUser
     //     .then(async function (result) {

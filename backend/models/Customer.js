@@ -109,5 +109,14 @@ Customer.associate = function (models) {
     Customer.belongsTo(User, {
         foreignKey: "user_id",
     });
+    User.hasOne(Customer, {
+        foreignKey: "user_id",
+    });
 };
+
+// User.hasOne(Customer, {
+//     foreignKey: "user_id",
+// });
+// Customer.belongsTo(User, { foreignKey: "user_id" });
+
 module.exports = Customer;
