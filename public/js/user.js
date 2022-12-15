@@ -25,8 +25,7 @@ $(document).ready(function () {
             dataSrc: "",
         },
         dom: '<"top"<"left-col"B><"center-col"l><"right-col"f>>rtip',
-        buttons: [
-            {
+        buttons: [{
                 extend: "pdf",
                 className: "addNewRecord",
             },
@@ -35,8 +34,7 @@ $(document).ready(function () {
                 className: "addNewRecord",
             },
         ],
-        columns: [
-            {
+        columns: [{
                 data: "id",
             },
             {
@@ -154,8 +152,7 @@ $(document).ready(function () {
                 if (result)
                     $.ajax({
                         type: "GET",
-                        url:
-                            "http://localhost:5000/api/sst/users/restore/" + id,
+                        url: "http://localhost:5000/api/sst/users/restore/" + id,
                         headers: {
                             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
                                 "content"
