@@ -27,9 +27,13 @@ $(document).ready(function () {
         ajax: {
             url: "http://localhost:5000/api/sst/shippers/",
             dataSrc: "",
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+            },
         },
         dom: '<"top"<"left-col"B><"center-col"l><"right-col"f>>rtip',
-        buttons: [{
+        buttons: [
+            {
                 extend: "pdf",
                 className: "addNewRecord",
             },
@@ -48,7 +52,8 @@ $(document).ready(function () {
                 },
             },
         ],
-        columns: [{
+        columns: [
+            {
                 data: "id",
             },
             {
@@ -133,6 +138,7 @@ $(document).ready(function () {
             processData: false,
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                Authorization: "Bearer " + localStorage.getItem("token"),
             },
             dataType: "json",
             success: function (data) {
@@ -179,6 +185,8 @@ $(document).ready(function () {
                             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
                                 "content"
                             ),
+                            Authorization:
+                                "Bearer " + localStorage.getItem("token"),
                         },
                         dataType: "text",
                         contentType: "application/json",
@@ -189,7 +197,7 @@ $(document).ready(function () {
                                 table.row($row).remove().draw(false);
                             });
                             // bootbox.alert(data.success);
-                            toastr.success("Shipper deleted")
+                            toastr.success("Shipper deleted");
                         },
                         error: function (error) {
                             console.log(error);
@@ -214,6 +222,7 @@ $(document).ready(function () {
             url: "http://localhost:5000/api/sst/shippers/" + id,
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                Authorization: "Bearer " + localStorage.getItem("token"),
             },
             dataType: "json",
             success: function (data) {
@@ -253,6 +262,7 @@ $(document).ready(function () {
             data: formData,
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                Authorization: "Bearer " + localStorage.getItem("token"),
             },
             dataType: "json",
             success: function (data) {

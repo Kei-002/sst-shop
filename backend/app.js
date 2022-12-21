@@ -8,11 +8,22 @@ const Joi = require('joi');
 var cors = require('cors')
 var verifyJWT = require("./middleware/verifyJWT");
 const cookieParser = require("cookie-parser");
+// const session = require("express-session");
 // const sequelize = require("./dbtest");
 
 const app = express();
 
 const api = process.env.API_URL;
+
+// app.use(
+//     session({
+//         secret: process.env.SECRET_KEY,
+//         cookie: {},
+//         resave: false,
+//         saveUninitialized: false,
+//     })
+// );
+
 
 // Routes
 const custRoutes = require("./routes/customer");

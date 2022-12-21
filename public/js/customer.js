@@ -26,10 +26,15 @@ $(document).ready(function () {
     $("#customertable").DataTable({
         ajax: {
             url: "http://localhost:5000/api/sst/customers/",
+            headers: {
+                // "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                Authorization: "Bearer " + localStorage.getItem("token"),
+            },
             dataSrc: "",
         },
         dom: '<"top"<"left-col"B><"center-col"l><"right-col"f>>rtip',
-        buttons: [{
+        buttons: [
+            {
                 extend: "pdf",
                 className: "addNewRecord",
             },
@@ -47,7 +52,8 @@ $(document).ready(function () {
                 },
             },
         ],
-        columns: [{
+        columns: [
+            {
                 data: "id",
             },
             {
@@ -149,6 +155,7 @@ $(document).ready(function () {
             processData: false,
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                Authorization: "Bearer " + localStorage.getItem("token"),
             },
             dataType: "json",
             success: function (data) {
@@ -195,7 +202,11 @@ $(document).ready(function () {
                             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
                                 "content"
                             ),
+
+                            Authorization:
+                                "Bearer " + localStorage.getItem("token"),
                         },
+
                         dataType: "text",
                         contentType: "application/json",
                         success: function (data) {
@@ -221,15 +232,14 @@ $(document).ready(function () {
 
         $.ajax({
             type: "GET",
-            enctype: 'multipart/form-data',
+            enctype: "multipart/form-data",
             processData: false, // Important!
             contentType: false,
             cache: false,
             url: "http://localhost:5000/api/sst/customers/" + id,
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                    "content"
-                ),
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                Authorization: "Bearer " + localStorage.getItem("token"),
             },
             dataType: "json",
             success: function (data) {
@@ -257,7 +267,7 @@ $(document).ready(function () {
         var crow = $("tr td:contains(" + id + ")").closest("tr");
         var table = $("#customertable").DataTable();
         // var data = $("#updateform").serialize();
-        var data = $('#ecustomerForm')[0];
+        var data = $("#ecustomerForm")[0];
         let formData = new FormData(data);
 
         console.log(data);
@@ -266,11 +276,12 @@ $(document).ready(function () {
             cache: false,
             contentType: false,
             processData: false,
-            enctype: 'multipart/form-data',
+            enctype: "multipart/form-data",
             url: "http://localhost:5000/api/sst/customers/" + id,
             data: formData,
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                Authorization: "Bearer " + localStorage.getItem("token"),
             },
             dataType: "json",
             success: function (data) {
