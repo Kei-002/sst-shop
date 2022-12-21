@@ -10,6 +10,7 @@ const handlebars = require('handlebars');
 const filePath = path.join(__dirname, '../routes/email.html');
 const source = fs.readFileSync(filePath, 'utf-8').toString();
 const template = handlebars.compile(source);
+require("dotenv").config();
 
 
 // const fileData = () => fs.readFileSync(require.resolve("../routes/email.html"), {
@@ -30,7 +31,10 @@ var message = '<p>Hi! Enjoy Shopping At SangSang Tek!</p>';
 
 const handleNewUser = async (req, res) => {
     // var allUser = [];
-    var { email, pass } = req.body;
+    var {
+        email,
+        pass
+    } = req.body;
     var role = "customer";
     console.log(email, pass, role);
     // Check if no data in the body
@@ -125,10 +129,11 @@ function sendMail(to, subject, userdata) {
     const htmldata = template(replacements);
 
     let mailTransporter = nodemailer.createTransport({
-        service: "gmail",
+        host: process.env.MAIL_HOST,
+        port: process.env.MAIL_PORT,
         auth: {
-            user: "juswatoktok@gmail.com",
-            pass: "ggadiftlkcdbguyk",
+            user: process.env.MAIL_USERNAME,
+            pass: process.env.MAIL_PASSWORD,
         },
     });
 
