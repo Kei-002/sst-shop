@@ -25,10 +25,14 @@ $(document).ready(function () {
     $("#cattable").DataTable({
         ajax: {
             url: "http://localhost:5000/api/sst/categories/",
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+            },
             dataSrc: "",
         },
         dom: '<"top"<"left-col"B><"center-col"l><"right-col"f>>rtip',
-        buttons: [{
+        buttons: [
+            {
                 extend: "pdf",
                 className: "addNewRecord",
             },
@@ -46,7 +50,8 @@ $(document).ready(function () {
                 },
             },
         ],
-        columns: [{
+        columns: [
+            {
                 data: "id",
             },
             {
@@ -128,6 +133,7 @@ $(document).ready(function () {
             processData: false,
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                Authorization: "Bearer " + localStorage.getItem("token"),
             },
             dataType: "json",
             success: function (data) {
@@ -173,6 +179,8 @@ $(document).ready(function () {
                             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
                                 "content"
                             ),
+                            Authorization:
+                                "Bearer " + localStorage.getItem("token"),
                         },
                         dataType: "text",
                         contentType: "application/json",
@@ -206,6 +214,7 @@ $(document).ready(function () {
             url: "http://localhost:5000/api/sst/categories/" + id,
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                Authorization: "Bearer " + localStorage.getItem("token"),
             },
             dataType: "json",
             success: function (data) {
@@ -243,6 +252,7 @@ $(document).ready(function () {
             data: formData,
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                Authorization: "Bearer " + localStorage.getItem("token"),
             },
             dataType: "json",
             success: function (data) {

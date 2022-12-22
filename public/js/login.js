@@ -23,6 +23,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 console.log(data);
+                localStorage.setItem("token", data.accessToken);
                 // $("#catModal").modal("hide");
                 // var $cattable = $("#cattable").DataTable();
                 // $cattable.row.add(data.customer).draw(false);
