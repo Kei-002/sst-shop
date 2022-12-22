@@ -39,6 +39,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/admin') }}">Admin</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/shop') }}">Shop</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -50,9 +53,6 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Something else here</a>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Blog</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Resources</a>

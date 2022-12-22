@@ -59,7 +59,7 @@ app.use(`${api}/logout`, logoutRoutes);
 app.use(`${api}/public`, publicRoutes);
 
 // verify first if user has token
-app.use(verifyJWT);
+// app.use(verifyJWT);
 app.use(`${api}/customers`, custRoutes);
 app.use(`${api}/employees`, empRoutes);
 app.use(`${api}/items`, itemRoutes);
