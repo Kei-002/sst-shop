@@ -18,7 +18,7 @@ $(document).ready(function () {
 
     $.ajax({
         type: "GET",
-        url: "http://localhost:5000/api/sst/services/",
+        url: "http://localhost:5000/api/sst/public/services/",
         dataType: "json",
         success: function (data) {
             console.log(data);
@@ -30,13 +30,20 @@ $(document).ready(function () {
                 // let descs = serviceName + "\n" + serviceDesc;
                 var serviceImg = value.img_path;
 
-
-
                 var cont = $("#serviceContainer");
                 // var tr = $("<tr>");
-                var start = $('<div class="col-lg-4 col-md-6 cont">')
-                var gallery = $('<a data-fancybox="gallery" href="' + serviceImg + '" data-caption="' + serviceName + '">')
-                var imgsrc = $('<img class="img-fluid port"/>').attr('src', serviceImg)
+                var start = $('<div class="col-lg-4 col-md-6 cont">');
+                var gallery = $(
+                    '<a data-fancybox="gallery" href="' +
+                        serviceImg +
+                        '" data-caption="' +
+                        serviceName +
+                        '">'
+                );
+                var imgsrc = $('<img class="img-fluid port"/>').attr(
+                    "src",
+                    serviceImg
+                );
                 // var infoDiv = $('<div class="portfolio-info">');
                 // var wrapDiv = $('<div class="portfolio-wrap">');
                 // var linksDiv = $('<div class="portfolio-links">');
@@ -49,17 +56,14 @@ $(document).ready(function () {
                 // start.append($('<h4>').html(value.service_name));
                 // infoDiv.append($('<p>').html(serviceDesc));
                 // start.append($('<a data-fancybox="gallery" href="' + serviceImg + '" data-caption="' + serviceName + '"'))
-                start.append(gallery)
-                gallery.append(imgsrc)
+                start.append(gallery);
+                gallery.append(imgsrc);
                 // start.append(wrapDiv)
                 // infoDiv.appendTo(wrapDiv)
                 // linksDiv.appendTo(wrapDiv)
 
-
                 cont.append(start);
             });
-
-
         },
         error: function () {
             console.log("AJAX load did not work");

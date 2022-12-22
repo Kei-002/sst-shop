@@ -38,6 +38,7 @@ const authinRoutes = require("./routes/auth");
 const refreshRoutes = require("./routes/refresh");
 const logoutRoutes = require("./routes/logout");
 const usrRoutes = require("./routes/user");
+const publicRoutes = require("./routes/public");
 // Routes END
 
 // DECLARATION/REQUIRE SECTION END
@@ -55,6 +56,7 @@ app.use(`${api}/auths`, authRoutes);
 app.use(`${api}/login`, authinRoutes);
 app.use(`${api}/refresh`, refreshRoutes);
 app.use(`${api}/logout`, logoutRoutes);
+app.use(`${api}/public`, publicRoutes);
 
 // verify first if user has token
 app.use(verifyJWT);
