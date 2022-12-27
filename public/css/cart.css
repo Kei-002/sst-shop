@@ -34,7 +34,7 @@ body {
     border: 1px solid #eee;
 }
 
-#sidebar h3 {
+h3 {
     color: #262626;
     text-transform: uppercase;
     font-size: 14px;

@@ -12,7 +12,7 @@
 
         <div class="container ccart">
             <div class="row"
-                style="background: white; margin-top:20px; box-shadow: 0px 0 30px rgba(68, 68, 68, 0.08); padding-bottom:20px;">
+                style="background: white; margin-top:20px; box-shadow: 0px 0 30px rgba(68, 68, 68, 0.08); padding-bottom:20px;height: 100%;">
                 <div class="searchbox">
                     <div class="d-flex justify-content-center px-5">
                         <div class="search">
@@ -41,51 +41,8 @@
                         </div>
                     </div>
                     <div class="col-12 col-sm-6 col-md-8">
-                        <div class="row shp">
-                            <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-                                <div class="card text-white card-has-bg click-col"
-                                    style="background-image:url('https://source.unsplash.com/600x900/?tech,street');">
-                                    <div class="card-img-overlay d-flex flex-column">
-                                        <div class="card-body">
-                                            <small class="card-meta mb-2">Thought Leadership</small>
-                                            <h4 class="card-title mt-0 "><a class="text-white" herf="#">Goverment
-                                                    Lorem
-                                                    Ipsum Sit Amet Consectetur dipisi?</a></h4>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-                                <div class="card text-white card-has-bg click-col"
-                                    style="background-image:url('https://source.unsplash.com/600x900/?tree,nature');">
-                                    <div class="card-img-overlay d-flex flex-column">
-                                        <div class="card-body">
-                                            <small class="card-meta mb-2">Thought Leadership</small>
-                                            <h4 class="card-title mt-0 "><a class="text-white" herf="#">Goverment
-                                                    Lorem
-                                                    Ipsum Sit Amet Consectetur dipisi?</a></h4>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-                                <div class="card text-white card-has-bg click-col"
-                                    style="background-image:url('https://source.unsplash.com/600x900/?computer,design');">
-                                    <div class="card-img-overlay d-flex flex-column">
-                                        <div class="card-body">
-                                            <small class="card-meta mb-2">Thought Leadership</small>
-                                            <h4 class="card-title mt-0 "><a class="text-white" herf="#">Goverment
-                                                    Lorem
-                                                    Ipsum Sit Amet Consectetur dipisi?</a></h4>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="row shp" id="compcontainer">
+                            <h3>Components</h3>
 
                             <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
                                 <div class="card text-white card-has-bg click-col"
@@ -98,44 +55,39 @@
                                                     Ipsum Sit Amet Consectetur dipisi?</a></h4>
 
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-                                <div class="card text-white card-has-bg click-col"
-                                    style="background-image:url('https://source.unsplash.com/600x900/?tree,nature');">
-                                    <div class="card-img-overlay d-flex flex-column">
-                                        <div class="card-body">
-                                            <small class="card-meta mb-2">Thought Leadership</small>
-                                            <h4 class="card-title mt-0 "><a class="text-white" herf="#">Goverment
-                                                    Lorem
-                                                    Ipsum Sit Amet Consectetur dipisi?</a></h4>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-                                <div class="card text-white card-has-bg click-col"
-                                    style="background-image:url('https://source.unsplash.com/600x900/?computer,design');">
-                                    <div class="card-img-overlay d-flex flex-column">
-                                        <div class="card-body">
-                                            <small class="card-meta mb-2">Thought Leadership</small>
-                                            <h4 class="card-title mt-0 "><a class="text-white" herf="#">Goverment
-                                                    Lorem
-                                                    Ipsum Sit Amet Consectetur dipisi?</a></h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
+                            <div class="row shp" id="servcontainer">
+
+                                <h3>Services</h3>
+
+                                <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+                                    <div class="card text-white card-has-bg click-col"
+                                        style="background-image:url('https://source.unsplash.com/600x900/?tech,street');">
+                                        <div class="card-img-overlay d-flex flex-column">
+                                            <div class="card-body">
+                                                <small class="card-meta mb-2">Thought Leadership</small>
+                                                <h4 class="card-title mt-0 "><a class="text-white" herf="#">Goverment
+                                                        Lorem
+                                                        Ipsum Sit Amet Consectetur dipisi?</a></h4>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                     </div>
                 </div>
             </div>
         </div>
 
     </body>
+
+    <script src="{{ asset('js/cart.js') }}"></script>
 
     <script>
         $('.categories a span').each(function(i, el) {

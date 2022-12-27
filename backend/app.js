@@ -33,12 +33,14 @@ const catRoutes = require("./routes/category");
 const shipRoutes = require("./routes/shipper");
 const serviceRoutes = require("./routes/service");
 const registerRoutes = require("./routes/register");
+const cartRoutes = require("./routes/cart");
 const authRoutes = require("./routes/authTest");
 const authinRoutes = require("./routes/auth");
 const refreshRoutes = require("./routes/refresh");
 const logoutRoutes = require("./routes/logout");
 const usrRoutes = require("./routes/user");
 const publicRoutes = require("./routes/public");
+
 // Routes END
 
 // DECLARATION/REQUIRE SECTION END
@@ -57,6 +59,7 @@ app.use(`${api}/login`, authinRoutes);
 app.use(`${api}/refresh`, refreshRoutes);
 app.use(`${api}/logout`, logoutRoutes);
 app.use(`${api}/public`, publicRoutes);
+app.use(`${api}/shop`, cartRoutes);
 
 // verify first if user has token
 app.use(verifyJWT);
@@ -67,6 +70,7 @@ app.use(`${api}/categories`, catRoutes);
 app.use(`${api}/shippers`, shipRoutes);
 app.use(`${api}/services`, serviceRoutes);
 app.use(`${api}/users`, usrRoutes);
+
 
 
 // Routes USE END
