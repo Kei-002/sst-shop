@@ -36,7 +36,7 @@
                                 <a class="dropdown-item" href="{{ url('/services-index') }}">Services</a>
                             </div>
                         </li> --}}
-                        <li class="nav-item">
+                        <li class="nav-item" id="adminLinks">
                             <a class="nav-link" href="{{ url('/admin') }}">Admin</a>
                         </li>
                         <li class="nav-item">
@@ -59,8 +59,9 @@
                         </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0" action="{{ url('/login') }}">
-                        <button class="header-btn my-2 my-sm-0" type="submit">Login</button>
+                        <button id="loginButton" class="header-btn my-2 my-sm-0" type="submit">Login</button>
                     </form>
+                    <button id="logoutButton" class="header-btn my-2 my-sm-0">Logout</button>
                 </div>
             </nav>
 
@@ -102,6 +103,7 @@
 {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
 <script type="text/javascript">
     $(function() {
+
         var navbar = $('.header-inner');
         $(window).scroll(function() {
             if ($(window).scrollTop() <= 40) {
@@ -112,3 +114,7 @@
         });
     });
 </script>
+
+ <script src="js/logout.js"></script>
+
+

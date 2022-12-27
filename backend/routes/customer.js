@@ -9,6 +9,7 @@ const fs = require("fs");
 const { insertUser } = require("../controller/authController");
 const Customer = require("../models/Customer");
 const User = require("../models/User");
+var verifyJWT = require("../middleware/verifyJWT");
 
 const FILE_TYPE_MAP = {
     "image/png": "png",
@@ -52,15 +53,23 @@ function delimg(results) {
 }
 
 // GET CUSTOMER LIST
-router.get("/", (req, res) => {
-    let sql = `SELECT * FROM customers`;
-    con.query(sql, (error, results, fields) => {
-        if (error) {
+router.get("/", verifyJWT, (req, res) => {
+    // let sql = `SELECT * FROM customers`;
+    // con.query(sql, (error, results, fields) => {
+    //     if (error) {
+    //         return console.error(error.message);
+    //     }
+    //     console.log(results);
+    //     return res.status(200).json(results);
+    // });
+
+    Customer.findAll()
+        .then((data) => {
+            return res.status(200).json(data);
+        })
+        .catch((error) => {
             return console.error(error.message);
-        }
-        console.log(results);
-        return res.status(200).json(results);
-    });
+        });
 });
 
 // CREATE CUSTOMER
@@ -163,7 +172,7 @@ router.get("/:id", (req, res) => {
     //     return res.status(200).json(results);
     // });
 
-    User.findByPk(req.params.id)
+    Customer.findByPk(req.params.id)
         .then((data) => {
             console.log([data.dataValues]);
             res.status(200).json([data.dataValues]);
@@ -187,27 +196,30 @@ router.put("/:id", uploadOptions.single("uploads"), (req, res) => {
     const fileName = file.filename;
     const basePath = `${req.protocol}://${req.get("host")}/public/uploads/`;
     let img_path = `${basePath}${fileName}`;
-    let sql = `UPDATE customers set fname = ?, lname = ?, addressline = ?, phone = ?, img_path = ? WHERE id = ?`;
-    console.log(fileName, sql);
-    con.query(
-        sql,
-        [
-            req.body.fname,
-            req.body.lname,
-            req.body.addressline,
-            req.body.phone,
-            img_path,
-            req.params.id,
-        ],
-        (error, results, fields) => {
-            if (error) {
-                console.log(req.params.id);
-                return console.error(error.message);
-            }
 
-            return res.status(200).json(results);
+    Customer.update(
+        {
+            fname: req.body.fname,
+            lname: req.body.lname,
+            addressline: req.body.addressline,
+            phone: req.body.lname,
+            img_path: img_path,
+        },
+        {
+            where: {
+                id: req.params.id,
+            },
         }
-    );
+    )
+        .then((data) => {
+            res.status(200).json(data);
+        })
+        .catch((err) => {
+            res.status(500).send({
+                Message:
+                    err.message || "Some errors occured when deleting the data",
+            });
+        });
 });
 
 //DELETE CUSTOMER
@@ -219,7 +231,7 @@ router.delete("/:id", (req, res) => {
         }
         console.log(results[0]);
 
-        delimg(results);
+        // delimg(results);
 
         let sql1 = `DELETE from users where id = ${results[0].user_id}`;
         con.query(sql1, (error, results, fields) => {

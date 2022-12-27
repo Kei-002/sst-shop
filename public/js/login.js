@@ -35,6 +35,10 @@ $(document).ready(function () {
                 toastr.info(error.responseJSON.Message);
             },
         });
+        $("#loginButton").hide();
+        $("#logoutButton").show();
+        $("#adminLinks").show();
+        // window.location.reload();
     });
 
     $("#registerSubmit").on("click", function (e) {

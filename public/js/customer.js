@@ -100,6 +100,11 @@ $(document).ready(function () {
                 },
             },
         ],
+        error: function () {
+            console.log("AJAX load did not work");
+            alert("error");
+            // window.location.href = "http://localhost:8000/";
+        },
     });
 
     // $.ajax({

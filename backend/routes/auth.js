@@ -75,11 +75,14 @@ const uploadOptions = multer({
 router.post("/", uploadOptions.single("uploads"), handleLogin);
 router.get(
     "/google",
-    passport.authenticate("google", { scope: ["email", "profile"] })
+    passport.authenticate("google", {
+        scope: ["email", "profile"],
+        failureRedirect: "/login",
+    })
 );
 router.get(
     "/facebook",
     passport.authenticate("facebook", { failureRedirect: "/login" })
-);
+); 
 
 module.exports = router;

@@ -11,20 +11,24 @@ const PersonalToken = require("../models/PersonalToken");
 
 
 const handleLogout = async (req, res) => {
-    console.log(req.body);
-    const cookies = req.cookies;
-    var data = req.body;
-    var { email, pass } = data;
-    console.log(cookies);
-    // Check if no cookies
-    if (!cookies?.jwtAccess || !cookies?.jwtRefresh) return res.sendStatus(401);
-    console.log(cookies.jwtAccess, cookies.jwtRefresh);
-    const refreshToken = cookies.jwtRefresh;
+    // console.log(req.body);
+    // const cookies = req.cookies;
+    // var data = req.body;
+    // var { email, pass } = data;
+    // console.log(cookies);
+    // // consol
+    // if (!cookies?.jwtAccess || !cookies?.jwtRefresh) return res.sendStatus(401);
+    // console.log(cookies.jwtAccess, cookies.jwtRefresh);
+    // const refreshToken = cookies.jwtRefresh;
 
+    const authHeader =
+        req.header("authorization") || req.header("Authorization");
+    if (!authHeader) return res.sendStatus(401);
+    const token = authHeader.split(" ")[1];
     // var foundUser = getUserToken(email);
     // PersonalToken.findOne({ where: { name: email } }).then(async (data) => {});
 
-    jwt.verify(refreshToken, process.env.SECRET_KEY, (err, decoded) => {
+    jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
         console.log(decoded);
         // if (err || result.name !== decoded.email) return res.sendStatus(403);
         // const accessToken = jwt.sign(
