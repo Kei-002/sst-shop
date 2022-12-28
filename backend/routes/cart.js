@@ -36,7 +36,7 @@ const uploadOptions = multer({
 
 // GET COMPONENTS/SERVICES LIST
 router.get('/sitems', (req, res) => {
-    let sql = `SELECT * FROM items`;
+    let sql = `SELECT i.*, c.category_name FROM items i INNER JOIN categories c ON i.category_id = c.id`;
     con.query(sql, (error, results, fields) => {
         if (error) {
             return console.error(error.message);

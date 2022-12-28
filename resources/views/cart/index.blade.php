@@ -26,16 +26,36 @@
                         <div id="sidebar">
 
                             <h3>CATEGORIES</h3>
-                            <div class="checklist categories">
+                            <div class="checklist categories" id="filters">
                                 <ul>
-                                    <li><a id="componly"><span></span>Components</a></li>
-                                    <ul>
-                                        <li><a href=""><span></span>GPU</a></li>
-                                        <li><a href=""><span></span>CPU</a></li>
-                                    </ul>
-                                    <li><a id="servonly"><span></span>Services</a></li>
+                                    <input type="checkbox" value="CPU" id="filter-CPU" />
+                                    <label for="filter-CPU">CPU</label>
                                 </ul>
+                                <ul>
+                                    <input type="checkbox" value="GPU" id="filter-GPU" />
+                                    <label for="filter-GPU">GPU</label>
+                                </ul>
+                                
+                                <ul>
+                                    <input type="checkbox" value="service" id="filter-service" />
+                                    <label for="filter-service">Services</label>
+                                </ul>
+
                             </div>
+
+                            {{-- <h3>CATEGORIES</h3>
+                            <div class="checklist categories" id="categories">
+                                <ul>
+                                    <li><a id="componly" class="checkbox filter-component"><span></span>Components</a></li>
+                                    <ul>
+                                        <li><a href=""
+                                                class="checkbox filter-component filter-GPU"><span></span>GPU</a></li>
+                                        <li><a href=""
+                                                class="checkbox filter-component filter-CPU"><span></span>CPU</a></li>
+                                    </ul>
+                                    <li><a id="servonly" class="checkbox filter-service"><span></span>Services</a></li>
+                                </ul>
+                            </div> --}}
 
                             <h3>PRICE RANGE</h3>
                         </div>

@@ -24,7 +24,7 @@ passport.use(
             //     return done(err, user);
             // });
             console.log(profile);
-            return done(JSON.stringify(profile));
+            return done(null, profile);
         }
     )
 );
@@ -77,12 +77,22 @@ router.get(
     "/google",
     passport.authenticate("google", {
         scope: ["email", "profile"],
-        failureRedirect: "/login",
     })
 );
 router.get(
     "/facebook",
     passport.authenticate("facebook", { failureRedirect: "/login" })
-); 
+);
+
+router.get(
+    "/google/callback",
+    passport.authenticate("google", {
+        failureRedirect: "/login",
+    }),
+    (req, res) => {
+        res.sendStatus(200);
+    }
+);
+
 
 module.exports = router;

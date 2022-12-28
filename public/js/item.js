@@ -25,12 +25,14 @@ $(document).ready(function () {
 
     $.ajax({
         type: "GET",
-        url: "http://localhost:5000/api/sst/categories/",
+        url: "http://localhost:5000/api/sst/categories",
         headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
         },
         data: "{}",
         success: function (data) {
+            console.log("test");
+            console.log(data);
             var s =
                 '<option value="-1" disabled selected>Select Item Category</option>';
             for (var i = 0; i < data.length; i++) {
@@ -258,7 +260,7 @@ $(document).ready(function () {
         var id = $(this).data("id");
         $.ajax({
             type: "GET",
-            url: "http://localhost:5000/api/sst/categories/",
+            url: "http://localhost:5000/api/sst/categories",
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token"),
             },

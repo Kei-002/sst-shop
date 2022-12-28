@@ -13,18 +13,33 @@ $(document).ready(function () {
                 var item = value.item_name;
                 var itemImg = value.img_path;
                 var servPrice = value.price;
-                var serv = value.service_name
+                var serv = value.service_name;
+                var categoryName = value.category_name;
 
                 var cont = $("#compcontainer");
-                var start = $('<div class="col-sm-12 col-md-6 col-lg-4 mb-4">');
+                var start = $(
+                    `<div class="col-sm-12 col-md-6 col-lg-4 mb-4 item filter-${categoryName}">`
+                );
                 var card = $(
-                    '<div class="card text-white card-has-bg click-col" style="background-image:url('+ itemImg +');background-size: cover;background-position: center;"><div class="card-img-overlay d-flex flex-column"><div class="card-body"><small class="card-meta mb-2">$ ' + itemPrice + ' </small><h4 class="card-title mt-0 "><input type="hidden" id="'+ id +'" name="'+ id +'" value="'+ id +'" /><a class="text-white" herf="#">' + item + '</a></h4></div></div></div>'
+                    '<div class="card text-white card-has-bg click-col filter-' +
+                        categoryName +
+                        '" style="background-image:url(' +
+                        itemImg +
+                        ');background-size: cover;background-position: center;"><div class="card-img-overlay d-flex flex-column"><div class="card-body"><small class="card-meta mb-2">$ ' +
+                        itemPrice +
+                        ' </small><h4 class="card-title mt-0 "><input type="hidden" id="' +
+                        id +
+                        '" name="' +
+                        id +
+                        '" value="' +
+                        id +
+                        '" /><a class="text-white" herf="#">' +
+                        item +
+                        "</a></h4></div></div></div>"
                 );
 
                 start.append(card);
                 cont.append(start);
-
-
             });
         },
         error: function () {
@@ -44,19 +59,32 @@ $(document).ready(function () {
                 var id = value.id;
                 var itemImg = value.img_path;
                 var servPrice = value.price;
-                var serv = value.service_name
+                var serv = value.service_name;
 
                 var contt = $("#servcontainer");
 
-                var startt = $('<div class="col-sm-12 col-md-6 col-lg-4 mb-4">');
+                var startt = $(
+                    `<div class="col-sm-12 col-md-6 col-lg-4 mb-4 item filter-service">`
+                );
                 var cardd = $(
-                    '<div class="card text-white card-has-bg click-col" style="background-image:url('+ itemImg +');background-size: cover;background-position: center;"><div class="card-img-overlay d-flex flex-column"><div class="card-body"><small class="card-meta mb-2">$ ' + servPrice + ' </small><h4 class="card-title mt-0 "><input type="hidden" id="'+ id +'" name="'+ id +'" value="'+ id +'" /><a class="text-white" herf="#">' + serv + '</a></h4></div></div></div>'
+                    '<div class="card text-white card-has-bg click-col" style="background-image:url(' +
+                        itemImg +
+                        ');background-size: cover;background-position: center;"><div class="card-img-overlay d-flex flex-column"><div class="card-body"><small class="card-meta mb-2">$ ' +
+                        servPrice +
+                        ' </small><h4 class="card-title mt-0 "><input type="hidden" id="' +
+                        id +
+                        '" name="' +
+                        id +
+                        '" value="' +
+                        id +
+                        '" /><a class="text-white" herf="#">' +
+                        serv +
+                        "</a></h4></div></div></div>"
                 );
 
                 startt.append(cardd);
 
-                contt.append(startt)
-
+                contt.append(startt);
             });
         },
         error: function () {
@@ -65,28 +93,46 @@ $(document).ready(function () {
         },
     });
 
+    // $("#componly").on("click", function (e) {
+    //     e.preventDefault();
+    //     var serv = document.getElementById("servcontainer");
+    //     // console.log("Service Hide!");
+    //     $("#servcontainer").toggle();
+    // });
 
-    $("#componly").on("click", function (e) {
-        e.preventDefault();
-        var serv = document.getElementById("servcontainer");
-        // console.log("Service Hide!");
-        $('#servcontainer').toggle();
+    // $("#servonly").on("click", function (e) {
+    //     e.preventDefault();
+    //     var serv = document.getElementById("compcontainer");
+    //     // console.log("Service Hide!");
+    //     if ($("#compcontainer").toggle()) {
+    //         $("#servcontainer").css("margin-top", "-505px");
+    //         // $("#servcontainer").hide();
+    //     }
+    //     if (!$("#servonly").not(":checked")) {
+    //         $("#servcontainer").css("margin-top", "5px");
+    //     }
+    // });
+
+    $("#filters :checkbox").click(function () {
+        var re = new RegExp(
+            $("#filters :checkbox:checked")
+                .map(function () {
+                    return this.value;
+                })
+                .get()
+                .join("|")
+        );
+        $("div .item").each(function () {
+            var $this = $(this);
+            $this[
+                re.source != "" && re.test($this.attr("class"))
+                    ? "show"
+                    : "hide"
+            ]();
+        });
     });
 
-    
-    $("#servonly").on("click", function (e) {
-        e.preventDefault();
-        var serv = document.getElementById("compcontainer");
-        // console.log("Service Hide!");
-        if ($('#compcontainer').toggle()) {
-            $('#servcontainer').css('margin-top', '-505px');
-        } 
-        if (!$('#servonly').not(":checked")) {
-            $('#servcontainer').css('margin-top', '5px');
-        }
-       
-        
-    });
+
 
     // }
 });
