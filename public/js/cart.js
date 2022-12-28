@@ -16,28 +16,13 @@ $(document).ready(function () {
                 var serv = value.service_name
 
                 var cont = $("#compcontainer");
-                var contt = $("#servcontainer");
                 var start = $('<div class="col-sm-12 col-md-6 col-lg-4 mb-4">');
                 var card = $(
-                    '<div class="card text-white card-has-bg click-col" style="background-image:url('+ itemImg +');"><div class="card-img-overlay d-flex flex-column"><div class="card-body"><small class="card-meta mb-2"> ' + itemPrice + ' </small><h4 class="card-title mt-0 "><input type="hidden">' + id + '</input><a class="text-white" herf="#">' + item + '</a></h4></div></div></div>'
+                    '<div class="card text-white card-has-bg click-col" style="background-image:url('+ itemImg +');background-size: cover;background-position: center;"><div class="card-img-overlay d-flex flex-column"><div class="card-body"><small class="card-meta mb-2">$ ' + itemPrice + ' </small><h4 class="card-title mt-0 "><input type="hidden" id="'+ id +'" name="'+ id +'" value="'+ id +'" /><a class="text-white" herf="#">' + item + '</a></h4></div></div></div>'
                 );
-
-                var startt = $('<div class="col-sm-12 col-md-6 col-lg-4 mb-4">');
-                var cardd = $(
-                    '<div class="card text-white card-has-bg click-col" style="background-image:url('+ itemImg +');"><div class="card-img-overlay d-flex flex-column"><div class="card-body"><small class="card-meta mb-2"> ' + servPrice + ' </small><h4 class="card-title mt-0 "><input type="hidden">' + id + '</input><a class="text-white" herf="#">' + serv + '</a></h4></div></div></div>'
-                );
-
-                
-
 
                 start.append(card);
-                startt.append(cardd);
-
-                contt.append(start)
                 cont.append(start);
-
-
-
 
 
             });
@@ -65,7 +50,7 @@ $(document).ready(function () {
 
                 var startt = $('<div class="col-sm-12 col-md-6 col-lg-4 mb-4">');
                 var cardd = $(
-                    '<div class="card text-white card-has-bg click-col" style="background-image:url('+ itemImg +');"><div class="card-img-overlay d-flex flex-column"><div class="card-body"><small class="card-meta mb-2">$ ' + servPrice + ' </small><h4 class="card-title mt-0 "><input type="hidden">' + id + '</input><a class="text-white" herf="#">' + serv + '</a></h4></div></div></div>'
+                    '<div class="card text-white card-has-bg click-col" style="background-image:url('+ itemImg +');background-size: cover;background-position: center;"><div class="card-img-overlay d-flex flex-column"><div class="card-body"><small class="card-meta mb-2">$ ' + servPrice + ' </small><h4 class="card-title mt-0 "><input type="hidden" id="'+ id +'" name="'+ id +'" value="'+ id +'" /><a class="text-white" herf="#">' + serv + '</a></h4></div></div></div>'
                 );
 
                 startt.append(cardd);
@@ -79,5 +64,29 @@ $(document).ready(function () {
             alert("error");
         },
     });
+
+
+    $("#componly").on("click", function (e) {
+        e.preventDefault();
+        var serv = document.getElementById("servcontainer");
+        // console.log("Service Hide!");
+        $('#servcontainer').toggle();
+    });
+
+    
+    $("#servonly").on("click", function (e) {
+        e.preventDefault();
+        var serv = document.getElementById("compcontainer");
+        // console.log("Service Hide!");
+        if ($('#compcontainer').toggle()) {
+            $('#servcontainer').css('margin-top', '-505px');
+        } 
+        if (!$('#servonly').not(":checked")) {
+            $('#servcontainer').css('margin-top', '5px');
+        }
+       
+        
+    });
+
     // }
 });

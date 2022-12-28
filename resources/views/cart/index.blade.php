@@ -28,12 +28,12 @@
                             <h3>CATEGORIES</h3>
                             <div class="checklist categories">
                                 <ul>
-                                    <li><a href=""><span></span>Components</a></li>
+                                    <li><a id="componly"><span></span>Components</a></li>
                                     <ul>
                                         <li><a href=""><span></span>GPU</a></li>
                                         <li><a href=""><span></span>CPU</a></li>
                                     </ul>
-                                    <li><a href=""><span></span>Services</a></li>
+                                    <li><a id="servonly"><span></span>Services</a></li>
                                 </ul>
                             </div>
 
@@ -44,7 +44,7 @@
                         <div class="row shp" id="compcontainer">
                             <h3>Components</h3>
 
-                            <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+                            {{-- <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
                                 <div class="card text-white card-has-bg click-col"
                                     style="background-image:url('https://source.unsplash.com/600x900/?tech,street');">
                                     <div class="card-img-overlay d-flex flex-column">
@@ -57,30 +57,33 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                         </div>
-                            <div class="row shp" id="servcontainer">
+                    </div>
 
-                                <h3>Services</h3>
+                    <div class="col-12 col-sm-6 col-md-8" style="margin-left: 432px;margin-top: 5px;">
+                        <div class="row shp" id="servcontainer">
+                            <h3>Services</h3>
 
-                                <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-                                    <div class="card text-white card-has-bg click-col"
-                                        style="background-image:url('https://source.unsplash.com/600x900/?tech,street');">
-                                        <div class="card-img-overlay d-flex flex-column">
-                                            <div class="card-body">
-                                                <small class="card-meta mb-2">Thought Leadership</small>
-                                                <h4 class="card-title mt-0 "><a class="text-white" herf="#">Goverment
-                                                        Lorem
-                                                        Ipsum Sit Amet Consectetur dipisi?</a></h4>
+                            {{-- <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+                                <div class="card text-white card-has-bg click-col"
+                                    style="background-image:url('https://source.unsplash.com/600x900/?tech,street');">
+                                    <div class="card-img-overlay d-flex flex-column">
+                                        <div class="card-body">
+                                            <small class="card-meta mb-2">Thought Leadership</small>
+                                            <h4 class="card-title mt-0 "><a class="text-white" herf="#">Goverment
+                                                    Lorem
+                                                    Ipsum Sit Amet Consectetur dipisi?</a></h4>
 
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div> --}}
 
-                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
