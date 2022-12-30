@@ -22,20 +22,20 @@ $(document).ready(function () {
                 );
                 var card = $(
                     '<div class="card text-white card-has-bg click-col filter-' +
-                        categoryName +
-                        '" style="background-image:url(' +
-                        itemImg +
-                        ');background-size: cover;background-position: center;"><div class="card-img-overlay d-flex flex-column"><div class="card-body"><small class="card-meta mb-2">$ ' +
-                        itemPrice +
-                        ' </small><h4 class="card-title mt-0 "><input type="hidden" id="' +
-                        id +
-                        '" name="' +
-                        id +
-                        '" value="' +
-                        id +
-                        '" /><a class="text-white" herf="#">' +
-                        item +
-                        "</a></h4></div></div></div>"
+                    categoryName +
+                    '" style="background-image:url(' +
+                    itemImg +
+                    ');background-size: cover;background-position: center;"><div class="card-img-overlay d-flex flex-column"><div class="card-body"><small class="card-meta mb-2">$ ' +
+                    itemPrice +
+                    ' </small><h4 class="card-title mt-0 "><input type="hidden" id="' +
+                    id +
+                    '" name="' +
+                    id +
+                    '" value="' +
+                    id +
+                    '" /><a class="text-white" herf="#">' +
+                    item +
+                    "</a></h4></div><div class='d-grid gap-2 col-4'><button type='submit' class='btn btn-primary float-end' id='addtocart' aria-label='Right Align'><span class='fa-solid fa-cart-shopping' aria-hidden='true'></span></button></div></div></div>"
                 );
 
                 start.append(card);
@@ -68,18 +68,18 @@ $(document).ready(function () {
                 );
                 var cardd = $(
                     '<div class="card text-white card-has-bg click-col" style="background-image:url(' +
-                        itemImg +
-                        ');background-size: cover;background-position: center;"><div class="card-img-overlay d-flex flex-column"><div class="card-body"><small class="card-meta mb-2">$ ' +
-                        servPrice +
-                        ' </small><h4 class="card-title mt-0 "><input type="hidden" id="' +
-                        id +
-                        '" name="' +
-                        id +
-                        '" value="' +
-                        id +
-                        '" /><a class="text-white" herf="#">' +
-                        serv +
-                        "</a></h4></div></div></div>"
+                    itemImg +
+                    ');background-size: cover;background-position: center;"><div class="card-img-overlay d-flex flex-column"><div class="card-body"><small class="card-meta mb-2">$ ' +
+                    servPrice +
+                    ' </small><h4 class="card-title mt-0 "><input type="hidden" class="servid" id="' +
+                    id +
+                    '" name="' +
+                    id +
+                    '" value="' +
+                    id +
+                    '" /><a class="text-white" herf="#">' +
+                    serv +
+                    "</a></h4></div><div class='d-grid gap-2 col-4'><button type='submit' class='btn btn-primary float-end' id='addtocart' aria-label='Right Align'><span class='fa-solid fa-cart-shopping' aria-hidden='true'></span></button></div></div></div>"
                 );
 
                 startt.append(cardd);
@@ -116,22 +116,26 @@ $(document).ready(function () {
     $("#filters :checkbox").click(function () {
         var re = new RegExp(
             $("#filters :checkbox:checked")
-                .map(function () {
-                    return this.value;
-                })
-                .get()
-                .join("|")
+            .map(function () {
+                return this.value;
+            })
+            .get()
+            .join("|")
         );
         $("div .item").each(function () {
             var $this = $(this);
             $this[
-                re.source != "" && re.test($this.attr("class"))
-                    ? "show"
-                    : "hide"
+                re.source != "" && re.test($this.attr("class")) ?
+                "show" :
+                "hide"
             ]();
         });
     });
 
+
+    $('#addtocart').click(function () {
+        console.log($(this).attr('id'));
+    })
 
 
     // }

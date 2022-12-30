@@ -31,8 +31,7 @@ $(document).ready(function () {
             dataSrc: "",
         },
         dom: '<"top"<"left-col"B><"center-col"l><"right-col"f>>rtip',
-        buttons: [
-            {
+        buttons: [{
                 extend: "pdf",
                 className: "addNewRecord",
             },
@@ -50,8 +49,7 @@ $(document).ready(function () {
                 },
             },
         ],
-        columns: [
-            {
+        columns: [{
                 data: "id",
             },
             {
@@ -179,8 +177,7 @@ $(document).ready(function () {
                             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
                                 "content"
                             ),
-                            Authorization:
-                                "Bearer " + localStorage.getItem("token"),
+                            Authorization: "Bearer " + localStorage.getItem("token"),
                         },
                         dataType: "text",
                         contentType: "application/json",

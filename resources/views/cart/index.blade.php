@@ -35,7 +35,7 @@
                                     <input type="checkbox" value="GPU" id="filter-GPU" />
                                     <label for="filter-GPU">GPU</label>
                                 </ul>
-                                
+
                                 <ul>
                                     <input type="checkbox" value="service" id="filter-service" />
                                     <label for="filter-service">Services</label>
@@ -75,8 +75,13 @@
                                                     Ipsum Sit Amet Consectetur dipisi?</a></h4>
 
                                         </div>
+                                        <div class="d-grid gap-2 col-4">
+                                            <button type="submit" class="btn btn-primary float-end" aria-label="Right Align">
+                                                <span class="fa-solid fa-cart-shopping" aria-hidden="true"></span>
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
+                                </div>  
                             </div> --}}
 
                         </div>
