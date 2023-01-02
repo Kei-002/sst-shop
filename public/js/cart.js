@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     $.ajax({
         type: "GET",
         url: "http://localhost:5000/api/sst/shop/sitems",
@@ -21,21 +20,21 @@ $(document).ready(function () {
                     `<div class="col-sm-12 col-md-6 col-lg-4 mb-4 item filter-${categoryName}">`
                 );
                 var card = $(
-                    '<div class="card text-white card-has-bg click-col filter-' +
-                    categoryName +
-                    '" style="background-image:url(' +
-                    itemImg +
-                    ');background-size: cover;background-position: center;"><div class="card-img-overlay d-flex flex-column"><div class="card-body"><small class="card-meta mb-2">$ ' +
-                    itemPrice +
-                    ' </small><h4 class="card-title mt-0 "><input type="hidden" id="' +
-                    id +
-                    '" name="' +
-                    id +
-                    '" value="' +
-                    id +
-                    '" /><a class="text-white" herf="#">' +
-                    item +
-                    "</a></h4></div><div class='d-grid gap-2 col-4'><button type='submit' class='btn btn-primary float-end' id='addtocart' aria-label='Right Align'><span class='fa-solid fa-cart-shopping' aria-hidden='true'></span></button></div></div></div>"
+                    `<div class="card text-white card-has-bg click-col filter-${categoryName}" style="background-image:url('${itemImg}');background-size: cover;background-position: center;">
+                        <div class="card-img-overlay d-flex flex-column">
+                            <div class="card-body">
+                                <small class="card-meta mb-2">$ ${itemPrice} </small>
+                                <h4 class="card-title mt-0 "><input type="hidden" id="${id}" name="${id}" value="${id}" />
+                                    <a class="text-white" herf="#">${item}</a>
+                                </h4>
+                            </div>
+                            <div class='d-grid gap-2 col-4'>
+                                <a href='#' class='btn btn-primary float-end addtocart' data-id="${id}">
+                                    <i class='fa-solid fa-cart-shopping' aria-hidden='true'></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>`
                 );
 
                 start.append(card);
@@ -67,19 +66,22 @@ $(document).ready(function () {
                     `<div class="col-sm-12 col-md-6 col-lg-4 mb-4 item filter-service">`
                 );
                 var cardd = $(
-                    '<div class="card text-white card-has-bg click-col" style="background-image:url(' +
-                    itemImg +
-                    ');background-size: cover;background-position: center;"><div class="card-img-overlay d-flex flex-column"><div class="card-body"><small class="card-meta mb-2">$ ' +
-                    servPrice +
-                    ' </small><h4 class="card-title mt-0 "><input type="hidden" class="servid" id="' +
-                    id +
-                    '" name="' +
-                    id +
-                    '" value="' +
-                    id +
-                    '" /><a class="text-white" herf="#">' +
-                    serv +
-                    "</a></h4></div><div class='d-grid gap-2 col-4'><button type='submit' class='btn btn-primary float-end' id='addtocart' aria-label='Right Align'><span class='fa-solid fa-cart-shopping' aria-hidden='true'></span></button></div></div></div>"
+                    `<div class="card text-white card-has-bg click-col" style="background-image:url(' ${itemImg}');background-size: cover;background-position: center;">
+                        <div class="card-img-overlay d-flex flex-column">
+                            <div class="card-body">
+                                <small class="card-meta mb-2">$ ${servPrice}</small>
+                                <h4 class="card-title mt-0 ">
+                                    <input type="hidden" class="servid" data-id="${id}" id="${id}" name="${id}" value="${id}" />
+                                    <a class="text-white" herf="#">${serv}</a>
+                                </h4>
+                            </div>
+                            <div class='d-grid gap-2 col-4'>
+                                <a href='#' class='btn btn-primary float-end addtocart' data-id="${id}">
+                                    <i class='fa-solid fa-cart-shopping' aria-hidden='true'></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>`
                 );
 
                 startt.append(cardd);
@@ -116,27 +118,37 @@ $(document).ready(function () {
     $("#filters :checkbox").click(function () {
         var re = new RegExp(
             $("#filters :checkbox:checked")
-            .map(function () {
-                return this.value;
-            })
-            .get()
-            .join("|")
+                .map(function () {
+                    return this.value;
+                })
+                .get()
+                .join("|")
         );
         $("div .item").each(function () {
             var $this = $(this);
             $this[
-                re.source != "" && re.test($this.attr("class")) ?
-                "show" :
-                "hide"
+                re.source != "" && re.test($this.attr("class"))
+                    ? "show"
+                    : "hide"
             ]();
         });
     });
 
+    $(document).on("click", ".addtocart", function (e) {
+        e.preventDefault();
+        toastr.success($(this).data("id"));
+        toastr.success("Hello World");
+    });
 
-    $('#addtocart').click(function () {
-        console.log($(this).attr('id'));
-    })
+    // $(".item").on("click", "a.addtocart", function (e) {
+    //     e.preventDefault();
+    //     console.log($(this).data("id"));
+    //     // alert($(this).data("id"));
+    //     toastr.success($(this).data("id"));
+    // });
+    // $("#addtocart").click(function () {
 
+    // });
 
     // }
 });
