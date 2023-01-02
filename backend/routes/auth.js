@@ -7,9 +7,35 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const fs = require("fs");
 const { handleLogin } = require("../controller/authController");
+const jwt = require("jsonwebtoken");
 const passport = require("passport");
+const Customer = require("../models/Customer");
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
 const FacebookStrategy = require("passport-facebook").Strategy;
+const User = require("../models/User");
+const PersonalToken = require("../models/PersonalToken");
+const store = require("store");
+const { result } = require("lodash");
+passport.serializeUser((user, done) => {
+    done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+    done(null, user);
+});
+
+// function setCookie(req, res, next) {
+//     const accessToken = jwt.sign(
+//         { email: profile.email, loginType: profile.provider },
+//         process.env.SECRET_KEY,
+//         { expiresIn: "2h" }
+//     );
+//     res.cookie("jwtAccess", accessToken, {
+//         httpOnly: true,
+//         maxAge: 300000, //5 minutes
+//     });
+//     next();
+// }
 
 passport.use(
     new GoogleStrategy(
@@ -19,12 +45,35 @@ passport.use(
             callbackURL: "http://localhost:5000/api/sst/login/google/callback",
             passReqToCallback: true,
         },
-        function (request, accessToken, refreshToken, profile, done) {
-            // User.findOrCreate({ googleId: profile.id }, function (err, user) {
-            //     return done(err, user);
-            // });
-            console.log(profile);
-            return done(null, profile);
+        (res, accessToken, refreshToken, profile, done) => {
+            const user = User.findOne({
+                where: { email: profile.email },
+            });
+
+            if (user === null) {
+                console.log("Not found!");
+            } else {
+                const accessToken1 = jwt.sign(
+                    { email: profile.email, loginType: profile.provider },
+                    process.env.SECRET_KEY,
+                    { expiresIn: "2h" }
+                );
+                // res.cookie("jwtAccess", accessToken1, {
+                //     httpOnly: true,
+                //     maxAge: 300000, //5 minutes
+                // });
+                PersonalToken.create({
+                    tokenable_type: "ACCESS",
+                    tokenable_id: 10,
+                    name: profile.email,
+                    token: accessToken1,
+                });
+
+                // store.set("user", { name: "Marcus" });
+
+                // console.log(profile); // 'My Title'
+                return done(null, accessToken1);
+            }
         }
     )
 );
@@ -38,8 +87,33 @@ passport.use(
                 "http://localhost:5000/api/sst/login/facebook/callback",
         },
         function (accessToken, refreshToken, profile, cb) {
-            console.log(profile);
-            return cb(JSON.stringify(profile));
+            // const [user, created] = User.findOrCreate({
+            //     where: { email: profile.email },
+            // });
+            // if (created) {
+            //     Customer.create({
+            //         first_name: profile.given_name,
+            //         last_name: profile.family_name,
+            //     });
+            // }
+            // user.then((data) => {
+            //     PersonalToken.create({
+            //         tokenable_type: "ACCESS",
+            //         tokenable_id: data.id,
+            //         name: data.email,
+            //         token: accessToken,
+            //     });
+            //     res.cookie("jwtAccess", accessToken, {
+            //         httpOnly: true,
+            //         maxAge: 300000, //5 minutes
+            //     });
+            //     res.cookie("jwtRefresh", refreshToken, {
+            //         httpOnly: true,
+            //         maxAge: 3.154e10, // 1year
+            //     });
+            // });
+            // console.log(user, accessToken, refreshToken);
+            // return cb(JSON.stringify(user));
         }
     )
 );
@@ -77,22 +151,53 @@ router.get(
     "/google",
     passport.authenticate("google", {
         scope: ["email", "profile"],
-    })
+    }),
+    (req, res) => {
+        const accessToken1 = jwt.sign(
+            { email: profile.email, loginType: profile.provider },
+            process.env.SECRET_KEY,
+            { expiresIn: "2h" }
+        );
+        res.cookie("jwtAccess", accessToken, {
+            httpOnly: true,
+            maxAge: 300000, //5 minutes
+        });
+    }
 );
 router.get(
     "/facebook",
-    passport.authenticate("facebook", { failureRedirect: "/login" })
+    passport.authenticate("facebook", {
+        failureRedirect: "http://localhost:8000/login",
+    })
 );
 
 router.get(
     "/google/callback",
     passport.authenticate("google", {
-        failureRedirect: "/login",
+        failureRedirect: "http://localhost:8000/login",
+        successRedirect: "http://localhost:8000/login",
     }),
     (req, res) => {
-        res.sendStatus(200);
+        // // setCookie(req, res);
+        // return res.redirect(
+        //     "http://localhost:5000/api/sst/login/google/callback/success"
+        // );
     }
 );
 
+router.get("/google/callback/success", (req, res) => {
+    // setCookie(req, res);
+    const data = req.user;
+    const accessToken = jwt.sign(
+        { email: data.email, loginType: data.provider },
+        process.env.SECRET_KEY,
+        { expiresIn: "2h" }
+    );
+    res.cookie("jwtAccess", accessToken, {
+        httpOnly: true,
+        maxAge: 300000, //5 minutes
+    });
+    return res.json(accessToken);
+});
 
 module.exports = router;

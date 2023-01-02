@@ -22,6 +22,7 @@ $(document).ready(function () {
                 // "Access-Control-Allow-Origin": "*",
                 Authorization: "Bearer " + localStorage.getItem("token"),
             },
+            xhrFields: { withCredentials: true },
             dataType: "json",
             success: function (data) {
                 console.log(data);

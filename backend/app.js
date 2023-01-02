@@ -8,9 +8,10 @@ const Joi = require("joi");
 var cors = require("cors");
 var verifyJWT = require("./middleware/verifyJWT");
 const cookieParser = require("cookie-parser");
-// const session = require("express-session");
+const session = require("express-session");
+const cookieSession = require("cookie-session");
 // const sequelize = require("./dbtest");
-
+const passport = require("passport");
 const app = express();
 
 const api = process.env.API_URL;
@@ -52,16 +53,35 @@ const publicRoutes = require("./routes/public");
 //     ///..other options
 // };
 
+app.use(
+    session({
+        secret: process.env.SECRET_KEY,
+        resave: false,
+        saveUninitialized: false,
+        cookie: { maxAge: 60000 },
+    })
+);
 app.use(express.json());
-app.use(cors());
+app.use(
+    cors({
+        origin: [
+            "http://127.0.0.1",
+            "http://127.0.0.1:8000",
+            "http://127.0.0.1:5000",
+            "http://localhost:8000",
+            "http://localhost:5000",
+        ],
+        credentials: true,
+        allowedHeaders: ["Content-Type", "Authorization", "authorization"],
+        exposedHeaders: ["Set-Cookie"],
+        maxAge: 600,
+    })
+);
 app.use(cookieParser());
-// app.use(bodyParser.json());
-// app.use((req, res, next) => {
-//     res.append("Access-Control-Allow-Origin", ["*"]);
-//     res.append("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-//     res.append("Access-Control-Allow-Headers", "Content-Type");
-//     next();
-// });
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Routes USE START
 app.use(`${api}/register`, registerRoutes);
 app.use(`${api}/auths`, authRoutes);

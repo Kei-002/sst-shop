@@ -9,10 +9,11 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const PersonalToken = require("../models/PersonalToken");
-
+const session = require("express-session");
 
 const handleLogin = async (req, res) => {
     console.log(req.body);
+    console.log(req.session.user);
     var data = req.body;
     var { email, pass } = data;
     console.log(email, pass);
@@ -30,12 +31,12 @@ const handleLogin = async (req, res) => {
                 if (data.confirmed) {
                     // JWT
                     const accessToken = jwt.sign(
-                        { email: data.email },
+                        { email: data.email, loginType: "local" },
                         process.env.SECRET_KEY,
                         { expiresIn: "2h" }
                     );
                     const refreshToken = jwt.sign(
-                        { email: data.email },
+                        { email: data.email, loginType: "local" },
                         process.env.SECRET_KEY,
                         { expiresIn: "1y" }
                     );
@@ -46,6 +47,8 @@ const handleLogin = async (req, res) => {
                         name: data.email,
                         token: accessToken,
                     });
+                    req.session.user = data.email;
+                    req.session.jwtAccess = accessToken;
                     res.cookie("jwtAccess", accessToken, {
                         httpOnly: true,
                         maxAge: 300000, //5 minutes
@@ -54,6 +57,9 @@ const handleLogin = async (req, res) => {
                         httpOnly: true,
                         maxAge: 3.154e10, // 1year
                     });
+                    // res.session.cookie("jwtAccess", accessToken);
+                    // res.session.save();
+                    console.log(req.session.user, req.session.jwtAccess);
                     res.json({ accessToken });
                 } else {
                     res.status(401).send({

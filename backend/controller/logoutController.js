@@ -12,15 +12,15 @@ const PersonalToken = require("../models/PersonalToken");
 
 const handleLogout = async (req, res) => {
     // console.log(req.body);
-    // const cookies = req.cookies;
+    const cookies = req.cookies;
     // var data = req.body;
     // var { email, pass } = data;
-    // console.log(cookies);
+    console.log(cookies);
     // // consol
     // if (!cookies?.jwtAccess || !cookies?.jwtRefresh) return res.sendStatus(401);
     // console.log(cookies.jwtAccess, cookies.jwtRefresh);
     // const refreshToken = cookies.jwtRefresh;
-
+    req.session.destroy();
     const authHeader =
         req.header("authorization") || req.header("Authorization");
     if (!authHeader) return res.sendStatus(401);
@@ -30,23 +30,18 @@ const handleLogout = async (req, res) => {
 
     jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
         console.log(decoded);
-        // if (err || result.name !== decoded.email) return res.sendStatus(403);
-        // const accessToken = jwt.sign(
-        //     { email: result.name },
-        //     process.env.SECRET_KEY,
-        //     { expiresIn: "5m" }
-        // );
 
         PersonalToken.destroy({ where: { name: decoded.email } })
             .then((data) => {
                 res.clearCookie("jwtAccess", {
                     httpOnly: true,
-                    maxAge: 300000, //5 minutes
+                    maxAge: 0, //5 minutes
                 });
                 res.clearCookie("jwtRefresh", {
                     httpOnly: true,
-                    maxAge: 3.154e10, // 1year
+                    maxAge: 0, // 1year
                 });
+
                 res.sendStatus(204);
             })
             .catch((err) => {
@@ -54,6 +49,7 @@ const handleLogout = async (req, res) => {
                     Message: err.message,
                 });
             });
+        // console.log(req.session.user);
         console.log("Nope");
         // updateUserToken(refreshToken, result.id);
         // res.sendStatus(204);

@@ -20,6 +20,7 @@ $(document).ready(function () {
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
+            xhrFields: { withCredentials: true },
             dataType: "json",
             success: function (data) {
                 console.log(data);
@@ -79,7 +80,7 @@ $(document).ready(function () {
         });
     });
 
-    $("#loginGoogle").on("click", function (e) {
+    $("#loginGoogle").on("click", async function (e) {
         // console.log("test");
         e.preventDefault();
         // window.open(
@@ -87,13 +88,29 @@ $(document).ready(function () {
         //     "",
         //     "width=500,height=900"
         // );
-        location.href = "http://localhost:5000/api/sst/login/google";
+        // location.href = "http://localhost:5000/api/sst/login/google";
+        fetch("http://localhost:5000/api/sst/login/google", {
+            method: "GET",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            credentials: "include",
+        });
 
         // $.ajax({
         //     type: "GET",
         //     url: "http://localhost:5000/api/sst/login/google",
+        //     contentType: false,
+        //     processData: false,
+        //     headers: {
+        //         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        //     },
+        //     xhrFields: { withCredentials: true },
         //     success: function (data) {
         //         console.log(data);
+        //         localStorage.setItem("token", data);
         //         toastr.success("Succesfully Logged in");
         //     },
         //     error: function (error) {
@@ -110,18 +127,6 @@ $(document).ready(function () {
         //     "",
         //     "width=500,height=900"
         // );
-        location.href = "http://localhost:5000/api/sst/login/facebook";
-
-        // $.ajax({
-        //     type: "GET",
-        //     url: "http://localhost:5000/api/sst/login/google",
-        //     success: function (data) {
-        //         console.log(data);
-        //         toastr.success("Succesfully Logged in");
-        //     },
-        //     error: function (error) {
-        //         console.log(error);
-        //     },
-        // });
+        // location.href = "http://localhost:5000/api/sst/login/facebook";
     });
 });

@@ -7,6 +7,8 @@ const verifyJWT = (req, res, next) => {
     if (!authHeader) return res.sendStatus(401);
     console.log(authHeader);
     const token = authHeader.split(" ")[1];
+    console.log(req.session.jwtAccess);
+    // const token = req.session.jwtAccess;
 
     jwt.verify(token, "SSTSECRET", (err, decoded) => {
         if (err) return res.sendStatus(403); //inavlid token
