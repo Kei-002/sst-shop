@@ -14,10 +14,14 @@ module.exports = function Cart(cart) {
                 price: 0,
             };
         }
+
         cartItem.quantity++;
-        cartItem.price = cartItem.item.price * cartItem.quantity;
+        cartItem.price = cartItem.item.sell_price * cartItem.quantity;
+        console.log(cartItem.item);
         this.totalItems++;
-        this.totalPrice += cartItem.item.price;
+        this.totalPrice += cartItem.price;
+        console.log(this.items);
+        // console.log(cartItem, this.totalPrice);
     };
 
     this.remove = function (id) {

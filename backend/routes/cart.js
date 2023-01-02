@@ -9,6 +9,7 @@ const fs = require('fs')
 const Cart = require("../models/Cart");
 const { response } = require("express");
 const Item = require("../models/Stock");
+// const session = require("express-session");
 
 const FILE_TYPE_MAP = {
     "image/png": "png",
@@ -62,21 +63,33 @@ router.get("/sservices", (req, res) => {
 
 // Cart Functions
 router.get("/add/:id", function (req, res, next) {
+    console.log(req.params.id);
     var itemID = req.params.id;
+    
     var cart = new Cart(req.session.cart ? req.session.cart : {});
-
+    // console.log(cart);
     // Get item information
-    var itemInfo = Item.findByPk(itemID);
-
-    // Add item to cart session
-    cart.add(itemInfo.item_name, itemID);
-    req.session.cart = cart;
-    return res.sendStatus(200);
+    // var itemInfo = await Item.findByPk(itemID);
+    Item.findByPk(itemID)
+        .then((itemInfo) => {
+            // console.log(itemInfo.dataValues);
+            // Add item to cart session
+            cart.add(itemInfo.dataValues, itemID);
+            req.session.cart = cart;
+            // console.log(req.session);
+            return res.sendStatus(200, "Item added successfully");
+        });
+    // console.log(itemInfo);
+    // // Add item to cart session
+    // cart.add(itemInfo, itemID);
+    // req.session.cart = cart;
+    // return res.sendStatus(200, "Item added successfully");
 });
 
 router.get("/cart", function (req, res, next) {
+    console.log(req.session.cart)
     if (!req.session.cart) {
-        return res.send(200, "No items in cart");
+        return res.sendStatus(200, "No items in cart");
     }
     var cart = new Cart(req.session.cart);
     return res.json(cart.getItems());

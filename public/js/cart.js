@@ -95,26 +95,7 @@ $(document).ready(function () {
         },
     });
 
-    // $("#componly").on("click", function (e) {
-    //     e.preventDefault();
-    //     var serv = document.getElementById("servcontainer");
-    //     // console.log("Service Hide!");
-    //     $("#servcontainer").toggle();
-    // });
-
-    // $("#servonly").on("click", function (e) {
-    //     e.preventDefault();
-    //     var serv = document.getElementById("compcontainer");
-    //     // console.log("Service Hide!");
-    //     if ($("#compcontainer").toggle()) {
-    //         $("#servcontainer").css("margin-top", "-505px");
-    //         // $("#servcontainer").hide();
-    //     }
-    //     if (!$("#servonly").not(":checked")) {
-    //         $("#servcontainer").css("margin-top", "5px");
-    //     }
-    // });
-
+    // Filtering items through checkbox
     $("#filters :checkbox").click(function () {
         var re = new RegExp(
             $("#filters :checkbox:checked")
@@ -136,19 +117,47 @@ $(document).ready(function () {
 
     $(document).on("click", ".addtocart", function (e) {
         e.preventDefault();
-        toastr.success($(this).data("id"));
-        toastr.success("Hello World");
+
+        var id = $(this).data("id");
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:5000/api/sst/shop/add/" + id,
+            dataType: "json",
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            credentials: "include",
+            success: function (data) {
+                toastr.success(data);
+            },
+            // error: function (e) {
+            //     console.log("AJAX load did not work", e);
+            //     alert("error", e.message);
+            // },
+        });
     });
 
-    // $(".item").on("click", "a.addtocart", function (e) {
-    //     e.preventDefault();
-    //     console.log($(this).data("id"));
-    //     // alert($(this).data("id"));
-    //     toastr.success($(this).data("id"));
-    // });
-    // $("#addtocart").click(function () {
-
-    // });
-
-    // }
+    $(".cart").on("click", (e) => {
+        e.preventDefault();
+        toastr.success("test cart");
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:5000/api/sst/shop/cart",
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            credentials: "include",
+            success: function (data) {
+                console.log(data);
+                toastr.success(data);
+            },
+            error: function (e) {
+                console.log("AJAX load did not work", e);
+                alert("error", e.message);
+            },
+        });
+    });
 });

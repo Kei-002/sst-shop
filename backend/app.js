@@ -53,14 +53,7 @@ const publicRoutes = require("./routes/public");
 //     ///..other options
 // };
 
-app.use(
-    session({
-        secret: process.env.SECRET_KEY,
-        resave: false,
-        saveUninitialized: false,
-        cookie: { maxAge: 60000 },
-    })
-);
+
 app.use(express.json());
 app.use(
     cors({
@@ -78,6 +71,14 @@ app.use(
     })
 );
 app.use(cookieParser());
+app.use(
+    session({
+        secret: process.env.SECRET_KEY,
+        resave: true,
+        saveUninitialized: true,
+        cookie: { maxAge: 60000 },
+    })
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
