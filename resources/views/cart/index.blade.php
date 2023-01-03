@@ -68,12 +68,21 @@
                             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop"
                                 aria-labelledby="offcanvasWithBackdropLabel">
                                 <div class="offcanvas-header">
-                                    <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">Offcanvas with backdrop</h5>
                                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                                         aria-label="Close"></button>
                                 </div>
-                                <div class="offcanvas-body">
-                                    <p>.....</p>
+                                <div class="offcanvas-body ccartbody">
+                                    <div class="section-title">
+                                        <span>Components</span>
+                                        <h2>Components</h2>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="offcanvas-body scartbody">
+                                    <div class="section-title">
+                                        <span>Services</span>
+                                        <h2>Services</h2>
+                                    </div>
                                 </div>
                             </div>
 
