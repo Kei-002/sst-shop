@@ -48,6 +48,7 @@ const handleLogin = async (req, res) => {
                         token: accessToken,
                     });
                     req.session.user = data.email;
+                    req.session.user_id = data.id;
                     req.session.jwtAccess = accessToken;
                     res.cookie("jwtAccess", accessToken, {
                         httpOnly: true,
@@ -59,7 +60,11 @@ const handleLogin = async (req, res) => {
                     });
                     // res.session.cookie("jwtAccess", accessToken);
                     // res.session.save();
-                    console.log(req.session.user, req.session.jwtAccess);
+                    console.log(
+                        req.session.user,
+                        req.session.user_id,
+                        req.session.jwtAccess
+                    );
                     res.json({ accessToken });
                 } else {
                     res.status(401).send({

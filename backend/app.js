@@ -30,7 +30,7 @@ app.use(
         secret: process.env.SECRET_KEY,
         resave: false,
         saveUninitialized: true,
-        cookie: { maxAge: 60000, sameSite: "none" },
+        cookie: { sameSite: "none" },
     })
 );
 
@@ -76,7 +76,8 @@ app.use(
         credentials: true,
         allowedHeaders: ["Content-Type", "Authorization", "authorization"],
         exposedHeaders: ["Set-Cookie"],
-        maxAge: 30 * 24 * 60 * 60 * 1000,
+        // maxAge: 30 * 24 * 60 * 60 * 1000,
+        // expires: new Date(Date.now() + 30 * 86400 * 1000),
     })
 );
 

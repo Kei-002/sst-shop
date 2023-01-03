@@ -121,40 +121,9 @@
                         <h2>Customer Details</h2>
                     </div>
 
-                    <div>
-                        <img src='https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg' height='100'
-                            class='credit-card-image' id='credit-card-image'></img>
+                    <div id = "customer_img">
+                        <div id = "customer_info">
 
-                        <div class="table-responsive">
-                            <table class="table table-borderless">
-                                <tbody>
-                                    <tr>
-                                        <td>Name :
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td id="name">Joshua
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Address :
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td id="address">Taguig
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Phone :
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td id="phone">09123
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
 
                         <div>

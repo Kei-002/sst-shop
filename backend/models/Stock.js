@@ -17,9 +17,6 @@ const Stock = sequelize.define(
     }
 );
 
-Item.hasOne(Stock, {
-    foreignKey: "item_id",
-});
 Stock.belongsTo(Item, { foreignKey: "item_id" });
 
 module.exports = Item;
