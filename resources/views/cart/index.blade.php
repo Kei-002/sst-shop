@@ -149,8 +149,14 @@
                                                     </td>
                                                     <td>
                                                         <br> <span class='thin'>Nike</span>
-                                                        <br> Free Run 3.0 Women<br> <span
-                                                            class='thin small'>$99.95<br><br></span><br>
+                                                        <br> Free Run 3.0 Women<br> <span class='thin small'>$99.95
+                                                            <div class="form-outline" style="width: 5rem;">
+                                                                <input min="1" max="10" type="number"
+                                                                    id="typeNumber" class="form-control" />
+                                                            </div>
+                                                            <br><br>
+                                                        </span><br>
+
                                                     </td>
 
                                                 </tr>
@@ -163,8 +169,12 @@
                                                     </td>
                                                     <td>
                                                         <br> <span class='thin'>Nike</span>
-                                                        <br> Free Run 3.0 Women<br> <span
-                                                            class='thin small'>$99.95<br><br></span><br>
+                                                        <br> Free Run 3.0 Women<br> <span class='thin small'>$99.95
+                                                            <div class="form-outline" style="width: 5rem;">
+                                                                <input min="1" max="10" type="number"
+                                                                    id="typeNumber" class="form-control" />
+                                                            </div><br><br>
+                                                        </span><br>
                                                     </td>
 
                                                 </tr>
@@ -192,22 +202,30 @@
                                                     </td>
                                                     <td>
                                                         <br> <span class='thin'>Nike</span>
-                                                        <br> Free Run 3.0 Women<br> <span
-                                                            class='thin small'>$99.95<br><br></span><br>
+                                                        <br> Free Run 3.0 Women<br> <span class='thin small'>$99.95
+                                                            <div class="form-outline" style="width: 5rem;">
+                                                                <input min="1" max="10" type="number"
+                                                                    id="typeNumber" class="form-control" />
+                                                            </div><br><br>
+                                                        </span><br>
                                                     </td>
+
 
                                                 </tr>
 
                                                 <tr>
-
                                                     <td>
                                                         <img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG'
                                                             class='full-width'></img>
                                                     </td>
                                                     <td>
                                                         <br> <span class='thin'>Nike</span>
-                                                        <br> Free Run 3.0 Women<br> <span
-                                                            class='thin small'>$99.95<br><br></span><br>
+                                                        <br> Free Run 3.0 Women<br> <span class='thin small'>$99.95
+                                                            <div class="form-outline" style="width: 5rem;">
+                                                                <input min="1" max="10" type="number"
+                                                                    id="typeNumber" class="form-control" />
+                                                            </div><br><br>
+                                                        </span><br>
                                                     </td>
 
                                                 </tr>
