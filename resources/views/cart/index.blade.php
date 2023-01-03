@@ -33,11 +33,34 @@
             -webkit-transition: all .2s ease;
             transition: all .2s ease;
         }
+
+        .float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #0C9;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            box-shadow: 2px 2px 3px #999;
+        }
+
+        .my-float {
+            margin-top: 22px;
+        }
     </style>
 
     <body class="has-drawer">
 
         <div class="container ccart ">
+
+            <a class="float cart" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop"
+                aria-controls="offcanvasWithBackdrop">
+                <i class="fa-solid fa-cart-shopping my-float"></i>
+            </a>
+
             <div class="row"
                 style="background: white; margin-top:20px; box-shadow: 0px 0 30px rgba(68, 68, 68, 0.08); padding-bottom:20px;height: 100%;">
                 <div class="searchbox">
@@ -84,11 +107,6 @@
                                     <li><a id="servonly" class="checkbox filter-service"><span></span>Services</a></li>
                                 </ul>
                             </div> --}}
-
-                            <h3>PRICE RANGE</h3>
-
-                            <button class="btn btn-primary cart" type="button" data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop">Cart</button>
 
                             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop"
                                 aria-labelledby="offcanvasWithBackdropLabel">
