@@ -25,6 +25,6 @@ Route::view('/category-index', 'category.index');
 Route::view('/ship-index', 'shipper.index'); 
 Route::view('/services-index', 'services.index'); 
 Route::view('/shop', 'cart.index'); 
+Route::view('/checkout', 'cart.checkout'); 
 Route::view('/admin', 'admin.admin'); 
 Route::view('/login', 'admin.login'); 
-
