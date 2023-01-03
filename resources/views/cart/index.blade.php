@@ -50,6 +50,10 @@
         .my-float {
             margin-top: 22px;
         }
+
+        .full-width {
+            width: 100px;
+        }
     </style>
 
     <body class="has-drawer">
@@ -119,6 +123,42 @@
                                         <span>Components</span>
                                         <h2>Components</h2>
                                     </div>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-borderless">
+                                            <tbody id="cart">
+                                                <tr>
+
+                                                    <td>
+                                                        <img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG'
+                                                            class='full-width'></img>
+                                                    </td>
+                                                    <td>
+                                                        <br> <span class='thin'>Nike</span>
+                                                        <br> Free Run 3.0 Women<br> <span
+                                                            class='thin small'>$99.95<br><br></span><br>
+                                                    </td>
+
+                                                </tr>
+
+                                                <tr>
+
+                                                    <td>
+                                                        <img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG'
+                                                            class='full-width'></img>
+                                                    </td>
+                                                    <td>
+                                                        <br> <span class='thin'>Nike</span>
+                                                        <br> Free Run 3.0 Women<br> <span
+                                                            class='thin small'>$99.95<br><br></span><br>
+                                                    </td>
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
                                 </div>
                                 <hr>
                                 <div class="offcanvas-body scartbody">
@@ -126,6 +166,42 @@
                                         <span>Services</span>
                                         <h2>Services</h2>
                                     </div>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-borderless">
+                                            <tbody id="cart">
+                                                <tr>
+
+                                                    <td>
+                                                        <img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG'
+                                                            class='full-width'></img>
+                                                    </td>
+                                                    <td>
+                                                        <br> <span class='thin'>Nike</span>
+                                                        <br> Free Run 3.0 Women<br> <span
+                                                            class='thin small'>$99.95<br><br></span><br>
+                                                    </td>
+
+                                                </tr>
+
+                                                <tr>
+
+                                                    <td>
+                                                        <img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG'
+                                                            class='full-width'></img>
+                                                    </td>
+                                                    <td>
+                                                        <br> <span class='thin'>Nike</span>
+                                                        <br> Free Run 3.0 Women<br> <span
+                                                            class='thin small'>$99.95<br><br></span><br>
+                                                    </td>
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
                                 </div>
                                 <div class="offcanvas-footer">
                                     <button type="button" class='pay-btn' id="checkout">Checkout</button>
