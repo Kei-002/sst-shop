@@ -1,9 +1,11 @@
 $(document).ready(function () {
     var cartDisplay = $("#cart");
     var totalDisplay = $("#totalBody");
+    var customerImg = $("#customer_img");
+    var customerInfo = $("#customer_info");
     $.ajax({
         type: "GET",
-        url: "http://localhost:5000/api/sst/shop/cart",
+        url: "http://localhost:5000/api/sst/shop/checkoutinfo",
         contentType: false,
         processData: false,
         dataType: "json",
@@ -28,6 +30,41 @@ $(document).ready(function () {
                                         <h2 id="total" style="font-weight: 300">$ ${data.totalPrice}</h2>
                                     </td>
                                 </tr>`);
+            totalz.appendTo(totalDisplay);
+            var custInfo = $(`
+            <img src='${data.customer.img_path}' height='100'
+                            class='credit-card-image' id='credit-card-image'></img>
+
+                <div class="table-responsive">
+                    <table class="table table-borderless">
+                        <tbody id="customer_info">
+                            <tr>
+                                 <td>Name :
+                                </td>
+                               </tr>
+                            <tr>
+                                 <td id="name">${data.customer.fname} ${data.customer.lname}
+                                  </td>
+                               </tr>
+                            <tr>
+                                   <td>Address :
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="address">${data.customer.address}
+                                  </td>
+                               </tr>
+                               <tr>
+                                  <td>Phone :
+                                 </td>
+                                    </tr>
+                                    <tr>
+                                        <td id="phone">${data.customer.phone}
+                                        </td>
+                                    </tr>`);
+
+            custInfo.appendTo(customerInfo);
 
             $.each(data.cartItems, function (key, value) {
                 console.log("key ", key, "val ", value.item.item_name);
@@ -54,7 +91,6 @@ $(document).ready(function () {
                                 </td>
                             </tr>`);
                 cartItems.appendTo(cartDisplay);
-                totalz.appendTo(totalDisplay);
             });
         },
         error: function (e) {
@@ -118,38 +154,31 @@ $(document).ready(function () {
         // 3 milliseconds
     );
 
-    // $(document).on(
-    //     "change",
-    //     "#typeNumber",
-    //     debounce(function (e) {
-    //         e.preventDefault();
+    $(".pay-btn").click(function (e) {
+        e.preventDefault();
 
-    //         var id = $(this).data("id");
-    //         var quantity = $(this).val();
-    //         $.ajax({
-    //             type: "GET",
-    //             url:
-    //                 "http://localhost:5000/api/sst/shop/update/" +
-    //                 id +
-    //                 "/" +
-    //                 quantity,
-    //             dataType: "json",
-    //             headers: {
-    //                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-    //                     "content"
-    //                 ),
-    //             },
-    //             xhrFields: { withCredentials: true },
-    //             credentials: "include",
-    //             success: function (data) {
-    //                 toastr.success(data + " quantity changed successfully");
-    //             },
-    //             error: function (e) {
-    //                 console.log("AJAX load did not work", e);
-    //                 alert("error", e.message);
-    //             },
-    //         });
-    //     }),
-    //     30 // 3 milliseconds
-    // );
+        // var id = $(this).data("id");
+        // var quantity = $(this).val();
+        // console.log(quantity, id);
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:5000/api/sst/shop/checkout",
+            dataType: "json",
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            xhrFields: { withCredentials: true },
+            credentials: "include",
+            success: function (data) {
+                toastr.success(
+                    data.item_name + " quantity changed successfully"
+                );
+                // $("#total").text("$ " + data.totalPrice);
+            },
+            error: function (e) {
+                console.log("AJAX load did not work", e);
+                alert("error", e.message);
+            },
+        });
+    });
 });
