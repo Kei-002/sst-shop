@@ -1,6 +1,9 @@
 @extends('layouts.base')
 @section('body')
-    <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
+
+    <head>
+        <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
+    </head>
 
     <style>
         .row {
@@ -8,9 +11,9 @@
         }
     </style>
 
-    <body>
+    <body class="has-drawer">
 
-        <div class="container ccart">
+        <div class="container ccart ">
             <div class="row"
                 style="background: white; margin-top:20px; box-shadow: 0px 0 30px rgba(68, 68, 68, 0.08); padding-bottom:20px;height: 100%;">
                 <div class="searchbox">
@@ -58,7 +61,22 @@
                             </div> --}}
 
                             <h3>PRICE RANGE</h3>
-                            <button class="cart">Cart</button>
+
+                            <button class="btn btn-primary cart" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop">Cart</button>
+
+                            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop"
+                                aria-labelledby="offcanvasWithBackdropLabel">
+                                <div class="offcanvas-header">
+                                    <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">Offcanvas with backdrop</h5>
+                                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body">
+                                    <p>.....</p>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="col-12 col-sm-6 col-md-8">
