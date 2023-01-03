@@ -54,6 +54,19 @@
         .full-width {
             width: 100px;
         }
+
+        #itemCount {
+            position: absolute;
+            display: none;
+            top: -10px;
+            left: -10px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: red;
+            color: white;
+            text-align: center;
+        }
     </style>
 
     <body class="has-drawer">
@@ -63,6 +76,7 @@
             <a class="float cart" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop"
                 aria-controls="offcanvasWithBackdrop">
                 <i class="fa-solid fa-cart-shopping my-float"></i>
+                <span id="itemCount"></span>
             </a>
 
             <div class="row"
@@ -204,6 +218,7 @@
 
                                 </div>
                                 <div class="offcanvas-footer">
+                                    <span id="cartTotal"></span>
                                     <button type="button" class='pay-btn' id="checkout">Checkout</button>
                                 </div>
                             </div>
