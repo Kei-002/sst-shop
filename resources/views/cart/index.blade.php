@@ -12,6 +12,27 @@
         .row {
             padding-top: 25px;
         }
+
+        .pay-btn {
+            margin-bottom: 20px;
+            border: none;
+            background: #22b877;
+            font-size: 19px;
+            font-size: 1.2rem;
+            color: #fff;
+            cursor: pointer;
+            -webkit-transition: all .2s ease;
+            transition: all .2s ease;
+            width: 100%;
+            margin-bottom: 0px;
+        }
+
+        .pay-btn:hover {
+            background: #22a877;
+            color: #eee;
+            -webkit-transition: all .2s ease;
+            transition: all .2s ease;
+        }
     </style>
 
     <body class="has-drawer">
@@ -87,6 +108,9 @@
                                         <span>Services</span>
                                         <h2>Services</h2>
                                     </div>
+                                </div>
+                                <div class="offcanvas-footer">
+                                    <button type="button" class='pay-btn' id="checkout">Checkout</button>
                                 </div>
                             </div>
 
