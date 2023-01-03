@@ -40,7 +40,7 @@
             height: 60px;
             bottom: 40px;
             right: 40px;
-            background-color: #0C9;
+            background-color: rgb(0, 163, 204);
             color: #FFF;
             border-radius: 50px;
             text-align: center;
