@@ -67,6 +67,59 @@
             color: white;
             text-align: center;
         }
+
+        $delete-red: red;
+
+        body {
+            margin: 32px;
+        }
+
+        .btnn {
+            display: flex;
+            align-items: center;
+            background: none;
+            border: 1px solid lighten(gray, 24%);
+            height: 48px;
+            padding: 0 24px 0 16px;
+            letter-spacing: .25px;
+            border-radius: 24px;
+            cursor: pointer;
+
+            &:focus {
+                outline: none;
+            }
+
+            .mdi {
+                margin-right: 8px;
+            }
+        }
+
+        .btn-delete {
+            font-size: 16px;
+            color: red;
+
+            >.mdi-delete-empty {
+                display: none;
+            }
+
+            &:hover {
+                background-color: lighten(red, 48%);
+
+                >.mdi-delete-empty {
+                    display: block;
+                }
+
+                >.mdi-delete {
+                    display: none;
+                }
+            }
+
+
+
+            &:focus {
+                box-shadow: 0 0 0 4px lighten(red, 40%);
+            }
+        }
     </style>
 
     <body class="has-drawer">
@@ -112,21 +165,8 @@
 
                             </div>
 
-                            {{-- <h3>CATEGORIES</h3>
-                            <div class="checklist categories" id="categories">
-                                <ul>
-                                    <li><a id="componly" class="checkbox filter-component"><span></span>Components</a></li>
-                                    <ul>
-                                        <li><a href=""
-                                                class="checkbox filter-component filter-GPU"><span></span>GPU</a></li>
-                                        <li><a href=""
-                                                class="checkbox filter-component filter-CPU"><span></span>CPU</a></li>
-                                    </ul>
-                                    <li><a id="servonly" class="checkbox filter-service"><span></span>Services</a></li>
-                                </ul>
-                            </div> --}}
 
-                            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop"
+                            <div class="offcanvas offcanvas-start items-services" tabindex="-1" id="offcanvasWithBackdrop"
                                 aria-labelledby="offcanvasWithBackdropLabel">
                                 <div class="offcanvas-header">
                                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
@@ -140,44 +180,10 @@
 
                                     <div class="table-responsive">
                                         <table class="table table-borderless">
-                                            <tbody id="cart">
-                                                <tr>
+                                            <tbody id="cart-items">
 
-                                                    <td>
-                                                        <img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG'
-                                                            class='full-width'></img>
-                                                    </td>
-                                                    <td>
-                                                        <br> <span class='thin'>Nike</span>
-                                                        <br> Free Run 3.0 Women<br> <span class='thin small'>$99.95
-                                                            <div class="form-outline" style="width: 5rem;">
-                                                                <input min="1" max="10" type="number"
-                                                                    id="typeNumber" class="form-control" />
-                                                            </div>
-                                                            <br><br>
-                                                        </span><br>
 
-                                                    </td>
-
-                                                </tr>
-
-                                                <tr>
-
-                                                    <td>
-                                                        <img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG'
-                                                            class='full-width'></img>
-                                                    </td>
-                                                    <td>
-                                                        <br> <span class='thin'>Nike</span>
-                                                        <br> Free Run 3.0 Women<br> <span class='thin small'>$99.95
-                                                            <div class="form-outline" style="width: 5rem;">
-                                                                <input min="1" max="10" type="number"
-                                                                    id="typeNumber" class="form-control" />
-                                                            </div><br><br>
-                                                        </span><br>
-                                                    </td>
-
-                                                </tr>
+                                                {{-- Items --}}
 
                                             </tbody>
                                         </table>
@@ -193,42 +199,10 @@
 
                                     <div class="table-responsive">
                                         <table class="table table-borderless">
-                                            <tbody id="cart">
-                                                <tr>
-
-                                                    <td>
-                                                        <img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG'
-                                                            class='full-width'></img>
-                                                    </td>
-                                                    <td>
-                                                        <br> <span class='thin'>Nike</span>
-                                                        <br> Free Run 3.0 Women<br> <span class='thin small'>$99.95
-                                                            <div class="form-outline" style="width: 5rem;">
-                                                                <input min="1" max="10" type="number"
-                                                                    id="typeNumber" class="form-control" />
-                                                            </div><br><br>
-                                                        </span><br>
-                                                    </td>
+                                            <tbody id="cart-services">
+                                               {{-- Services --}}
 
 
-                                                </tr>
-
-                                                <tr>
-                                                    <td>
-                                                        <img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG'
-                                                            class='full-width'></img>
-                                                    </td>
-                                                    <td>
-                                                        <br> <span class='thin'>Nike</span>
-                                                        <br> Free Run 3.0 Women<br> <span class='thin small'>$99.95
-                                                            <div class="form-outline" style="width: 5rem;">
-                                                                <input min="1" max="10" type="number"
-                                                                    id="typeNumber" class="form-control" />
-                                                            </div><br><br>
-                                                        </span><br>
-                                                    </td>
-
-                                                </tr>
 
                                             </tbody>
                                         </table>
@@ -237,7 +211,7 @@
                                 </div>
                                 <div class="offcanvas-footer">
                                     <span id="cartTotal"></span>
-                                    <button type="button" class='pay-btn' id="checkout">Checkout</button>
+                                    <button type="button" class='pay-btn' id="checkout" onclick="location.href='{{ url('/checkout') }}';">Checkout</button>
                                 </div>
                             </div>
 

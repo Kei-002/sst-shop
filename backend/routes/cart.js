@@ -11,6 +11,7 @@ const {
     response
 } = require("express");
 const Item = require("../models/Stock");
+const Category = require("../models/Category");
 // const session = require("express-session");
 
 const FILE_TYPE_MAP = {
@@ -68,10 +69,10 @@ router.get("/add/:id", function (req, res, next) {
     console.log(req.params.id);
     // console.log(req.session);
     var itemID = req.params.id;
-
     var cart = new Cart(req.session.cart ? req.session.cart : {});
-    Item.findByPk(itemID).then((itemInfo) => {
+    Item.findByPk(itemID, { include: Category }).then((itemInfo) => {
         // console.log(itemInfo);
+        console.log(itemInfo.dataValues);
         cart.add(itemInfo.dataValues, itemID);
         req.session.cart = cart;
         // console.log(req.session);
@@ -86,16 +87,48 @@ router.get("/add/:id", function (req, res, next) {
     // return res.sendStatus(200, "Item added successfully");
 });
 
+router.get("/update/:id/:quantity", function (req, res, next) {
+    console.log(req.params.id);
+    // console.log(req.session);
+    var itemID = req.params.id;
+    var itemQuantity = req.params.quantity;
+    var cart = new Cart(req.session.cart ? req.session.cart : {});
+    Item.findByPk(itemID, { include: Category }).then((itemInfo) => {
+        // console.log(itemInfo);
+        console.log(itemInfo.dataValues);
+        cart.update(itemInfo.dataValues, itemQuantity, itemID);
+        req.session.cart = cart;
+        // console.log(req.session);
+        console.log(req.session.id);
+        console.log(cart);
+        return res
+            .status(200)
+            .json({
+                item_name: itemInfo.dataValues.item_name,
+                totalPrice: cart.totalPrice,
+            });
+    });
+    // console.log(itemInfo);
+    // // Add item to cart session
+    // cart.add(itemInfo, itemID);
+    // req.session.cart = cart;
+    // return res.sendStatus(200, "Item added successfully");
+});
+
 router.get("/cart", function (req, res, next) {
     console.log(req.session.cart);
     if (!req.session.cart) {
         console.log("test id nt", req.session.id);
-        return res.status(200).json("No items");
+        return res.status(200).json("No items in cart");
     }
     var cart = new Cart(req.session.cart ? req.session.cart : {});
     console.log("test id ", req.session.id);
     // console.log(cart.getItems())
-    return res.status(200).json(cart.getItems());
+    console.log(cart.totalPrice);
+    return res.status(200).json({
+        cartItems: cart.getItems(),
+        totalPrice: cart.totalPrice,
+    });
     // res.render("cart", {
     //     title: "NodeJS Shopping Cart",
     //     products: cart.getItems(),

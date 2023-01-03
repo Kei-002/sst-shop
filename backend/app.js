@@ -76,7 +76,7 @@ app.use(
         credentials: true,
         allowedHeaders: ["Content-Type", "Authorization", "authorization"],
         exposedHeaders: ["Set-Cookie"],
-        maxAge: 600,
+        maxAge: 30 * 24 * 60 * 60 * 1000,
     })
 );
 

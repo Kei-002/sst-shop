@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../con_sequelize");
+const Category = require("./Category");
 const Stock = require("./Stock");
 
 const Item = sequelize.define(
@@ -34,14 +35,20 @@ const Item = sequelize.define(
     }
 );
 
-Item.associate = function (models) {
-    Stock.belongsTo(Item, {
-        foreignKey: "item_id",
+// Item.associate = function (models) {
+    // Stock.belongsTo(Item, {
+    //     foreignKey: "item_id",
+    // });
+    Item.belongsTo(Category, {
+        foreignKey: "category_id",
     });
-    Item.hasOne(Stock, {
-        foreignKey: "item_id",
-    });
-};
+    // Category.belongsTo(models.Item, {
+    //     foreignKey: "category_id",
+    // });
+    // Item.hasOne(models.Stock, {
+    //     foreignKey: "item_id",
+    // });
+// };
 // Item.hasOne(Stock, {
 //     foreignKey: "item_id",
 // });

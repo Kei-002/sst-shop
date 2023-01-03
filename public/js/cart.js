@@ -99,18 +99,18 @@ $(document).ready(function () {
     $("#filters :checkbox").click(function () {
         var re = new RegExp(
             $("#filters :checkbox:checked")
-            .map(function () {
-                return this.value;
-            })
-            .get()
-            .join("|")
+                .map(function () {
+                    return this.value;
+                })
+                .get()
+                .join("|")
         );
         $("div .item").each(function () {
             var $this = $(this);
             $this[
-                re.source != "" && re.test($this.attr("class")) ?
-                "show" :
-                "hide"
+                re.source != "" && re.test($this.attr("class"))
+                    ? "show"
+                    : "hide"
             ]();
         });
     });
@@ -141,6 +141,7 @@ $(document).ready(function () {
     $(".cart").on("click", (e) => {
         e.preventDefault();
         toastr.success("test cart");
+        var cartDisplay = $("#cart-items");
         $.ajax({
             type: "GET",
             url: "http://localhost:5000/api/sst/shop/cart",
@@ -153,8 +154,36 @@ $(document).ready(function () {
             xhrFields: { withCredentials: true },
             credentials: "include",
             success: function (data) {
-                console.log(data);
+                cartDisplay.empty();
+                console.log(data.cartItems);
+                console.log("Nah");
                 toastr.success(data);
+                $.each(data.cartItems, function (key, value) {
+                    // value = value.cartItems;
+                    // console.log("key ", key, "val ", value.item.item_name);
+                    var itemID = value.item.id;
+                    var item_name = value.item.item_name;
+                    var price = value.price;
+                    var quantity = value.quantity;
+                    var img_path = value.item.img_path;
+                    var category = value.item.category.category_name;
+                    var cartItems = $(` <tr>
+                                <td>
+                                    <img src='${img_path}' class='full-width'></img>
+                                </td>
+                                <td>
+                                    <br> <span class='thin'>${category}</span>
+                                    <br> ${item_name}<br> <span class='thin small'>$${price}
+                                        <div class="form-outline" style="width: 5rem;">
+                                            <input min="1" max="10" type="number"
+                                                id="typeNumber" class="form-control" data-id="${itemID}" value="${quantity}"/>
+                                        </div>
+                                        <br><br>
+                                    </span><br>
+                                </td>
+                            </tr>`);
+                    cartItems.appendTo(cartDisplay);
+                });
             },
             error: function (e) {
                 console.log("AJAX load did not work", e);
@@ -162,4 +191,96 @@ $(document).ready(function () {
             },
         });
     });
+
+    // Returns a function, that, as long as it continues to be invoked, will not
+    // be triggered. The function will be called after it stops being called for
+    // N milliseconds. If `immediate` is passed, trigger the function on the
+    // leading edge, instead of the trailing.
+    // function debounce(func, wait, immediate) {
+    //     var timeout;
+    //     return function () {
+    //         var context = this,
+    //             args = arguments;
+    //         var later = function () {
+    //             timeout = null;
+    //             if (!immediate) func.apply(context, args);
+    //         };
+    //         var callNow = immediate && !timeout;
+    //         clearTimeout(timeout);
+    //         timeout = setTimeout(later, wait);
+    //         if (callNow) func.apply(context, args);
+    //     };
+    // }
+
+    // $(".items-services").on(
+    //     "change",
+    //     "#typeNumber",
+    //     debounce(function (e) {
+    //         e.preventDefault();
+
+    //         var id = $(this).data("id");
+    //         var quantity = $(this).val();
+    //         $.ajax({
+    //             type: "GET",
+    //             url:
+    //                 "http://localhost:5000/api/sst/shop/update/" +
+    //                 id +
+    //                 "/" +
+    //                 quantity,
+    //             dataType: "json",
+    //             headers: {
+    //                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+    //                     "content"
+    //                 ),
+    //             },
+    //             xhrFields: { withCredentials: true },
+    //             credentials: "include",
+    //             success: function (data) {
+    //                 toastr.success(data + " quantity changed successfully");
+    //             },
+    //             error: function (e) {
+    //                 console.log("AJAX load did not work", e);
+    //                 alert("error", e.message);
+    //             },
+    //         });
+    //     }),
+    //     250 // 3 milliseconds
+    // );
+    $(".items-services").on(
+        "change",
+        "#typeNumber",
+        function (e) {
+            e.preventDefault();
+
+            var id = $(this).data("id");
+            var quantity = $(this).val();
+            console.log(quantity, id);
+            $.ajax({
+                type: "GET",
+                url:
+                    "http://localhost:5000/api/sst/shop/update/" +
+                    id +
+                    "/" +
+                    quantity,
+                dataType: "json",
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ),
+                },
+                xhrFields: { withCredentials: true },
+                credentials: "include",
+                success: function (data) {
+                    toastr.success(
+                        data.item_name + " quantity changed successfully"
+                    );
+                },
+                error: function (e) {
+                    console.log("AJAX load did not work", e);
+                    alert("error", e.message);
+                },
+            });
+        }
+        // 3 milliseconds
+    );
 });
