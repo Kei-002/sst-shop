@@ -24,6 +24,15 @@ const api = process.env.API_URL;
 //         saveUninitialized: false,
 //     })
 // );
+app.use(cookieParser());
+app.use(
+    session({
+        secret: process.env.SECRET_KEY,
+        resave: false,
+        saveUninitialized: true,
+        cookie: { maxAge: 60000, sameSite: "none" },
+    })
+);
 
 // Routes
 const custRoutes = require("./routes/customer");
@@ -53,7 +62,6 @@ const publicRoutes = require("./routes/public");
 //     ///..other options
 // };
 
-
 app.use(express.json());
 app.use(
     cors({
@@ -64,25 +72,20 @@ app.use(
             "http://localhost:8000",
             "http://localhost:5000",
         ],
+        // origin: true,
         credentials: true,
         allowedHeaders: ["Content-Type", "Authorization", "authorization"],
         exposedHeaders: ["Set-Cookie"],
         maxAge: 600,
     })
 );
-app.use(cookieParser());
-app.use(
-    session({
-        secret: process.env.SECRET_KEY,
-        resave: true,
-        saveUninitialized: true,
-        cookie: { maxAge: 60000 },
-    })
-);
 
-app.use(passport.initialize());
-app.use(passport.session());
-
+// app.use(passport.initialize());
+// app.use(passport.session());
+// app.use(function (req, res, next) {
+//     res.locals.session = req.session;
+//     next();
+// });
 // Routes USE START
 app.use(`${api}/register`, registerRoutes);
 app.use(`${api}/auths`, authRoutes);

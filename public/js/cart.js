@@ -126,14 +126,15 @@ $(document).ready(function () {
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
+            xhrFields: { withCredentials: true },
             credentials: "include",
             success: function (data) {
-                toastr.success(data);
+                toastr.success(data + " successfully added to cart");
             },
-            // error: function (e) {
-            //     console.log("AJAX load did not work", e);
-            //     alert("error", e.message);
-            // },
+            error: function (e) {
+                console.log("AJAX load did not work", e);
+                alert("error", e.message);
+            },
         });
     });
 
@@ -149,6 +150,7 @@ $(document).ready(function () {
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
+            xhrFields: { withCredentials: true },
             credentials: "include",
             success: function (data) {
                 console.log(data);

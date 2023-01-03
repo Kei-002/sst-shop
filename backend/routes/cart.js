@@ -66,21 +66,19 @@ router.get("/sservices", (req, res) => {
 // Cart Functions
 router.get("/add/:id", function (req, res, next) {
     console.log(req.params.id);
+    // console.log(req.session);
     var itemID = req.params.id;
 
     var cart = new Cart(req.session.cart ? req.session.cart : {});
-    // console.log(cart);
-    // Get item information
-    // var itemInfo = await Item.findByPk(itemID);
-    Item.findByPk(itemID)
-        .then((itemInfo) => {
-            // console.log(itemInfo.dataValues);
-            // Add item to cart session
-            cart.add(itemInfo.dataValues, itemID);
-            req.session.cart = cart;
-            // console.log(req.session);
-            return res.sendStatus(200, "Item added successfully");
-        });
+    Item.findByPk(itemID).then((itemInfo) => {
+        // console.log(itemInfo);
+        cart.add(itemInfo.dataValues, itemID);
+        req.session.cart = cart;
+        // console.log(req.session);
+        console.log(req.session.id);
+        console.log(cart);
+        return res.status(200).json(itemInfo.dataValues.item_name);
+    });
     // console.log(itemInfo);
     // // Add item to cart session
     // cart.add(itemInfo, itemID);
@@ -89,12 +87,15 @@ router.get("/add/:id", function (req, res, next) {
 });
 
 router.get("/cart", function (req, res, next) {
-    console.log(req.session.cart)
+    console.log(req.session.cart);
     if (!req.session.cart) {
-        return res.sendStatus(200, "No items in cart");
+        console.log("test id nt", req.session.id);
+        return res.status(200).json("No items");
     }
-    var cart = new Cart(req.session.cart);
-    return res.json(cart.getItems());
+    var cart = new Cart(req.session.cart ? req.session.cart : {});
+    console.log("test id ", req.session.id);
+    // console.log(cart.getItems())
+    return res.status(200).json(cart.getItems());
     // res.render("cart", {
     //     title: "NodeJS Shopping Cart",
     //     products: cart.getItems(),
@@ -128,5 +129,6 @@ router.get('/search', function (req, res) {
         },
     )
 })
+
 
 module.exports = router
