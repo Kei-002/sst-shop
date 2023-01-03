@@ -89,69 +89,7 @@
                     <div class="table-responsive">
                         <table class="table table-borderless">
                             <tbody id="cart">
-                                <tr>
-
-                                    <td>
-                                        <img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG'
-                                            class='full-width'></img>
-                                    </td>
-                                    <td>
-                                        <br> <span class='thin'>Nike</span>
-                                        <br> Free Run 3.0 Women<br> <span class='thin small'> Color: Grey/Orange, Size:
-                                            10.5<br><br></span><br>
-                                        <div class='price'>$99.95</div>
-                                    </td>
-
-                                </tr>
-
-                                <tr>
-
-                                    <td>
-                                        <img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG'
-                                            class='full-width'></img>
-                                    </td>
-                                    <td>
-                                        <br> <span class='thin'>Nike</span>
-                                        <br> Free Run 3.0 Women<br> <span class='thin small'> Color: Grey/Orange, Size:
-                                            10.5<br><br></span><br>
-                                        <div class='price'>$99.95</div>
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <td>
-                                        <img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG'
-                                            class='full-width'></img>
-                                    </td>
-                                    <td>
-                                        <br> <span class='thin'>Nike</span>
-                                        <br> Free Run 3.0 Women<br> <span class='thin small'> Color: Grey/Orange, Size:
-                                            10.5<br><br></span><br>
-                                        <div class='price'>$99.95</div>
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <td>
-                                        <img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG'
-                                            class='full-width'></img>
-                                    </td>
-                                    <td>
-                                        <br> <span class='thin'>Nike</span>
-                                        <br> Free Run 3.0 Women<br> <span class='thin small'> Color: Grey/Orange, Size:
-                                            10.5<br><br></span><br>
-                                        <div class='price'>$99.95</div>
-                                    </td>
-
-                                </tr>
-
-
+                                {{-- Items here --}}
 
                             </tbody>
                         </table>
@@ -160,8 +98,8 @@
                     <div>
                         <div class="table-responsive">
                             <table class="table table-borderless">
-                                <tbody>
-                                    <tr>
+                                <tbody id="totalBody">
+                                    <tr >
                                         <td>
                                             <h2 style="font-weight: 900">Total</h2>
                                         </td>
@@ -230,6 +168,6 @@
             </div>
 
         </div>
-
+        <script src="{{ asset('js/checkout.js') }}"></script>
     </body>
 @endsection
