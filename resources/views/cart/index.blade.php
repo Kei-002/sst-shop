@@ -3,6 +3,9 @@
 
     <head>
         <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" />
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     </head>
 
     <style>
@@ -19,7 +22,8 @@
                 <div class="searchbox">
                     <div class="d-flex justify-content-center px-5">
                         <div class="search">
-                            <input type="text" class="search-input" placeholder="Search..." name="">
+                            <input type="text" class="search-input form-control" placeholder="Search..."
+                                name="autoSearch" id="autoSearch">
                             <a href="#" class="search-icon"> <i class="fa fa-search"></i> </a>
                         </div>
                     </div>
@@ -141,31 +145,41 @@
             </div>
         </div>
 
-    </body>
+        <script src="{{ asset('js/cart.js') }}"></script>
 
-    <script src="{{ asset('js/cart.js') }}"></script>
+        <script>
+            $('.categories a span').each(function(i, el) {
+                $(el).append('<span class="x"></span><span class="y"></span>');
 
-    <script>
-        $('.categories a span').each(function(i, el) {
-            $(el).append('<span class="x"></span><span class="y"></span>');
+                $(el).parent().on('click', function() {
+                    if ($(this).hasClass('checked')) {
+                        $(el).find('.y').removeClass('animate');
+                        setTimeout(function() {
+                            $(el).find('.x').removeClass('animate');
+                        }, 50);
+                        $(this).removeClass('checked');
+                        return false;
+                    }
 
-            $(el).parent().on('click', function() {
-                if ($(this).hasClass('checked')) {
-                    $(el).find('.y').removeClass('animate');
+                    $(el).find('.x').addClass('animate');
                     setTimeout(function() {
-                        $(el).find('.x').removeClass('animate');
-                    }, 50);
-                    $(this).removeClass('checked');
+                        $(el).find('.y').addClass('animate');
+                    }, 100);
+                    $(this).addClass('checked');
                     return false;
-                }
-
-                $(el).find('.x').addClass('animate');
-                setTimeout(function() {
-                    $(el).find('.y').addClass('animate');
-                }, 100);
-                $(this).addClass('checked');
-                return false;
+                });
             });
-        });
-    </script>
+        </script>
+
+        <script type="text/javascript">
+            $(function() {
+                $("#autoSearch").autocomplete({
+                    name: "autoSearch",
+                    source: "http://localhost:5000/api/sst/shop/search?key=%QUERY",
+                    limit: 6,
+                });
+            });
+        </script>
+
+    </body>
 @endsection

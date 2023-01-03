@@ -7,7 +7,9 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const fs = require('fs')
 const Cart = require("../models/Cart");
-const { response } = require("express");
+const {
+    response
+} = require("express");
 const Item = require("../models/Stock");
 // const session = require("express-session");
 
@@ -65,7 +67,7 @@ router.get("/sservices", (req, res) => {
 router.get("/add/:id", function (req, res, next) {
     console.log(req.params.id);
     var itemID = req.params.id;
-    
+
     var cart = new Cart(req.session.cart ? req.session.cart : {});
     // console.log(cart);
     // Get item information
@@ -110,5 +112,21 @@ router.get("/remove/:id", function (req, res, next) {
     return res.send(200, "Item removed successfully");
 });
 
+router.get('/search', function (req, res) {
+    con.query(
+        'SELECT item_name,service_name FROM items,services WHERE item_name OR service_name LIKE "%' +
+        req.query.term +
+        '%"',
+        function (err, rows, fields) {
+            if (err) throw err
+            var DataList = []
+            for (i = 0; i < rows.length; i++) {
+                DataList.push(rows[i].name)
+            }
+            console.log(DataList);
+            res.end(JSON.stringify(DataList))
+        },
+    )
+})
 
 module.exports = router
