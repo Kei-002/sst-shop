@@ -200,7 +200,7 @@
                                     <div class="table-responsive">
                                         <table class="table table-borderless">
                                             <tbody id="cart-services">
-                                               {{-- Services --}}
+                                                {{-- Services --}}
 
 
 
@@ -211,7 +211,8 @@
                                 </div>
                                 <div class="offcanvas-footer">
                                     <span id="cartTotal"></span>
-                                    <button type="button" class='pay-btn' id="checkout" onclick="location.href='{{ url('/checkout') }}';">Checkout</button>
+                                    <button type="button" class='pay-btn' id="checkout"
+                                        onclick="location.href='{{ url('/checkout') }}';">Checkout</button>
                                 </div>
                             </div>
 

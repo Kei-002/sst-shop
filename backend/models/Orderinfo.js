@@ -5,8 +5,7 @@ const Item = require("./Item");
 const Shipper = require("./Shipper");
 
 const Orderinfo = sequelize.define(
-    "orderinfo",
-    {
+    "orderinfos", {
         id: {
             autoIncrement: true,
             primaryKey: true,
@@ -24,8 +23,7 @@ const Orderinfo = sequelize.define(
         status: {
             type: Sequelize.DataTypes.STRING,
         },
-    },
-    {
+    }, {
         timestamps: true,
         createdAt: "created_at",
         updatedAt: false,

@@ -6,8 +6,7 @@ const Orderinfo = require("./Orderinfo");
 const Shipper = require("./Shipper");
 
 const Orderline = sequelize.define(
-    "orderline",
-    {
+    "orderlines", {
         // id: {
         //     autoIncrement: true,
         //     primaryKey: true,
@@ -22,14 +21,13 @@ const Orderline = sequelize.define(
         quantity: {
             type: Sequelize.DataTypes.INTEGER,
         },
-    },
-    {
+    }, {
         timestamps: false,
     }
 );
 
-Orderline.belongsToMany(Orderinfo, {
-    foreignKey: "orderinfo_id",
+Orderinfo.belongsToMany(Item, {
+    through: Orderline
 });
 
 module.exports = Orderinfo;

@@ -12,7 +12,9 @@ $(document).ready(function () {
         headers: {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
         },
-        xhrFields: { withCredentials: true },
+        xhrFields: {
+            withCredentials: true
+        },
         credentials: "include",
         success: function (data) {
             cartDisplay.empty();
@@ -126,8 +128,7 @@ $(document).ready(function () {
             console.log(quantity, id);
             $.ajax({
                 type: "GET",
-                url:
-                    "http://localhost:5000/api/sst/shop/update/" +
+                url: "http://localhost:5000/api/sst/shop/update/" +
                     id +
                     "/" +
                     quantity,
@@ -137,7 +138,9 @@ $(document).ready(function () {
                         "content"
                     ),
                 },
-                xhrFields: { withCredentials: true },
+                xhrFields: {
+                    withCredentials: true
+                },
                 credentials: "include",
                 success: function (data) {
                     toastr.success(
@@ -167,11 +170,13 @@ $(document).ready(function () {
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
-            xhrFields: { withCredentials: true },
+            xhrFields: {
+                withCredentials: true
+            },
             credentials: "include",
             success: function (data) {
                 toastr.success(
-                    data.item_name + " quantity changed successfully"
+                    data + " quantity changed successfully"
                 );
                 // $("#total").text("$ " + data.totalPrice);
             },

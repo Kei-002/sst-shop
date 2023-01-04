@@ -99,18 +99,18 @@ $(document).ready(function () {
     $("#filters :checkbox").click(function () {
         var re = new RegExp(
             $("#filters :checkbox:checked")
-                .map(function () {
-                    return this.value;
-                })
-                .get()
-                .join("|")
+            .map(function () {
+                return this.value;
+            })
+            .get()
+            .join("|")
         );
         $("div .item").each(function () {
             var $this = $(this);
             $this[
-                re.source != "" && re.test($this.attr("class"))
-                    ? "show"
-                    : "hide"
+                re.source != "" && re.test($this.attr("class")) ?
+                "show" :
+                "hide"
             ]();
         });
     });
@@ -126,10 +126,13 @@ $(document).ready(function () {
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
-            xhrFields: { withCredentials: true },
+            xhrFields: {
+                withCredentials: true
+            },
             credentials: "include",
             success: function (data) {
-                toastr.success(data + " successfully added to cart");
+                toastr.success(data.item_name + " successfully added to cart");
+                $('#itemCount').text(data.quantity).css('display', 'block');
             },
             error: function (e) {
                 console.log("AJAX load did not work", e);
@@ -151,13 +154,16 @@ $(document).ready(function () {
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
-            xhrFields: { withCredentials: true },
+            xhrFields: {
+                withCredentials: true
+            },
             credentials: "include",
             success: function (data) {
                 cartDisplay.empty();
                 console.log(data.cartItems);
                 console.log("Nah");
                 toastr.success(data);
+                $('#cartTotal').text("Total: $" + data.totalPrice);
                 $.each(data.cartItems, function (key, value) {
                     // value = value.cartItems;
                     // console.log("key ", key, "val ", value.item.item_name);
@@ -257,8 +263,7 @@ $(document).ready(function () {
             console.log(quantity, id);
             $.ajax({
                 type: "GET",
-                url:
-                    "http://localhost:5000/api/sst/shop/update/" +
+                url: "http://localhost:5000/api/sst/shop/update/" +
                     id +
                     "/" +
                     quantity,
@@ -268,12 +273,16 @@ $(document).ready(function () {
                         "content"
                     ),
                 },
-                xhrFields: { withCredentials: true },
+                xhrFields: {
+                    withCredentials: true
+                },
                 credentials: "include",
                 success: function (data) {
                     toastr.success(
                         data.item_name + " quantity changed successfully"
                     );
+                    $('#itemCount').text(data.quantity).css('display', 'block');
+                    $('#cartTotal').text("Total: $" + data.totalPrice);
                 },
                 error: function (e) {
                     console.log("AJAX load did not work", e);
