@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/profile', function () {
+    return view('profile');
+});
+
 // Route::resource('customer', 'CustomerController');
 Route::view('/customer-index', 'customer.index');
 Route::view('/employee-index', 'employee.index');
