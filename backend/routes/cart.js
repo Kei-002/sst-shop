@@ -14,6 +14,7 @@ const Item = require("../models/Stock");
 const Category = require("../models/Category");
 const Customer = require("../models/Customer");
 const Orderinfo = require("../models/Orderinfo");
+const Orderline = require("../models/Orderline");
 // const session = require("express-session");
 
 const FILE_TYPE_MAP = {
@@ -72,7 +73,9 @@ router.get("/add/:id", function (req, res, next) {
     // console.log(req.session);
     var itemID = req.params.id;
     var cart = new Cart(req.session.cart ? req.session.cart : {});
-    Item.findByPk(itemID, { include: Category }).then((itemInfo) => {
+    Item.findByPk(itemID, {
+        include: Category
+    }).then((itemInfo) => {
         // console.log(itemInfo);
         console.log(itemInfo.dataValues);
         cart.add(itemInfo.dataValues, itemID);
@@ -80,7 +83,10 @@ router.get("/add/:id", function (req, res, next) {
         // console.log(req.session);
         console.log(req.session.id);
         console.log(cart);
-        return res.status(200).json(itemInfo.dataValues.item_name);
+        return res.status(200).json({
+            item_name: itemInfo.dataValues.item_name,
+            quantity: cart.totalItems
+        });
     });
     // console.log(itemInfo);
     // // Add item to cart session
@@ -95,7 +101,9 @@ router.get("/update/:id/:quantity", function (req, res, next) {
     var itemID = req.params.id;
     var itemQuantity = req.params.quantity;
     var cart = new Cart(req.session.cart ? req.session.cart : {});
-    Item.findByPk(itemID, { include: Category }).then((itemInfo) => {
+    Item.findByPk(itemID, {
+        include: Category
+    }).then((itemInfo) => {
         // console.log(itemInfo);
         console.log(itemInfo.dataValues);
         cart.update(itemInfo.dataValues, itemQuantity, itemID);
@@ -106,6 +114,7 @@ router.get("/update/:id/:quantity", function (req, res, next) {
         return res.status(200).json({
             item_name: itemInfo.dataValues.item_name,
             totalPrice: cart.totalPrice,
+            quantity: cart.totalItems
         });
     });
     // console.log(itemInfo);
@@ -116,7 +125,7 @@ router.get("/update/:id/:quantity", function (req, res, next) {
 });
 
 router.get("/cart", function (req, res, next) {
-    console.log(req.session.cart);
+    console.log(req.session);
     if (!req.session.cart) {
         console.log("test id nt", req.session.id);
         return res.status(200).json("No items in cart");
@@ -137,7 +146,11 @@ router.get("/checkoutinfo", function (req, res, next) {
     }
     var cart = new Cart(req.session.cart ? req.session.cart : {});
     console.log(req.session);
-    Customer.findOne({ where: { user_id: req.session.user_id } }).then(
+    Customer.findOne({
+        where: {
+            user_id: req.session.user_id
+        }
+    }).then(
         (data) => {
             console.log("test id ", req.session.id);
             console.log(cart.totalPrice);
@@ -155,12 +168,17 @@ router.get("/checkout", function (req, res, next) {
     // console.log(req.session.cart);
     var cart = new Cart(req.session.cart ? req.session.cart : {});
     console.log(req.session);
-    Customer.findOne({ where: { user_id: req.session.user_id } }).then(
+    Customer.findOne({
+        where: {
+            user_id: req.session.user_id
+        }
+    }).then(
         (data) => {
             var info = data.dataValues;
+
             let sql =
-                "INSERT INTO orderinfo (customer_id, shipper_id) VALUES (?, ?); ";
-            con.query(sql, [info.id, 1], (error, results, fields) => {
+                "INSERT INTO orderinfos (customer_id, shipper_id) VALUES (?, ?); ";
+            con.query(sql, [info.id, "1"], (error, results, fields) => {
                 if (error) {
                     return console.error(error.message);
                 }
@@ -168,28 +186,25 @@ router.get("/checkout", function (req, res, next) {
                 var allItems = cart.getItems();
                 allItems.forEach((item) => {
                     let sql1 =
-                        "INSERT INTO orderline (orderinfo_id, item_id, quantity) VALUES (?, ?,?); ";
+                        "INSERT INTO orderlines (orderinfo_id, item_id, quantity) VALUES (?, ?,?); ";
                     con.query(
-                        sql,
+                        sql1,
                         [results.insertId, item.item.id, item.quantity],
                         (error, results, fields) => {
                             if (error) {
                                 return console.error(error.message);
                             }
-                            return res.status(200).json(results);
+
                         }
                     );
                 });
+                return res.status(200).json("Ukiii");
             });
+        })
 
-            return res.status(200).json({
-                customer: data.dataValues,
-                cartItems: cart.getItems(),
-                totalPrice: cart.totalPrice,
-            });
-        }
-    );
+
 });
+
 
 router.get("/remove/:id", function (req, res, next) {
     var productId = req.params.id;
