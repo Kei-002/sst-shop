@@ -61,6 +61,10 @@
                     <form class="form-inline my-2 my-lg-0" action="{{ url('/login') }}">
                         <button id="loginButton" class="header-btn my-2 my-sm-0" type="submit">Login</button>
                     </form>
+                    <form class="form-inline my-2 my-lg-0" action="{{ url('/profile') }}">
+                        <button id="loginButton" class="header-btn my-2 my-sm-0" type="submit"
+                            style="margin-left: 10px;">Profile</button>
+                    </form>
                     <button id="logoutButton" class="header-btn my-2 my-sm-0">Logout</button>
                 </div>
             </nav>
@@ -115,6 +119,4 @@
     });
 </script>
 
- <script src="js/logout.js"></script>
-
-
+<script src="js/logout.js"></script>
