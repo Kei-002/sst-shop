@@ -137,9 +137,9 @@
                 <div class="searchbox">
                     <div class="d-flex justify-content-center px-5">
                         <div class="search">
-                            <input type="text" class="search-input form-control" placeholder="Search..."
-                                name="autoSearch" id="autoSearch">
-                            <a href="#" class="search-icon"> <i class="fa fa-search"></i> </a>
+                            <input type="text" id="autocomplete_search" class="form-control search-input"
+                                placeholder="Search..." />
+                            <span id="search_result"></span>
                         </div>
                     </div>
                 </div>
@@ -297,14 +297,63 @@
             });
         </script>
 
-        <script type="text/javascript">
-            $(function() {
-                $("#autoSearch").autocomplete({
-                    name: "autoSearch",
-                    source: "http://localhost:5000/api/sst/shop/search?key=%QUERY",
-                    limit: 6,
+        <script>
+            function load_data(query = '') {
+                fetch('http://localhost:5000/api/sst/shop/get_data?search_query=' + query + '').then(function(response) {
+
+                    return response.json();
+
+                }).then(function(responseData) {
+
+                    var html = '<ul class="list-group">';
+
+                    if (responseData.length > 0) {
+                        for (var count = 0; count < responseData.length; count++) {
+                            var regular_expression = new RegExp('(' + query + ')', 'gi');
+
+                            html +=
+                                '<a href="#" class="list-group-item list-group-item-action" onclick="get_text(this)">' +
+                                responseData[count].item_name.replace(regular_expression,
+                                    '<span class="text-primary fw-bold">$1</span>') + '</a>';
+                        }
+                    } else {
+                        html += '<a href="#" class="list-group-item list-group-item-action disabled">No Data Found</a>';
+                    }
+
+                    html += '</ul>';
+
+                    document.getElementById('search_result').innerHTML = html;
+
                 });
-            });
+            }
+
+            var search_element = document.getElementById("autocomplete_search");
+
+            search_element.onkeyup = function() {
+
+                var query = search_element.value;
+
+                load_data(query);
+
+            };
+
+            search_element.onfocus = function() {
+
+                var query = search_element.value;
+
+                load_data(query);
+
+            };
+
+            function get_text(event) {
+                var item_name = event.textContent;
+
+                console.log(item_name);
+
+                document.getElementById('autocomplete_search').value = item_name;
+
+                document.getElementById('search_result').innerHTML = '';
+            }
         </script>
 
     </body>

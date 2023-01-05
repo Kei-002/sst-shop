@@ -228,22 +228,24 @@ router.get("/remove/:id", function (req, res, next) {
     return res.send(200, "Item removed successfully");
 });
 
-router.get('/search', function (req, res) {
-    con.query(
-        'SELECT item_name,service_name FROM items,services WHERE item_name OR service_name LIKE "%' +
-        req.query.term +
-        '%"',
-        function (err, rows, fields) {
-            if (err) throw err
-            var DataList = []
-            for (i = 0; i < rows.length; i++) {
-                DataList.push(rows[i].name)
-            }
-            console.log(DataList);
-            res.end(JSON.stringify(DataList))
-        },
-    )
-})
+
+
+router.get('/get_data', function (request, response, next) {
+
+    var search_query = request.query.search_query;
+
+    var query = `
+    select item_name from items where item_name LIKE '%${search_query}%' UNION SELECT service_name from services WHERE service_name LIKE '%${search_query}%'
+    LIMIT 10
+    `;
+
+    con.query(query, function (error, data) {
+
+        response.json(data);
+
+    });
+
+});
 
 
 module.exports = router
