@@ -205,6 +205,18 @@ router.get("/checkout", function (req, res, next) {
 
 });
 
+router.get("/shipper", (req, res) => {
+    let sql = `SELECT * FROM shippers`;
+    con.query(sql, (error, results, fields) => {
+        if (error) {
+            return console.error(error.message);
+        }
+        console.log(results);
+        return res.status(200).json(results);
+    });
+});
+
+
 
 router.get("/remove/:id", function (req, res, next) {
     var productId = req.params.id;

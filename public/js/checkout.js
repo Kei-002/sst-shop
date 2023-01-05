@@ -186,4 +186,26 @@ $(document).ready(function () {
             },
         });
     });
+
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:5000/api/sst/shop/shipper/",
+        data: "{}",
+        success: function (data) {
+            console.log("test");
+            console.log(data);
+            var s =
+                '<option value="-1" disabled selected>Select Shipper</option>';
+            for (var i = 0; i < data.length; i++) {
+                s +=
+                    '<option value="' +
+                    data[i].id +
+                    '">' +
+                    data[i].shipper_name +
+                    "</option>";
+            }
+            $("#shipDrop").html(s);
+        },
+    });
+
 });

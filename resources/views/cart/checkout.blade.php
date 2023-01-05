@@ -16,6 +16,7 @@
                 margin-right: auto;
                 margin-top: 35px;
                 margin-bottom: 15px;
+                border-radius: 50%;
             }
 
             .input-field {
@@ -40,10 +41,6 @@
                 color: #eee;
                 -webkit-transition: all .2s ease;
                 transition: all .2s ease;
-            }
-
-            img {
-                border-radius: 50%;
             }
 
             #name,
@@ -99,7 +96,7 @@
                         <div class="table-responsive">
                             <table class="table table-borderless">
                                 <tbody id="totalBody">
-                                    <tr >
+                                    <tr>
                                         <td>
                                             <h2 style="font-weight: 900">Total</h2>
                                         </td>
@@ -121,10 +118,17 @@
                         <h2>Customer Details</h2>
                     </div>
 
-                    <div id = "customer_img">
-                        <div id = "customer_info">
+                    <div id="customer_img">
+                        <div id="customer_info">
 
                         </div>
+
+                        <div class="form-group">
+                            <label for="shipDrop">Shippers</label>
+                            <select class="form-control" id="shipDrop" name="shipDrop"></select>
+                        </div>
+
+                        <br>
 
                         <div>
                             <button type="button" class='pay-btn'>Checkout</button>
