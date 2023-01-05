@@ -5,7 +5,7 @@
 </style>
 
 
-<header class="header">
+<header class="header" id="hider">
 
     <div class="header-inner">
         <div class="container-fluid px-lg-5">
@@ -75,7 +75,7 @@
 
 </header>
 
-<section class="content-banner">
+<section class="content-banner" id="sectioncontent">
 
     <div class="container">
         <div class="row d-flex justify-content-center">
