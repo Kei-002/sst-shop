@@ -55,7 +55,7 @@
                                             <th scope="col">#</th>
                                             <th scope="col">Component Name</th>
                                             <th scope="col">Price</th>
-                                            <th scope="col">Purchased When</th>
+                                            <th scope="col">Purchased Date</th>
                                         </tr>
                                     </thead>
                                     <tbody id="totalBody">
@@ -81,7 +81,7 @@
                                             <th scope="col">#</th>
                                             <th scope="col">Service Name</th>
                                             <th scope="col">Price</th>
-                                            <th scope="col">Availed When</th>
+                                            <th scope="col">Availed Date</th>
                                         </tr>
                                     </thead>
                                     <tbody id="totalBody">

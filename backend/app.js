@@ -30,7 +30,9 @@ app.use(
         secret: process.env.SECRET_KEY,
         resave: false,
         saveUninitialized: true,
-        cookie: { sameSite: "none" },
+        cookie: {
+            sameSite: "none"
+        },
     })
 );
 
@@ -43,6 +45,7 @@ const shipRoutes = require("./routes/shipper");
 const serviceRoutes = require("./routes/service");
 const registerRoutes = require("./routes/register");
 const cartRoutes = require("./routes/cart");
+const profRoutes = require("./routes/profile");
 const authRoutes = require("./routes/authTest");
 const authinRoutes = require("./routes/auth");
 const refreshRoutes = require("./routes/refresh");
@@ -98,6 +101,7 @@ app.use(`${api}/shop`, cartRoutes);
 
 // verify first if user has token
 // app.use(verifyJWT);
+app.use(`${api}/profiles`, verifyJWT, profRoutes);
 app.use(`${api}/customers`, verifyJWT, custRoutes);
 app.use(`${api}/employees`, verifyJWT, empRoutes);
 app.use(`${api}/items`, verifyJWT, itemRoutes);
