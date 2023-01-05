@@ -22,6 +22,10 @@ Route::get('/profile', function () {
     return view('profile');
 });
 
+Route::get('/history', function () {
+    return view('history');
+});
+
 // Route::resource('customer', 'CustomerController');
 Route::view('/customer-index', 'customer.index');
 Route::view('/employee-index', 'employee.index');
