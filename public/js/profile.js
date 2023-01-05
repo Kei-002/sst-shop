@@ -9,6 +9,7 @@ $(document).ready(function () {
         data: "json",
         headers: {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            Authorization: "Bearer " + localStorage.getItem("token"),
         },
         xhrFields: {
             withCredentials: true,

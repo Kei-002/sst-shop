@@ -1,5 +1,6 @@
 @extends('layouts.base')
 @section('body')
+    
 
     <body>
 

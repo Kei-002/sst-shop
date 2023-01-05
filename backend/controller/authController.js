@@ -10,6 +10,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const PersonalToken = require("../models/PersonalToken");
 const session = require("express-session");
+const { date } = require("joi");
 
 const handleLogin = async (req, res) => {
     console.log(req.body);
@@ -29,14 +30,26 @@ const handleLogin = async (req, res) => {
             const match = await bcrypt.compare(pass, data.password);
             if (match) {
                 if (data.confirmed) {
+                    var userRole = "customer";
+                    if (data.role == "employee") {
+                        userRole = "employee";
+                    }
                     // JWT
                     const accessToken = jwt.sign(
-                        { email: data.email, loginType: "local" },
+                        {
+                            email: data.email,
+                            loginType: "local",
+                            role: userRole,
+                        },
                         process.env.SECRET_KEY,
                         { expiresIn: "2h" }
                     );
                     const refreshToken = jwt.sign(
-                        { email: data.email, loginType: "local" },
+                        {
+                            email: data.email,
+                            loginType: "local",
+                            role: userRole,
+                        },
                         process.env.SECRET_KEY,
                         { expiresIn: "1y" }
                     );
