@@ -331,19 +331,22 @@
 
             search_element.onkeyup = function() {
 
-                var query = search_element.value;
+                if (!$(search_element).val()) {
 
-                load_data(query);
+                    $('#search_result').html(""); //to empty the result list
+                    return; //return is to abort the operation
+
+                } else {
+                    var query = search_element.value;
+
+                    load_data(query);
+                }
 
             };
 
-            search_element.onfocus = function() {
 
-                var query = search_element.value;
 
-                load_data(query);
 
-            };
 
             function get_text(event) {
                 var item_name = event.textContent;
