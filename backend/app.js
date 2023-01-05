@@ -52,6 +52,7 @@ const refreshRoutes = require("./routes/refresh");
 const logoutRoutes = require("./routes/logout");
 const usrRoutes = require("./routes/user");
 const publicRoutes = require("./routes/public");
+const hisRoutes = require("./routes/history");
 
 // Routes END
 
@@ -98,6 +99,8 @@ app.use(`${api}/refresh`, refreshRoutes);
 app.use(`${api}/logout`, logoutRoutes);
 app.use(`${api}/public`, publicRoutes);
 app.use(`${api}/shop`, cartRoutes);
+app.use(`${api}/history`, hisRoutes);
+
 
 // verify first if user has token
 // app.use(verifyJWT);
