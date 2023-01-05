@@ -34,17 +34,18 @@
                 <div class="bg-white shadow rounded overflow-hidden">
                     <div class="px-4 pt-0 pb-4 cover">
                         <div class="media align-items-end profile-head">
-                            <div class="profile mr-3"><img
-                                    src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
-                                    alt="..." width="130" class="rounded mb-2 img-thumbnail"><a href="#"
+                            <div class="profile mr-3"><img src="" alt="..." width="130"
+                                    class="rounded mb-2 img-thumbnail"><a href="#"
                                     class="btn btn-outline-dark btn-sm btn-block">Edit profile</a></div>
-                            <div class="media-body mb-5 text-white">
-                                <h4 class="mt-0 mb-0">Mark Williams</h4>
+                            <div class="media-body mb-5 text-white profile-info">
+                                {{-- <h4 class="mt-0 mb-0">Mark Williams</h4>
                                 <p class="small mb-4" id="address"> <i class="fas fa-map-marker-alt mr-2"></i>New York</p>
-                                <p class="small mb-4" id="phone"> <i class="fas fa-phone mr-2"></i> 0192321</p>
+                                <p class="small mb-4" id="phone"> <i class="fas fa-phone mr-2"></i> 0192321</p> --}}
                             </div>
                         </div>
                     </div>
+                    <div id="data-container"></div>
+                    <div id="pagination-container"></div>
                     <div class="px-4 py-3" style="margin-top: 60px;">
                         <h5 class="mb-0">Component Transaction History</h5>
                         <div class="p-4 rounded shadow-sm bg-light">
@@ -59,12 +60,7 @@
                                         </tr>
                                     </thead>
                                     <tbody id="totalBody">
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>$2103</td>
-                                            <td>2022-22-02</td>
-                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -100,6 +96,7 @@
                 </div>
             </div>
         </div>
-
+        <script src="js/profile.js"></script>
+        {{-- <script src="/node_modules/paginationjs/dist/pagination.js"></script> --}}
     </body>
 @endsection

@@ -30,15 +30,14 @@ $(document).ready(function () {
                 // $cattable.row.add(data.customer).draw(false);
                 toastr.success("Succesfully Logged in");
                 // $cattable.ajax.reload();
+                showLogout();
             },
             error: function (error) {
                 console.log(error.responseJSON);
                 toastr.info(error.responseJSON.Message);
             },
         });
-        $("#loginButton").hide();
-        $("#logoutButton").show();
-        $("#adminLinks").show();
+
         // window.location.reload();
     });
 
@@ -129,4 +128,25 @@ $(document).ready(function () {
         // );
         // location.href = "http://localhost:5000/api/sst/login/facebook";
     });
+
+    function showLogin() {
+        // if (!localStorage.getItem("token")) {
+        $("#loginButton").show();
+        $("#adminLinks").hide();
+        $("#logoutButton").hide();
+        $("#profileButton").hide();
+        // } else {
+        //     $("#loginButton").hide();
+        //     $("#adminLinks").show();
+        //     $("#logoutButton").show();
+        //     $("#profileButton").show();
+        // }
+    }
+
+    function showLogout() {
+        $("#adminLinks").show();
+        $("#logoutButton").show();
+        $("#profileButton").show();
+        $("#loginButton").hide();
+    }
 });

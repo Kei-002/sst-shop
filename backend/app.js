@@ -101,7 +101,7 @@ app.use(`${api}/shop`, cartRoutes);
 
 // verify first if user has token
 // app.use(verifyJWT);
-app.use(`${api}/profiles`, verifyJWT, profRoutes);
+app.use(`${api}/profile`, verifyJWT, profRoutes);
 app.use(`${api}/customers`, verifyJWT, custRoutes);
 app.use(`${api}/employees`, verifyJWT, empRoutes);
 app.use(`${api}/items`, verifyJWT, itemRoutes);
