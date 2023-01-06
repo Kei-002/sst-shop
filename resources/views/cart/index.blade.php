@@ -6,6 +6,12 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" />
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.5.0/pagination.min.js"
+            integrity="sha512-To905O3HNAHQVrN6xCie4dwDWV0OO3lwZl4rqtCvf+4lfkbx9XlyLmSiLosdi1WWBcW+VMy4Lmu/M10R+FsOPA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.5.0/pagination.css"
+            integrity="sha512-TH+vnrhByFI2RzNvaHSqt6EwoJ9Bp+yGAGTWp84qTuTx315ebnypxtyGHpli55Rm4N4J+N/0W9xAL2b5RZ2ZSA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
 
     <style>
@@ -158,10 +164,10 @@
                                     <label for="filter-GPU">GPU</label>
                                 </ul>
 
-                                <ul>
+                                {{-- <ul>
                                     <input type="checkbox" value="service" id="filter-service" />
                                     <label for="filter-service">Services</label>
-                                </ul>
+                                </ul> --}}
 
                             </div>
 
@@ -191,7 +197,7 @@
 
                                 </div>
                                 <hr>
-                                <div class="offcanvas-body scartbody">
+                                {{-- <div class="offcanvas-body scartbody">
                                     <div class="section-title">
                                         <span>Services</span>
                                         <h2>Services</h2>
@@ -200,7 +206,7 @@
                                     <div class="table-responsive">
                                         <table class="table table-borderless">
                                             <tbody id="cart-services">
-                                                {{-- Services --}}
+                                                
 
 
 
@@ -208,7 +214,7 @@
                                         </table>
                                     </div>
 
-                                </div>
+                                </div> --}}
                                 <div class="offcanvas-footer">
                                     <span id="cartTotal"></span>
                                     <button type="button" class='pay-btn' id="checkout"
@@ -221,6 +227,9 @@
                     <div class="col-12 col-sm-6 col-md-8">
                         <div class="row shp" id="compcontainer">
                             <h3>Components</h3>
+                            <div id="pagination-test">
+
+                            </div>
 
                             {{-- <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
                                 <div class="card text-white card-has-bg click-col"
@@ -245,11 +254,11 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-sm-6 col-md-8" style="margin-left: 432px;margin-top: 5px;">
+                    {{-- <div class="col-12 col-sm-6 col-md-8" style="margin-left: 432px;margin-top: 5px;">
                         <div class="row shp" id="servcontainer">
-                            <h3>Services</h3>
+                            <h3>Services</h3> --}}
 
-                            {{-- <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+                    {{-- <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
                                 <div class="card text-white card-has-bg click-col"
                                     style="background-image:url('https://source.unsplash.com/600x900/?tech,street');">
                                     <div class="card-img-overlay d-flex flex-column">
@@ -264,8 +273,8 @@
                                 </div>
                             </div> --}}
 
-                        </div>
-                    </div>
+                    {{-- </div>
+                    </div> --}}
 
                 </div>
             </div>

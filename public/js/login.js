@@ -20,7 +20,9 @@ $(document).ready(function () {
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
-            xhrFields: { withCredentials: true },
+            xhrFields: {
+                withCredentials: true
+            },
             dataType: "json",
             success: function (data) {
                 console.log(data);
@@ -87,16 +89,16 @@ $(document).ready(function () {
         //     "",
         //     "width=500,height=900"
         // );
-        // location.href = "http://localhost:5000/api/sst/login/google";
-        fetch("http://localhost:5000/api/sst/login/google", {
-            method: "GET",
-            mode: "cors",
-            headers: {
-                "Content-Type": "application/json",
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            credentials: "include",
-        });
+        location.href = "http://localhost:5000/api/sst/login/google";
+        // fetch("http://localhost:5000/api/sst/login/google", {
+        //     method: "GET",
+        //     mode: "cors",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //         // 'Content-Type': 'application/x-www-form-urlencoded',
+        //     },
+        //     credentials: "include",
+        // });
 
         // $.ajax({
         //     type: "GET",

@@ -8,13 +8,11 @@ $(document).ready(function () {
         type: "bar",
         data: {
             labels: [],
-            datasets: [
-                {
-                    label: "# of Votes",
-                    data: [],
-                    borderWidth: 1,
-                },
-            ],
+            datasets: [{
+                label: "# of Products Sold",
+                data: [],
+                borderWidth: 1,
+            }, ],
         },
         options: {
             scales: {
@@ -31,13 +29,11 @@ $(document).ready(function () {
         type: "line",
         data: {
             labels: [],
-            datasets: [
-                {
-                    label: "Overall Sales",
-                    data: [],
-                    borderWidth: 1,
-                },
-            ],
+            datasets: [{
+                label: "Overall Sales",
+                data: [],
+                borderWidth: 1,
+            }, ],
         },
         options: {
             scales: {
@@ -151,8 +147,7 @@ $(document).ready(function () {
                         const secondDate = new Date(high);
                         $.ajax({
                             type: "GET",
-                            url:
-                                "http://localhost:5000/api/sst/chart/filtersales/" +
+                            url: "http://localhost:5000/api/sst/chart/filtersales/" +
                                 firstDate.toISOString().split("T")[0] +
                                 "/" +
                                 secondDate.toISOString().split("T")[0],
@@ -163,8 +158,7 @@ $(document).ready(function () {
                                 "X-CSRF-TOKEN": $(
                                     'meta[name="csrf-token"]'
                                 ).attr("content"),
-                                Authorization:
-                                    "Bearer " + localStorage.getItem("token"),
+                                Authorization: "Bearer " + localStorage.getItem("token"),
                             },
                             dataType: "json",
                             xhrFields: {

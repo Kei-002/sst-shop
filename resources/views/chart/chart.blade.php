@@ -29,7 +29,7 @@
 
     <body>
 
-        <div class="container-fluid">
+        <div class="container">
             {{-- <div class="f">
                 <canvas id="titleChart"></canvas>
             </div> --}}

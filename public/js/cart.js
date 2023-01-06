@@ -1,4 +1,90 @@
 $(document).ready(function () {
+
+
+    // pagination
+    // $('#compcontainer').pagination({
+
+    //     dataSource: function (done) {
+    //         $.ajax({
+    //             type: 'GET',
+    //             url: 'http://localhost:5000/api/sst/shop/sitems',
+    //             dataType: "json",
+    //             pageSize: 2,
+    //             autoHidePrevious: true,
+    //             autoHideNext: true,
+    //             success: function (data) {
+    //                 // $.each(data, fu)
+    //                 // console.log("tt", data)
+    //                 done(data);
+    //             }
+    //         });
+    //     },
+    //     callback: function (data, pagination) {
+    //         // template method of yourself
+    //         // var html = template(data);
+    //         // $("#compcontainer").html(html);
+    //         var start;
+    //         var container = $('<div>');
+    //         console.log("sss", container)
+    //         $.each(data, function (key, value) {
+    //             console.log(key, "tttt ", value.sell_price);
+    //             var id = value.id;
+    //             var itemPrice = value.sell_price;
+    //             var item = value.item_name;
+    //             var itemImg = value.img_path;
+    //             var servPrice = value.price;
+    //             var serv = value.service_name;
+    //             var categoryName = value.category_name;
+    //             console.log(key, "tttt ", item);
+    //             var cont = $("#compcontainer");
+    //             // var start = $(
+    //             //     `<div class="col-sm-12 col-md-6 col-lg-4 mb-4 item filter-${categoryName}">`
+    //             // );
+
+
+    //             var card = $(
+    //                 `
+    //                 <div class="col-sm-12 col-md-6 col-lg-4 mb-4 item filter-${categoryName}">
+    //                 <div class="card text-white card-has-bg click-col filter-${categoryName}" style="background-image:url('${itemImg}');background-size: cover;background-position: center;">
+    //                     <div class="card-img-overlay d-flex flex-column">
+    //                         <div class="card-body">
+    //                             <small class="card-meta mb-2">$ ${itemPrice} </small>
+    //                             <h4 class="card-title mt-0 "><input type="hidden" id="${id}" name="${id}" value="${id}" />
+    //                                 <a class="text-white" herf="#">${item}</a>
+    //                             </h4>
+    //                         </div>
+    //                         <div class='d-grid gap-2 col-4'>
+    //                             <a href='#' class='btn btn-primary float-end addtocart' data-id="${id}">
+    //                                 <i class='fa-solid fa-cart-shopping' aria-hidden='true'></i>
+    //                             </a>
+    //                         </div>
+    //                     </div>
+    //                 </div>
+    //                 </div>`
+    //             );
+    //             // start = start + card + '</div>'
+    //             console.log(start)
+    //             console.log(card[0].innerHTML)
+
+    //             // += card
+
+    //             // start.append(card);
+    //             // cont.append(start);
+    //             container[0].innerHTML += card[0].innerHTML
+    //             console.log("loop ", container[0].innerHTML)
+    //         });
+    //         // console.log(start)
+    //         // start += '</div>';
+    //         console.log("test ", container)
+    //         var container1 = $('#pagination-test');
+    //         console.log(container)
+    //         container1.html(container[0].innerHTML);
+    //     }
+    // })
+
+
+
+
     $.ajax({
         type: "GET",
         url: "http://localhost:5000/api/sst/shop/sitems",
@@ -47,53 +133,53 @@ $(document).ready(function () {
         },
     });
 
-    $.ajax({
-        type: "GET",
-        url: "http://localhost:5000/api/sst/shop/sservices",
-        dataType: "json",
-        success: function (data) {
-            console.log(data);
-            $.each(data, function (key, value) {
-                console.log(key, value);
-                var id = value.id;
-                var itemImg = value.img_path;
-                var servPrice = value.price;
-                var serv = value.service_name;
+    // $.ajax({
+    //     type: "GET",
+    //     url: "http://localhost:5000/api/sst/shop/sservices",
+    //     dataType: "json",
+    //     success: function (data) {
+    //         console.log(data);
+    //         $.each(data, function (key, value) {
+    //             console.log(key, value);
+    //             var id = value.id;
+    //             var itemImg = value.img_path;
+    //             var servPrice = value.price;
+    //             var serv = value.service_name;
 
-                var contt = $("#servcontainer");
+    //             var contt = $("#servcontainer");
 
-                var startt = $(
-                    `<div class="col-sm-12 col-md-6 col-lg-4 mb-4 item filter-service">`
-                );
-                var cardd = $(
-                    `<div class="card text-white card-has-bg click-col" style="background-image:url(' ${itemImg}');background-size: cover;background-position: center;">
-                        <div class="card-img-overlay d-flex flex-column">
-                            <div class="card-body">
-                                <small class="card-meta mb-2">$ ${servPrice}</small>
-                                <h4 class="card-title mt-0 ">
-                                    <input type="hidden" class="servid" data-id="${id}" id="${id}" name="${id}" value="${id}" />
-                                    <a class="text-white" herf="#">${serv}</a>
-                                </h4>
-                            </div>
-                            <div class='d-grid gap-2 col-4'>
-                                <a href='#' class='btn btn-primary float-end addtocart' data-id="${id}">
-                                    <i class='fa-solid fa-cart-shopping' aria-hidden='true'></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>`
-                );
+    //             var startt = $(
+    //                 `<div class="col-sm-12 col-md-6 col-lg-4 mb-4 item filter-service">`
+    //             );
+    //             var cardd = $(
+    //                 `<div class="card text-white card-has-bg click-col" style="background-image:url(' ${itemImg}');background-size: cover;background-position: center;">
+    //                     <div class="card-img-overlay d-flex flex-column">
+    //                         <div class="card-body">
+    //                             <small class="card-meta mb-2">$ ${servPrice}</small>
+    //                             <h4 class="card-title mt-0 ">
+    //                                 <input type="hidden" class="servid" data-id="${id}" id="${id}" name="${id}" value="${id}" />
+    //                                 <a class="text-white" herf="#">${serv}</a>
+    //                             </h4>
+    //                         </div>
+    //                         <div class='d-grid gap-2 col-4'>
+    //                             <a href='#' class='btn btn-primary float-end addtocart' data-id="${id}">
+    //                                 <i class='fa-solid fa-cart-shopping' aria-hidden='true'></i>
+    //                             </a>
+    //                         </div>
+    //                     </div>
+    //                 </div>`
+    //             );
 
-                startt.append(cardd);
+    //             startt.append(cardd);
 
-                contt.append(startt);
-            });
-        },
-        error: function () {
-            console.log("AJAX load did not work");
-            alert("error");
-        },
-    });
+    //             contt.append(startt);
+    //         });
+    //     },
+    //     error: function () {
+    //         console.log("AJAX load did not work");
+    //         alert("error");
+    //     },
+    // });
 
     // Filtering items through checkbox
     $("#filters :checkbox").click(function () {
