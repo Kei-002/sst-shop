@@ -35,10 +35,10 @@
             </div> --}}
 
             <div class="row">
-                <button id="clear"></button>
+                {{-- <button id="clear"></button> --}}
                 <div class="s">
                     <canvas id="salesChart"></canvas>
-                </div>\
+                </div>
                 <div id="slider-range"></div>
 
             </div>

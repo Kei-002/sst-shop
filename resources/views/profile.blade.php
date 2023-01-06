@@ -19,7 +19,7 @@
 
             #phone {
                 position: absolute;
-                top: 78px;
+                top: 40px;
                 right: 400px;
             }
         </style>

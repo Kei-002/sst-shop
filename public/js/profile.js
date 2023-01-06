@@ -24,6 +24,7 @@ $(document).ready(function () {
                 <p class="small mb-4" id="address"> <i class="fas fa-map-marker-alt mr-2"></i>${data.customer.addressline}</p>
                 <p class="small mb-4" id="phone"> <i class="fas fa-phone mr-2"></i>${data.customer.phone}</p>
             `);
+            console.log(data.customer.phone)
             //ewan
             profileData.appendTo(profileDiv);
             $(".profile img").attr("src", data.customer.img_path);

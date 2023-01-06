@@ -59,15 +59,15 @@
                                     </address>
                                 </div>
 
-                                <div class="col-sm-4 invoice-col">
+                                <div class="col-sm-4 invoice-col profile-col">
                                     To
-                                    <address>
+                                    {{-- <address>
                                         <strong>TEST</strong><br>
                                         795 Folsom Ave, Suite 600<br>
                                         San Francisco, CA 94107<br>
                                         Phone:TEST<br>
 
-                                    </address>
+                                    </address> --}}
                                 </div>
 
                                 <div class="col-sm-4 invoice-col">
@@ -88,19 +88,19 @@
                                                 <th>Subtotal</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
+                                        <tbody id="item-body">
+                                            {{-- <tr>
                                                 <td>TEST</td>
                                                 <td>TEST</td>
                                                 <td>$TEST</td>
-                                            </tr>
+                                            </tr> --}}
 
                                         </tbody>
                                     </table>
                                 </div>
 
                             </div>
-
+                            {{-- 
                             <div class="row">
                                 <div class="col-12 table-responsive">
                                     <table class="table table-striped">
@@ -122,7 +122,7 @@
                                     </table>
                                 </div>
 
-                            </div>
+                            </div> --}}
 
 
 
@@ -131,7 +131,7 @@
                                     <tbody>
                                         <tr>
                                             <th style="width:90%">Total:</th>
-                                            <td>$TEST</td>
+                                            <td id="totalPrice">$TEST</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -165,6 +165,6 @@
                 elementt.classList.add("noPrint");
             }
         </script>
-
+        <script src="{{ asset('js/receipt.js') }}"></script>
     </body>
 @endsection

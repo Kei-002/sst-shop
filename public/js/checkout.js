@@ -178,6 +178,7 @@ $(document).ready(function () {
                 toastr.success(
                     data + " quantity changed successfully"
                 );
+                window.location.href = ("http://localhost:8000/receipt")
                 // $("#total").text("$ " + data.totalPrice);
             },
             error: function (e) {

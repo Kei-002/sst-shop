@@ -54,7 +54,8 @@ const usrRoutes = require("./routes/user");
 const publicRoutes = require("./routes/public");
 const hisRoutes = require("./routes/history");
 const chartRoutes = require("./routes/chart");
-const verifyRoles = require("./middleware/verifyRoles");
+const receiptRoutes = require("./routes/receipt");
+// const verifyRoles = require("./middleware/verifyRoles");
 
 // Routes END
 
@@ -103,6 +104,7 @@ app.use(`${api}/public`, publicRoutes);
 app.use(`${api}/shop`, cartRoutes);
 app.use(`${api}/history`, hisRoutes);
 app.use(`${api}/chart`, chartRoutes);
+app.use(`${api}/receipt`, receiptRoutes);
 
 // verify first if user has token
 // app.use(verifyJWT);
