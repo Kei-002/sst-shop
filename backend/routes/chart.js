@@ -7,7 +7,9 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const fs = require("fs");
 const Cart = require("../models/Cart");
-const { response } = require("express");
+const {
+    response
+} = require("express");
 const Item = require("../models/Stock");
 const Category = require("../models/Category");
 const Customer = require("../models/Customer");
@@ -28,7 +30,7 @@ router.get("/items", function (req, res) {
 
 router.get("/sales", function (req, res) {
     let sql1 =
-        "SELECT oi.*,SUM(ol.quantity) as totalSales FROM orderinfos oi INNER JOIN orderlines ol ON ol.orderinfo_id = oi.id GROUP BY oi.created_at; ";
+        "SELECT oi.*,SUM(ol.quantity) as totalSales FROM orderinfos oi INNER JOIN orderlines ol ON ol.orderinfo_id = oi.id GROUP BY oi.created_at";
     con.query(sql1, (error, results, fields) => {
         if (error) {
             return console.error(error.message);
